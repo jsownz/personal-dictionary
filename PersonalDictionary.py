@@ -3,7 +3,7 @@
 """
     Author: John Vardanian
     Last Modified: 2016-06-18
-    Python3 using PyCharm
+    Python3.5 using PyCharm / Atom
 
     r0.0.9-2016-06-18(a)
 
@@ -116,7 +116,7 @@ def permute_phone(phone):
         Return list of various phone permutations (area code, reversed etc).
 
         :param phone:
-        :return: list
+        :return: list of 6 phone number permutations of arg phone
         :rtype: list
     """
     return [phone, phone[3:], phone[0:3], phone[6:], phone[::-1],
@@ -291,6 +291,7 @@ def main():
     # music_list = generic_permuted_list(music)
     # color_list = generic_permuted_list(colors)
 
+    # definitively sloppy code for POC
     for pet in pet_list:
         for family in family_list:
             final_collection.append(pet + family)
@@ -344,6 +345,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-else:
-    print("Invoked by separate module. Exiting...")
-    exit()

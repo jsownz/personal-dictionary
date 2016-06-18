@@ -13,6 +13,14 @@ Written using Python 3.5 with PyCharm.
 
 Enter terms delimited by a comma. Currently spaces not supported and type checking not implemented.
 
+## Future Features
+
+Read from files.
+
+Weighting of category significance.
+
+Social Media Integration.
+
 ## History
 
 This is an alpha release of a script that began June 18th of 2016
