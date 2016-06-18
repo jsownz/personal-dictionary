@@ -266,6 +266,18 @@ def main():
         text file of potential passwords (dictionary list), tailored towards
         information gathered during initial phase of pen test.
     """
+    print("\n** Personalized Dictionary Generator ** \n\nEnter data in the " +
+          "prompts below, separated with commas.\nE.G. Phones: " +
+          "5555555555, 9995550000\n\nEach category is similar to that of a " +
+          "security question to recover a password, or a category that is " +
+          "commonly used by individuals to remember their passwords. " +
+          "When the script completes a file titled 'dictionary.txt' " +
+          "will be generated in the same directory as the script. The " +
+          "dictionary will contain a large number of permutations of the " +
+          "information entered.\n\nThe more relevant information entered " +
+          "the higher chance of success. The information entered determines " +
+          "the quality of dictionary that is generated.\n")
+
     final_collection = []
 
     years = \
