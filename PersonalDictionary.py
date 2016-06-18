@@ -254,18 +254,17 @@ def main():
     years = split_by_comma("Years")
     pet_names = split_by_comma("Pets")
     sports = split_by_comma("Sports")
+    music = split_by_comma("Music")
     family_members = split_by_comma("Family")
     phone_numbers = split_by_comma("Phones")
     states = split_by_comma("States")
     cities = split_by_comma("Cities")
     zip_codes = split_by_comma("Zip codes")
+    streets = split_by_comma("Street names")
     street_numbers = split_by_comma("Street numbers")
     schools = split_by_comma("Schools")
+    colors = split_by_comma("Colors")
     other_terms = split_by_comma("Other terms")
-
-    # streets = split_by_comma("Street names")
-    # music = split_by_comma("Music")
-    # colors = split_by_comma("Colors")
 
     year_list = []
     for year in years:
@@ -273,6 +272,7 @@ def main():
     pet_list = generic_permuted_list(pet_names)
     sports_list = generic_permuted_list(sports)
     family_list = generic_permuted_list(family_members)
+    music_list = generic_permuted_list(music)
     states_list = generic_permuted_list(states)
     city_list = generic_permuted_list(cities)
     phone_list = []
@@ -282,17 +282,16 @@ def main():
     for zip_code in zip_codes:
         zip_list += permute_zip_code(zip_code)
     school_list = generic_permuted_list(schools)
+    color_list = generic_permuted_list(colors)
+    street_list = generic_permuted_list(streets)
     street_num_list = []
     for street_number in street_numbers:
         street_num_list += permute_street_number(street_number)
     other_list = generic_permuted_list(other_terms)
 
-    # street_list = generic_permuted_list(streets)
-    # music_list = generic_permuted_list(music)
-    # color_list = generic_permuted_list(colors)
-
     word_combinations = []
     for pet in pet_list:
+        word_combinations.append(pet)
         for family in family_list:
             word_combinations.append(pet + family)
             word_combinations.append(family + pet)
@@ -311,7 +310,17 @@ def main():
         for other in other_list:
             word_combinations.append(other + pet)
             word_combinations.append(pet + other)
+        for street in street_list:
+            word_combinations.append(street + pet)
+            word_combinations.append(pet + street)
+        for music in music_list:
+            word_combinations.append(music + pet)
+            word_combinations.append(pet + music)
+        for color in color_list:
+            word_combinations.append(color + pet)
+            word_combinations.append(pet + color)
     for family in family_list:
+        word_combinations.append(family)
         for sport in sports_list:
             word_combinations.append(sport + family)
             word_combinations.append(family + sport)
@@ -327,7 +336,17 @@ def main():
         for other in other_list:
             word_combinations.append(other + family)
             word_combinations.append(family + other)
+        for street in street_list:
+            word_combinations.append(street + family)
+            word_combinations.append(family + street)
+        for music in music_list:
+            word_combinations.append(music + family)
+            word_combinations.append(family + music)
+        for color in color_list:
+            word_combinations.append(color + family)
+            word_combinations.append(family + color)
     for sport in sports_list:
+        word_combinations.append(sport)
         for school in school_list:
             word_combinations.append(sport + school)
             word_combinations.append(school + sport)
@@ -340,7 +359,17 @@ def main():
         for other in other_list:
             word_combinations.append(other + sport)
             word_combinations.append(sport + other)
+        for street in street_list:
+            word_combinations.append(street + sport)
+            word_combinations.append(sport + street)
+        for music in music_list:
+            word_combinations.append(music + sport)
+            word_combinations.append(sport + music)
+        for color in color_list:
+            word_combinations.append(color + sport)
+            word_combinations.append(sport + color)
     for school in school_list:
+        word_combinations.append(school)
         for state in states_list:
             word_combinations.append(school + state)
             word_combinations.append(state + school)
@@ -350,17 +379,71 @@ def main():
         for other in other_list:
             word_combinations.append(other + school)
             word_combinations.append(school + other)
+        for street in street_list:
+            word_combinations.append(street + school)
+            word_combinations.append(school + street)
+        for music in music_list:
+            word_combinations.append(music + school)
+            word_combinations.append(school + music)
+        for color in color_list:
+            word_combinations.append(color + school)
+            word_combinations.append(school + color)
     for state in states_list:
+        word_combinations.append(state)
         for city in city_list:
             word_combinations.append(state + city)
             word_combinations.append(city + state)
         for other in other_list:
             word_combinations.append(other + state)
             word_combinations.append(state + other)
+        for street in street_list:
+            word_combinations.append(street + state)
+            word_combinations.append(state + street)
+        for music in music_list:
+            word_combinations.append(music + state)
+            word_combinations.append(state + music)
+        for color in color_list:
+            word_combinations.append(color + state)
+            word_combinations.append(state + color)
     for city in city_list:
+        word_combinations.append(city)
         for other in other_list:
             word_combinations.append(other + city)
             word_combinations.append(city + other)
+        for street in street_list:
+            word_combinations.append(street + city)
+            word_combinations.append(city + street)
+        for music in music_list:
+            word_combinations.append(music + city)
+            word_combinations.append(city + music)
+        for color in color_list:
+            word_combinations.append(color + city)
+            word_combinations.append(city + color)
+    for other in other_list:
+        word_combinations.append(other)
+        for street in street_list:
+            word_combinations.append(street + other)
+            word_combinations.append(other + street)
+        for music in music_list:
+            word_combinations.append(music + other)
+            word_combinations.append(other + music)
+        for color in color_list:
+            word_combinations.append(color + other)
+            word_combinations.append(other + color)
+    for street in street_list:
+        word_combinations.append(street)
+        for music in music_list:
+            word_combinations.append(music + street)
+            word_combinations.append(street + music)
+        for color in color_list:
+            word_combinations.append(color + street)
+            word_combinations.append(street + color)
+    for music in music_list:
+        word_combinations.append(music)
+        for color in color_list:
+            word_combinations.append(color)
+            word_combinations.append(color + music)
+            word_combinations.append(music + color)
 
     length = len(other_list)
     index = 0
@@ -372,6 +455,9 @@ def main():
 
     temp_list = []
     for word in word_combinations:
+        temp_list.append(word + "!")
+        temp_list.append(word + "1")
+        temp_list.append(word + "123")
         for year in year_list:
             temp_list.append(word + year)
         for zip_code in zip_codes:
