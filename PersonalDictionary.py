@@ -143,7 +143,7 @@ def permute_year(year):
         :return: list of 4 permuted strings derived from argument year
         :rtype: list
     """
-    return [year[2:], year, year[::-1], '_' + str(year)]
+    return [year[2:], year, year[::-1]]
 
 
 def reverse_term(term):
@@ -218,8 +218,7 @@ def permute_street_number(street_number):
         :rtype: list
     """
     return [street_number, reverse_term(street_number),
-            numeric_alternatives(street_number), "_" + str(street_number),
-            str(street_number) + "_"]
+            numeric_alternatives(street_number)]
 
 
 def generic_permuted_list(temp_list):
@@ -280,34 +279,20 @@ def main():
 
     final_collection = []
 
-    years = \
-        split_by_comma("Years")
-    pet_names = \
-        split_by_comma("Pets")
-    sports =\
-        split_by_comma("Sports")
-    music = \
-        split_by_comma("Music")
-    family_members = \
-        split_by_comma("Family")
-    phone_numbers = \
-        split_by_comma("Phones")
-    states = \
-        split_by_comma("States")
-    cities = \
-        split_by_comma("Cities")
-    zip_codes = \
-        split_by_comma("Zip codes")
-    streets = \
-        split_by_comma("Street names")
-    street_numbers = \
-        split_by_comma("Street numbers")
-    schools = \
-        split_by_comma("Schools")
-    colors = \
-        split_by_comma("Colors")
-    other_terms = \
-        split_by_comma("Other terms")
+    years = split_by_comma("Years")
+    pet_names = split_by_comma("Pets")
+    sports = split_by_comma("Sports")
+    music = split_by_comma("Music")
+    family_members = split_by_comma("Family")
+    phone_numbers = split_by_comma("Phones")
+    states = split_by_comma("States")
+    cities = split_by_comma("Cities")
+    zip_codes = split_by_comma("Zip codes")
+    streets = split_by_comma("Street names")
+    street_numbers = split_by_comma("Street numbers")
+    schools = split_by_comma("Schools")
+    colors = split_by_comma("Colors")
+    other_terms = split_by_comma("Other terms")
 
     print("\nPlease wait while your dictionary is generated. " +
           "This may take several minutes.\n")
@@ -336,83 +321,22 @@ def main():
     for street_number in street_numbers:
         street_num_list += permute_street_number(street_number)
 
+    collections = [city_list, color_list, family_list, music_list, other_list,
+                   pet_list, school_list, sports_list, states_list,
+                   street_list]
+
     combinations = []
+    collection_count = len(collections)
+    marker = 0
+    while marker < collection_count:
+        for temp_list in collections[(marker + 1):]:
+            for item in collections[marker]:
+                combinations.append(item)
+            combinations += permute_lists(collections[marker], temp_list)
+        marker += 1
 
-    combinations += permute_lists(pet_list, family_list)
-    combinations += permute_lists(pet_list, sports_list)
-    combinations += permute_lists(pet_list, school_list)
-    combinations += permute_lists(pet_list, states_list)
-    combinations += permute_lists(pet_list, city_list)
-    combinations += permute_lists(pet_list, other_list)
-    combinations += permute_lists(pet_list, street_list)
-    combinations += permute_lists(pet_list, music_list)
-    combinations += permute_lists(pet_list, color_list)
-    for pet in pet_list:
-        combinations.append(pet)
-
-    combinations += permute_lists(family_list, sports_list)
-    combinations += permute_lists(family_list, school_list)
-    combinations += permute_lists(family_list, states_list)
-    combinations += permute_lists(family_list, city_list)
-    combinations += permute_lists(family_list, other_list)
-    combinations += permute_lists(family_list, street_list)
-    combinations += permute_lists(family_list, music_list)
-    combinations += permute_lists(family_list, color_list)
-    for family in family_list:
-        combinations.append(family)
-
-    combinations += permute_lists(sports_list, school_list)
-    combinations += permute_lists(sports_list, states_list)
-    combinations += permute_lists(sports_list, city_list)
-    combinations += permute_lists(sports_list, other_list)
-    combinations += permute_lists(sports_list, street_list)
-    combinations += permute_lists(sports_list, music_list)
-    combinations += permute_lists(sports_list, color_list)
-    for sport in sports_list:
-        combinations.append(sport)
-
-    combinations += permute_lists(school_list, states_list)
-    combinations += permute_lists(school_list, city_list)
-    combinations += permute_lists(school_list, other_list)
-    combinations += permute_lists(school_list, street_list)
-    combinations += permute_lists(school_list, music_list)
-    combinations += permute_lists(school_list, color_list)
-    for school in school_list:
-        combinations.append(school)
-
-    combinations += permute_lists(states_list, city_list)
-    combinations += permute_lists(states_list, other_list)
-    combinations += permute_lists(states_list, street_list)
-    combinations += permute_lists(states_list, music_list)
-    combinations += permute_lists(states_list, color_list)
-    for state in states_list:
-        combinations.append(state)
-
-    combinations += permute_lists(city_list, other_list)
-    combinations += permute_lists(city_list, street_list)
-    combinations += permute_lists(city_list, music_list)
-    combinations += permute_lists(city_list, color_list)
-    for city in city_list:
-        combinations.append(city)
-
-    combinations += permute_lists(other_list, street_list)
-    combinations += permute_lists(other_list, music_list)
-    combinations += permute_lists(other_list, color_list)
-    for other in other_list:
-        combinations.append(other)
-
-    combinations += permute_lists(street_list, music_list)
-    combinations += permute_lists(street_list, color_list)
-    for street in street_list:
-        combinations.append(street)
-
-    combinations += permute_lists(music_list, color_list)
-    for music in music_list:
-        combinations.append(music)
-    for color in color_list:
-        combinations.append(color)
     for number in phone_list:
-        combinations.append(number)
+        final_collection.append(number)
 
     length = len(other_list)
     index = 0
@@ -433,8 +357,6 @@ def main():
             temp_list.append(word + zip_code)
         for street_number in street_num_list:
             temp_list.append(word + street_number)
-        for number in phone_list:
-            temp_list.append(word + number)
 
     final_collection += temp_list
     collection = list(set(final_collection))
