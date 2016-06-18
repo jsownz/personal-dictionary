@@ -444,6 +444,8 @@ def main():
             word_combinations.append(color)
             word_combinations.append(color + music)
             word_combinations.append(music + color)
+    for number in phone_list:
+        word_combinations.append(number)
 
     length = len(other_list)
     index = 0
@@ -464,6 +466,8 @@ def main():
             temp_list.append(word + zip_code)
         for street_number in street_num_list:
             temp_list.append(word + street_number)
+        for number in phone_list:
+            temp_list.append(word + number)
 
     final_collection += temp_list
     collection = list(set(final_collection))
