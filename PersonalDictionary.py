@@ -268,46 +268,61 @@ def main():
     """
     final_collection = []
 
-    years = split_by_comma("Years")
-    pet_names = split_by_comma("Pets")
-    sports = split_by_comma("Sports")
-    music = split_by_comma("Music")
-    family_members = split_by_comma("Family")
-    phone_numbers = split_by_comma("Phones")
-    states = split_by_comma("States")
-    cities = split_by_comma("Cities")
-    zip_codes = split_by_comma("Zip codes")
-    streets = split_by_comma("Street names")
-    street_numbers = split_by_comma("Street numbers")
-    schools = split_by_comma("Schools")
-    colors = split_by_comma("Colors")
-    other_terms = split_by_comma("Other terms")
+    years = \
+        split_by_comma("Years")
+    pet_names = \
+        split_by_comma("Pets")
+    sports =\
+        split_by_comma("Sports")
+    music = \
+        split_by_comma("Music")
+    family_members = \
+        split_by_comma("Family")
+    phone_numbers = \
+        split_by_comma("Phones")
+    states = \
+        split_by_comma("States")
+    cities = \
+        split_by_comma("Cities")
+    zip_codes = \
+        split_by_comma("Zip codes")
+    streets = \
+        split_by_comma("Street names")
+    street_numbers = \
+        split_by_comma("Street numbers")
+    schools = \
+        split_by_comma("Schools")
+    colors = \
+        split_by_comma("Colors")
+    other_terms = \
+        split_by_comma("Other terms")
 
     print("\nPlease wait while your dictionary is generated. " +
           "This may take several minutes.\n")
 
-    year_list = []
-    for year in years:
-        year_list += permute_year(year)
     pet_list = generic_permuted_list(pet_names)
     sports_list = generic_permuted_list(sports)
     family_list = generic_permuted_list(family_members)
     music_list = generic_permuted_list(music)
     states_list = generic_permuted_list(states)
     city_list = generic_permuted_list(cities)
-    phone_list = []
-    for phone in phone_numbers:
-        phone_list += permute_phone(phone)
-    zip_list = []
-    for zip_code in zip_codes:
-        zip_list += permute_zip_code(zip_code)
     school_list = generic_permuted_list(schools)
     color_list = generic_permuted_list(colors)
     street_list = generic_permuted_list(streets)
+    other_list = generic_permuted_list(other_terms)
+
+    phone_list = []
+    for phone in phone_numbers:
+        phone_list += permute_phone(phone)
+    year_list = []
+    for year in years:
+        year_list += permute_year(year)
+    zip_list = []
+    for zip_code in zip_codes:
+        zip_list += permute_zip_code(zip_code)
     street_num_list = []
     for street_number in street_numbers:
         street_num_list += permute_street_number(street_number)
-    other_list = generic_permuted_list(other_terms)
 
     combinations = []
 
