@@ -204,7 +204,7 @@ def permute_music(music):
     """
     return permute_case(music) + [reverse_term(music)] + [
         alternate_case(music, True)] + [alternate_case(music, False)] + [
-        simple_letter_alternatives_full(music)]
+               simple_letter_alternatives_full(music)]
 
 
 def permute_street_number(street_number):
@@ -291,51 +291,66 @@ def main():
     # music_list = generic_permuted_list(music)
     # color_list = generic_permuted_list(colors)
 
-    # definitively sloppy code for POC
+    word_combinations = []
     for pet in pet_list:
         for family in family_list:
-            final_collection.append(pet + family)
-            final_collection.append(family + pet)
-            for year in year_list:
-                final_collection.append(pet + family + year)
-                final_collection.append(family + pet + year)
-            for zip_cde in zip_list:
-                final_collection.append(pet + family + zip_cde)
-                final_collection.append(pet + family + zip_cde)
+            word_combinations.append(pet + family)
+            word_combinations.append(family + pet)
         for sport in sports_list:
-            final_collection.append(pet + sport)
-            final_collection.append(sport + pet)
-            for year in year_list:
-                final_collection.append(sport + pet + year)
-                final_collection.append(pet + sport + year)
-            for zip_cde in zip_list:
-                final_collection.append(sport + pet + zip_cde)
-                final_collection.append(pet + sport + zip_cde)
-    for member in family_list:
-        for state in states_list:
-            final_collection.append(member + state)
-            final_collection.append(state + member)
-            for zip_cde in zip_list:
-                final_collection.append(member + state + zip_cde)
-                final_collection.append(state + member + zip_cde)
-            for year in year_list:
-                final_collection.append(member + state + year)
-                final_collection.append(state + member + year)
+            word_combinations.append(pet + sport)
+            word_combinations.append(sport + pet)
         for school in school_list:
-            final_collection.append(member + school)
-            final_collection.append(school + member)
-            for year in year_list:
-                final_collection.append(member + school + year)
-                final_collection.append(school + member + year)
+            word_combinations.append(school + pet)
+            word_combinations.append(pet + school)
+        for state in states_list:
+            word_combinations.append(state + pet)
+            word_combinations.append(pet + state)
         for city in city_list:
-            final_collection.append(member + city)
-            final_collection.append(city + member)
-            for year in year_list:
-                final_collection.append(member + city + year)
-                final_collection.append(city + member + year)
-    for phone in phone_list:
-        final_collection.append(phone)
+            word_combinations.append(city + pet)
+            word_combinations.append(pet + city)
+    for family in family_list:
+        for sport in sports_list:
+            word_combinations.append(sport + family)
+            word_combinations.append(family + sport)
+        for school in school_list:
+            word_combinations.append(school + family)
+            word_combinations.append(family + school)
+        for state in states_list:
+            word_combinations.append(state + family)
+            word_combinations.append(family + state)
+        for city in city_list:
+            word_combinations.append(city + family)
+            word_combinations.append(family + city)
+    for sport in sports_list:
+        for school in school_list:
+            word_combinations.append(sport + school)
+            word_combinations.append(school + sport)
+        for state in states_list:
+            word_combinations.append(sport + state)
+            word_combinations.append(state + sport)
+        for city in city_list:
+            word_combinations.append(sport + city)
+            word_combinations.append(city + sport)
+    for school in school_list:
+        for state in states_list:
+            word_combinations.append(school + state)
+            word_combinations.append(state + school)
+        for city in city_list:
+            word_combinations.append(school + city)
+            word_combinations.append(city + school)
+    for state in states_list:
+        for city in city_list:
+            word_combinations.append(state + city)
+            word_combinations.append(city + state)
 
+    temp_list = []
+    for word in word_combinations:
+        for year in year_list:
+            temp_list.append(word + year)
+        for zip_code in zip_codes:
+            temp_list.append(word + zip_code)
+
+    final_collection += temp_list
     collection = list(set(final_collection))
 
     with open('dictionary.txt', 'a') as my_file:
