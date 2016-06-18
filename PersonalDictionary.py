@@ -3,7 +3,7 @@
 """
     Author: John Vardanian
     Last Modified: 2016-06-18
-    Python3.5 using PyCharm / Atom
+    Python3.5 using PyCharm / Atom / Sublime Text 3
 
     r0.0.9-2016-06-18(a)
 
@@ -243,6 +243,23 @@ def generic_permuted_list(temp_list):
     return new_list
 
 
+def permute_lists(first, second):
+    """
+        Return list of all combinations of words from lists sent as args
+
+        :param first: list
+        :param second: list
+        :return temp_list: list of combined words from arguments
+        :rtype: list
+    """
+    temp_list = []
+    for first_item in first:
+        for second_item in second:
+            temp_list.append(first_item + second_item)
+            temp_list.append(second_item + first_item)
+    return temp_list
+
+
 def main():
     """
         All code below currently for testing and proof of concept. Generate
@@ -292,174 +309,94 @@ def main():
         street_num_list += permute_street_number(street_number)
     other_list = generic_permuted_list(other_terms)
 
-    word_combinations = []
+    combinations = []
+
+    combinations += permute_lists(pet_list, family_list)
+    combinations += permute_lists(pet_list, sports_list)
+    combinations += permute_lists(pet_list, school_list)
+    combinations += permute_lists(pet_list, states_list)
+    combinations += permute_lists(pet_list, city_list)
+    combinations += permute_lists(pet_list, other_list)
+    combinations += permute_lists(pet_list, street_list)
+    combinations += permute_lists(pet_list, music_list)
+    combinations += permute_lists(pet_list, color_list)
     for pet in pet_list:
-        word_combinations.append(pet)
-        for family in family_list:
-            word_combinations.append(pet + family)
-            word_combinations.append(family + pet)
-        for sport in sports_list:
-            word_combinations.append(pet + sport)
-            word_combinations.append(sport + pet)
-        for school in school_list:
-            word_combinations.append(school + pet)
-            word_combinations.append(pet + school)
-        for state in states_list:
-            word_combinations.append(state + pet)
-            word_combinations.append(pet + state)
-        for city in city_list:
-            word_combinations.append(city + pet)
-            word_combinations.append(pet + city)
-        for other in other_list:
-            word_combinations.append(other + pet)
-            word_combinations.append(pet + other)
-        for street in street_list:
-            word_combinations.append(street + pet)
-            word_combinations.append(pet + street)
-        for music in music_list:
-            word_combinations.append(music + pet)
-            word_combinations.append(pet + music)
-        for color in color_list:
-            word_combinations.append(color + pet)
-            word_combinations.append(pet + color)
+        combinations.append(pet)
+
+    combinations += permute_lists(family_list, sports_list)
+    combinations += permute_lists(family_list, school_list)
+    combinations += permute_lists(family_list, states_list)
+    combinations += permute_lists(family_list, city_list)
+    combinations += permute_lists(family_list, other_list)
+    combinations += permute_lists(family_list, street_list)
+    combinations += permute_lists(family_list, music_list)
+    combinations += permute_lists(family_list, color_list)
     for family in family_list:
-        word_combinations.append(family)
-        for sport in sports_list:
-            word_combinations.append(sport + family)
-            word_combinations.append(family + sport)
-        for school in school_list:
-            word_combinations.append(school + family)
-            word_combinations.append(family + school)
-        for state in states_list:
-            word_combinations.append(state + family)
-            word_combinations.append(family + state)
-        for city in city_list:
-            word_combinations.append(city + family)
-            word_combinations.append(family + city)
-        for other in other_list:
-            word_combinations.append(other + family)
-            word_combinations.append(family + other)
-        for street in street_list:
-            word_combinations.append(street + family)
-            word_combinations.append(family + street)
-        for music in music_list:
-            word_combinations.append(music + family)
-            word_combinations.append(family + music)
-        for color in color_list:
-            word_combinations.append(color + family)
-            word_combinations.append(family + color)
+        combinations.append(family)
+
+    combinations += permute_lists(sports_list, school_list)
+    combinations += permute_lists(sports_list, states_list)
+    combinations += permute_lists(sports_list, city_list)
+    combinations += permute_lists(sports_list, other_list)
+    combinations += permute_lists(sports_list, street_list)
+    combinations += permute_lists(sports_list, music_list)
+    combinations += permute_lists(sports_list, color_list)
     for sport in sports_list:
-        word_combinations.append(sport)
-        for school in school_list:
-            word_combinations.append(sport + school)
-            word_combinations.append(school + sport)
-        for state in states_list:
-            word_combinations.append(sport + state)
-            word_combinations.append(state + sport)
-        for city in city_list:
-            word_combinations.append(sport + city)
-            word_combinations.append(city + sport)
-        for other in other_list:
-            word_combinations.append(other + sport)
-            word_combinations.append(sport + other)
-        for street in street_list:
-            word_combinations.append(street + sport)
-            word_combinations.append(sport + street)
-        for music in music_list:
-            word_combinations.append(music + sport)
-            word_combinations.append(sport + music)
-        for color in color_list:
-            word_combinations.append(color + sport)
-            word_combinations.append(sport + color)
+        combinations.append(sport)
+
+    combinations += permute_lists(school_list, states_list)
+    combinations += permute_lists(school_list, city_list)
+    combinations += permute_lists(school_list, other_list)
+    combinations += permute_lists(school_list, street_list)
+    combinations += permute_lists(school_list, music_list)
+    combinations += permute_lists(school_list, color_list)
     for school in school_list:
-        word_combinations.append(school)
-        for state in states_list:
-            word_combinations.append(school + state)
-            word_combinations.append(state + school)
-        for city in city_list:
-            word_combinations.append(school + city)
-            word_combinations.append(city + school)
-        for other in other_list:
-            word_combinations.append(other + school)
-            word_combinations.append(school + other)
-        for street in street_list:
-            word_combinations.append(street + school)
-            word_combinations.append(school + street)
-        for music in music_list:
-            word_combinations.append(music + school)
-            word_combinations.append(school + music)
-        for color in color_list:
-            word_combinations.append(color + school)
-            word_combinations.append(school + color)
+        combinations.append(school)
+
+    combinations += permute_lists(states_list, city_list)
+    combinations += permute_lists(states_list, other_list)
+    combinations += permute_lists(states_list, street_list)
+    combinations += permute_lists(states_list, music_list)
+    combinations += permute_lists(states_list, color_list)
     for state in states_list:
-        word_combinations.append(state)
-        for city in city_list:
-            word_combinations.append(state + city)
-            word_combinations.append(city + state)
-        for other in other_list:
-            word_combinations.append(other + state)
-            word_combinations.append(state + other)
-        for street in street_list:
-            word_combinations.append(street + state)
-            word_combinations.append(state + street)
-        for music in music_list:
-            word_combinations.append(music + state)
-            word_combinations.append(state + music)
-        for color in color_list:
-            word_combinations.append(color + state)
-            word_combinations.append(state + color)
+        combinations.append(state)
+
+    combinations += permute_lists(city_list, other_list)
+    combinations += permute_lists(city_list, street_list)
+    combinations += permute_lists(city_list, music_list)
+    combinations += permute_lists(city_list, color_list)
     for city in city_list:
-        word_combinations.append(city)
-        for other in other_list:
-            word_combinations.append(other + city)
-            word_combinations.append(city + other)
-        for street in street_list:
-            word_combinations.append(street + city)
-            word_combinations.append(city + street)
-        for music in music_list:
-            word_combinations.append(music + city)
-            word_combinations.append(city + music)
-        for color in color_list:
-            word_combinations.append(color + city)
-            word_combinations.append(city + color)
+        combinations.append(city)
+
+    combinations += permute_lists(other_list, street_list)
+    combinations += permute_lists(other_list, music_list)
+    combinations += permute_lists(other_list, color_list)
     for other in other_list:
-        word_combinations.append(other)
-        for street in street_list:
-            word_combinations.append(street + other)
-            word_combinations.append(other + street)
-        for music in music_list:
-            word_combinations.append(music + other)
-            word_combinations.append(other + music)
-        for color in color_list:
-            word_combinations.append(color + other)
-            word_combinations.append(other + color)
+        combinations.append(other)
+
+    combinations += permute_lists(street_list, music_list)
+    combinations += permute_lists(street_list, color_list)
     for street in street_list:
-        word_combinations.append(street)
-        for music in music_list:
-            word_combinations.append(music + street)
-            word_combinations.append(street + music)
-        for color in color_list:
-            word_combinations.append(color + street)
-            word_combinations.append(street + color)
+        combinations.append(street)
+
+    combinations += permute_lists(music_list, color_list)
     for music in music_list:
-        word_combinations.append(music)
-        for color in color_list:
-            word_combinations.append(color)
-            word_combinations.append(color + music)
-            word_combinations.append(music + color)
+        combinations.append(music)
+    for color in color_list:
+        combinations.append(color)
     for number in phone_list:
-        word_combinations.append(number)
+        combinations.append(number)
 
     length = len(other_list)
     index = 0
     while index < length:
         for item in other_list[index:]:
-            word_combinations.append(other_list[index] + item)
-            word_combinations.append(item + other_list[index])
+            combinations.append(other_list[index] + item)
+            combinations.append(item + other_list[index])
         index += 1
 
     temp_list = []
-    for word in word_combinations:
+    for word in combinations:
         temp_list.append(word + "!")
         temp_list.append(word + "1")
         temp_list.append(word + "123")
