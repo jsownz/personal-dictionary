@@ -266,6 +266,9 @@ def main():
     colors = split_by_comma("Colors")
     other_terms = split_by_comma("Other terms")
 
+    print("\nPlease wait while your dictionary is generated. " +
+          "This may take several minutes.\n")
+
     year_list = []
     for year in years:
         year_list += permute_year(year)
@@ -471,6 +474,9 @@ def main():
 
     final_collection += temp_list
     collection = list(set(final_collection))
+    collection = [
+        word for word in collection if len(word) <= 15 and len(word) > 5
+    ]
 
     with open('dictionary.txt', 'a') as my_file:
         for word in collection:
