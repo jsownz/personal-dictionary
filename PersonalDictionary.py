@@ -18,7 +18,7 @@
 """
 
 import itertools
-from itertools import permutations
+import shlex
 
 
 def numeric_alternatives(term):
@@ -181,6 +181,7 @@ def split_by_comma(prompt):
         :rtype: list
     """
     temp = input(prompt + ": ")
+    temp = ','.join(shlex.split(temp))
     return [x.strip() for x in temp.split(',')]
 
 
@@ -262,8 +263,6 @@ def main():
     schools = split_by_comma("Schools")
     other_terms = split_by_comma("Other terms")
 
-    # commented out vars below for future implementation and testing
-
     # streets = split_by_comma("Street names")
     # music = split_by_comma("Music")
     # colors = split_by_comma("Colors")
@@ -283,10 +282,10 @@ def main():
     for zip_code in zip_codes:
         zip_list += permute_zip_code(zip_code)
     school_list = generic_permuted_list(schools)
-    street_num_list = permute_street_number(street_numbers)
+    street_num_list = []
+    for street_number in street_numbers:
+        street_num_list += permute_street_number(street_number)
     other_list = generic_permuted_list(other_terms)
-
-    # commented out vars below for future implementation and testing
 
     # street_list = generic_permuted_list(streets)
     # music_list = generic_permuted_list(music)
