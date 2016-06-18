@@ -258,13 +258,13 @@ def main():
     states = split_by_comma("States")
     cities = split_by_comma("Cities")
     zip_codes = split_by_comma("Zip codes")
+    street_numbers = split_by_comma("Street numbers")
     schools = split_by_comma("Schools")
     other_terms = split_by_comma("Other terms")
 
     # commented out vars below for future implementation and testing
 
     # streets = split_by_comma("Street names")
-    # street_numbers = split_by_comma("Street numbers")
     # music = split_by_comma("Music")
     # colors = split_by_comma("Colors")
 
@@ -283,11 +283,11 @@ def main():
     for zip_code in zip_codes:
         zip_list += permute_zip_code(zip_code)
     school_list = generic_permuted_list(schools)
+    street_num_list = permute_street_number(street_numbers)
     other_list = generic_permuted_list(other_terms)
 
     # commented out vars below for future implementation and testing
 
-    # street_num_list = permute_street_number(street_numbers)
     # street_list = generic_permuted_list(streets)
     # music_list = generic_permuted_list(music)
     # color_list = generic_permuted_list(colors)
@@ -377,6 +377,8 @@ def main():
             temp_list.append(word + year)
         for zip_code in zip_codes:
             temp_list.append(word + zip_code)
+        for street_number in street_num_list:
+            temp_list.append(word + street_number)
 
     final_collection += temp_list
     collection = list(set(final_collection))
