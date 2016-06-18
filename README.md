@@ -11,7 +11,7 @@ Written using Python 3.5 with PyCharm.
 
 ## Usage
 
-Enter terms delimited by a comma. Currently spaces not supported and type checking not implemented.
+Enter terms delimited by a comma. Currently type checking is not implemented.
 
 ## Future Features
 
