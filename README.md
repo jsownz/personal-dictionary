@@ -25,6 +25,8 @@ Social Media Integration.
 
 This is an alpha release of a script that began June 18th of 2016
 
-## Credits
+## Credits & Contributors
 
 John Vardanian
+
+Jacob Wilkin
