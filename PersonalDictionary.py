@@ -265,7 +265,7 @@ def main():
     # street_numbers = split_by_comma("Street numbers")
     # music = split_by_comma("Music")
     # colors = split_by_comma("Colors")
-    # other_terms = split_by_comma("Other terms")
+    other_terms = split_by_comma("Other terms")
 
     year_list = []
     for year in years:
@@ -285,7 +285,7 @@ def main():
 
     # commented out vars below for future implementation and testing
 
-    # other_list = generic_permuted_list(other_terms)
+    other_list = generic_permuted_list(other_terms)
     # street_num_list = permute_street_number(street_numbers)
     # street_list = generic_permuted_list(streets)
     # music_list = generic_permuted_list(music)
@@ -308,6 +308,9 @@ def main():
         for city in city_list:
             word_combinations.append(city + pet)
             word_combinations.append(pet + city)
+        for other in other_list:
+            word_combinations.append(other + pet)
+            word_combinations.append(pet + other)
     for family in family_list:
         for sport in sports_list:
             word_combinations.append(sport + family)
@@ -321,6 +324,9 @@ def main():
         for city in city_list:
             word_combinations.append(city + family)
             word_combinations.append(family + city)
+        for other in other_list:
+            word_combinations.append(other + family)
+            word_combinations.append(family + other)
     for sport in sports_list:
         for school in school_list:
             word_combinations.append(sport + school)
@@ -331,6 +337,9 @@ def main():
         for city in city_list:
             word_combinations.append(sport + city)
             word_combinations.append(city + sport)
+        for other in other_list:
+            word_combinations.append(other + sport)
+            word_combinations.append(sport + other)
     for school in school_list:
         for state in states_list:
             word_combinations.append(school + state)
@@ -338,10 +347,20 @@ def main():
         for city in city_list:
             word_combinations.append(school + city)
             word_combinations.append(city + school)
+        for other in other_list:
+            word_combinations.append(other + school)
+            word_combinations.append(school + other)
     for state in states_list:
         for city in city_list:
             word_combinations.append(state + city)
             word_combinations.append(city + state)
+        for other in other_list:
+            word_combinations.append(other + state)
+            word_combinations.append(state + other)
+    for city in city_list:
+        for other in other_list:
+            word_combinations.append(other + city)
+            word_combinations.append(city + other)
 
     temp_list = []
     for word in word_combinations:
