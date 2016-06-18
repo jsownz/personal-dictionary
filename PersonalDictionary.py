@@ -18,6 +18,7 @@
 """
 
 import itertools
+from itertools import permutations
 
 
 def numeric_alternatives(term):
@@ -361,6 +362,14 @@ def main():
         for other in other_list:
             word_combinations.append(other + city)
             word_combinations.append(city + other)
+
+    length = len(other_list)
+    index = 0
+    while index < length:
+        for item in other_list[index:]:
+            word_combinations.append(other_list[index] + item)
+            word_combinations.append(item + other_list[index])
+        index += 1
 
     temp_list = []
     for word in word_combinations:
