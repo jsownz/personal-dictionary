@@ -258,6 +258,7 @@ def main():
     cities = split_by_comma("Cities")
     zip_codes = split_by_comma("Zip codes")
     schools = split_by_comma("Schools")
+    other_terms = split_by_comma("Other terms")
 
     # commented out vars below for future implementation and testing
 
@@ -265,7 +266,6 @@ def main():
     # street_numbers = split_by_comma("Street numbers")
     # music = split_by_comma("Music")
     # colors = split_by_comma("Colors")
-    other_terms = split_by_comma("Other terms")
 
     year_list = []
     for year in years:
@@ -282,10 +282,10 @@ def main():
     for zip_code in zip_codes:
         zip_list += permute_zip_code(zip_code)
     school_list = generic_permuted_list(schools)
+    other_list = generic_permuted_list(other_terms)
 
     # commented out vars below for future implementation and testing
 
-    other_list = generic_permuted_list(other_terms)
     # street_num_list = permute_street_number(street_numbers)
     # street_list = generic_permuted_list(streets)
     # music_list = generic_permuted_list(music)
