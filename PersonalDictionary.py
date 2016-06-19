@@ -26,27 +26,30 @@ import itertools
 import shlex
 
 
-def numeric_alternatives(term):
+def numeric_alt_perm(term):
     """
         Replace numeric chars within a string with common substitutions of
         letters, spelling, and symbols.
 
         :param term: string
-        :return new_term: term with all numbers replaced by common alternatives
-        :rtype: string
+        :return new_terms: term with all numbers replaced by common alternatives
+        :rtype: list
     """
-    new_term = ""
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
                        '2': ['z', 'two'], '3': ['E', 'three'],
                        '4': ['A', 'four'], '5': ['S', 'five'],
                        '6': ['G', 'six'], '7': ['T', 'seven'],
                        '8': ['B', 'eight'], '9': ['G', 'nine']}
-    for letter in term:
-        if letter in number_alt_dict:
-            new_term += number_alt_dict[letter][0]
-        else:
-            new_term += letter
-    return new_term
+    new_terms = []
+    index = 0
+    while index < len(term):
+        number_list = list(term)
+        if number_list[index] in number_alt_dict:
+            number_list[index] = number_alt_dict[number_list[index]][0]
+            new_terms.append(''.join(number_list))
+        index += 1
+
+    return new_terms
 
 
 def simple_letter_alternatives_full(term):
@@ -121,12 +124,12 @@ def permute_phone(phone):
     """
         Return list of various phone permutations (area code, reversed etc).
 
-        :param phone:
+        :param phone: string - intended to be 10 digits
         :return: list of 6 phone number permutations of arg phone
         :rtype: list
     """
     return [phone, phone[3:], phone[0:3], phone[6:], phone[::-1],
-            reverse_term(phone[0:3])]
+            reverse_term(phone[0:3])] + numeric_alt_perm(phone)
 
 
 def permute_case(term):
@@ -134,7 +137,7 @@ def permute_case(term):
         Return list of term with title case, all lower, and all upper.
 
         :param term: base string to case upper, title, & lower
-        :return: list
+        :return: list of 3 casing permutations of 'term'
         :rtype: list
     """
     return [term.upper(), term.lower(), term.capitalize()]
@@ -145,17 +148,17 @@ def permute_year(year):
         Return list of common year perms. (last 2 digits, backwards, etc).
 
         :param year: string
-        :return: list of 4 permuted strings derived from argument year
+        :return: list of 4 permuted strings derived from argument 'year'
         :rtype: list
     """
-    return [year[2:], year, year[::-1]]
+    return [year[2:], year, year[::-1]] + numeric_alt_perm(year)
 
 
 def reverse_term(term):
     """
         Return string in reverse.
 
-        :param term: string
+        :param term: string to be reversed
         :return: argument term in reverse as string
         :rtype: string
     """
@@ -166,7 +169,7 @@ def full_string_permutation(term):
     """
         Return all permutations of a string in a list.
 
-        :param term: string
+        :param term: string to have all letters locations swapped
         :return: list of all permutations of argument 'term'
         :rtype: list
     """
@@ -180,6 +183,8 @@ def full_string_permutation(term):
 def split_by_comma(prompt):
     """
         Return list of items exploded by char ',' and trimmed of whitespace.
+        Spaces are replaced by commas to treat multi word entries as separate
+        words.
 
         :param prompt: string
         :return: list exploded by commas
@@ -194,11 +199,11 @@ def permute_zip_code(zip_code):
     """
         Return list of string zip_code with 3 variations.
 
-        :param zip_code: string
+        :param zip_code: string intended to be 5 digits
         :return: list of strings of permuted zip code argument
         :rtype: list
     """
-    return [reverse_term(zip_code), numeric_alternatives(zip_code), zip_code]
+    return [reverse_term(zip_code)] + numeric_alt_perm(zip_code) + [zip_code]
 
 
 def permute_music(music):
@@ -211,7 +216,7 @@ def permute_music(music):
     """
     return permute_case(music) + [reverse_term(music)] + [
         alternate_case(music, True)] + [alternate_case(music, False)] + [
-        simple_letter_alternatives_full(music)]
+               simple_letter_alternatives_full(music)]
 
 
 def permute_street_number(street_number):
@@ -222,15 +227,15 @@ def permute_street_number(street_number):
         :return: list of permutations of a street number
         :rtype: list
     """
-    return [street_number, reverse_term(street_number),
-            numeric_alternatives(street_number)]
+    return [street_number, reverse_term(street_number)] + numeric_alt_perm(
+        street_number)
 
 
 def default_perm(temp_list):
     """
         Return a list containing most frequently used permutation functions
 
-        :param temp_list:
+        :param temp_list: list of typically non numeric strings to permute
         :return new_list: most common variations of terms to be used in dict
         :rtype: list
     """
@@ -251,8 +256,8 @@ def permute_lists(first, second):
     """
         Return list of all combinations of words from lists sent as args
 
-        :param first: list
-        :param second: list
+        :param first: list to permute with 'second'
+        :param second: list to permute with 'first'
         :return temp_list: list of combined words from arguments
         :rtype: list
     """
