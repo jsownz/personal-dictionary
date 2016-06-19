@@ -377,11 +377,33 @@ def main():
     collection = list(set(final_collection))
     collection = [word for word in collection if 14 >= len(word) > 6]
 
-    # collection = sorted(sorted(collection, reverse=True), key=lambda x: (
-    #     x.isnumeric(), not x.isalpha(), x.casefold(), x.swapcase()))
+    only_numric = []
+    lower_alpha = []
+    alpha_mixed = []
+    al_low_numr = []
+    al_mix_numr = []
+    special_chr = []
+
+    for item in collection:
+        if item.isdigit():
+            only_numric.append(item)
+        elif item.isalpha() and (
+                item.islower() or (item[0].isupper() and item[1:].islower())):
+            lower_alpha.append(item)
+        elif item.isalpha():
+            alpha_mixed.append(item)
+        elif item.isalnum() and item.islower():
+            al_low_numr.append(item)
+        elif item.isalnum():
+            al_mix_numr.append(item)
+        else:
+            special_chr.append(item)
+
+    final_collection = only_numric + lower_alpha + alpha_mixed + \
+        al_low_numr + al_mix_numr + special_chr
 
     with open('dictionary.txt', 'a') as my_file:
-        for word in collection:
+        for word in final_collection:
             my_file.write(word + '\n')
 
 
