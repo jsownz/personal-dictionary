@@ -32,7 +32,7 @@ def numeric_alt_perm(term):
         letters, spelling, and symbols.
 
         :param term: string
-        :return new_terms: term with all numbers replaced by common alternatives
+        :return new_terms: term with all numbers replaced by common subs
         :rtype: list
     """
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
