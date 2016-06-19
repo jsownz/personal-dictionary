@@ -2,7 +2,7 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-18
+    Last Modified: 2016-06-19
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
     r0.0.9-2016-06-18(a)
@@ -14,7 +14,7 @@
 
     Usage:
     Currently no type checking. Enter each categorized set of terms separated
-    by commas- no spaces at this time.
+    by commas.
 """
 
 import itertools
