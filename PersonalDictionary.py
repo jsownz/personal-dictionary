@@ -321,6 +321,9 @@ def main():
     for street_number in street_numbers:
         street_num_list += permute_street_number(street_number)
 
+    for number in phone_list:
+        final_collection.append(number)
+
     collections = [city_list, color_list, family_list, music_list, other_list,
                    pet_list, school_list, sports_list, states_list,
                    street_list]
@@ -334,9 +337,6 @@ def main():
                 combinations.append(item)
             combinations += permute_lists(collections[marker], temp_list)
         marker += 1
-
-    for number in phone_list:
-        final_collection.append(number)
 
     length = len(other_list)
     index = 0
