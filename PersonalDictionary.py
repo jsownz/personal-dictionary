@@ -19,6 +19,11 @@
 
 import itertools
 import shlex
+import passwordmeter
+
+
+def get_strength(term):
+    return passwordmeter.test(term)[0]
 
 
 def numeric_alternatives(term):
@@ -232,12 +237,12 @@ def generic_permuted_list(temp_list):
     new_list = []
     for temp in temp_list:
         new_list += letter_alternatives_permute(temp)
-        new_list += letter_alternatives_permute(alternate_case(temp, True))
-        new_list += letter_alternatives_permute(alternate_case(temp, False))
-        new_list += letter_alternatives_permute(permute_case(temp))
+        # new_list += letter_alternatives_permute(alternate_case(temp, True))
+        # new_list += letter_alternatives_permute(alternate_case(temp, False))
+        # new_list += letter_alternatives_permute(permute_case(temp))
         new_list += permute_case(temp)
-        new_list.append(alternate_case(temp, True))
-        new_list.append(alternate_case(temp, False))
+        # new_list.append(alternate_case(temp, True))
+        # new_list.append(alternate_case(temp, False))
         new_list.append(reverse_term(temp))
     return new_list
 
@@ -360,7 +365,10 @@ def main():
 
     final_collection += temp_list
     collection = list(set(final_collection))
-    collection = [word for word in collection if 15 >= len(word) > 5]
+    collection = [word for word in collection if 14 >= len(word) > 6]
+
+    collection = sorted(sorted(collection, reverse=True), key=lambda x: (
+        x.isnumeric(), not x.isalpha(), x.casefold(), x.swapcase()))
 
     with open('dictionary.txt', 'a') as my_file:
         for word in collection:
