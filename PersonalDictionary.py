@@ -19,11 +19,6 @@
 
 import itertools
 import shlex
-import passwordmeter
-
-
-def get_strength(term):
-    return passwordmeter.test(term)[0]
 
 
 def numeric_alternatives(term):
@@ -226,7 +221,7 @@ def permute_street_number(street_number):
             numeric_alternatives(street_number)]
 
 
-def generic_permuted_list(temp_list):
+def default_perm(temp_list):
     """
         Return a list containing most frequently used permutation functions
 
@@ -302,16 +297,16 @@ def main():
     print("\nPlease wait while your dictionary is generated. " +
           "This may take several minutes.\n")
 
-    pet_list = generic_permuted_list(pet_names)
-    sports_list = generic_permuted_list(sports)
-    family_list = generic_permuted_list(family_members)
-    music_list = generic_permuted_list(music)
-    states_list = generic_permuted_list(states)
-    city_list = generic_permuted_list(cities)
-    school_list = generic_permuted_list(schools)
-    color_list = generic_permuted_list(colors)
-    street_list = generic_permuted_list(streets)
-    other_list = generic_permuted_list(other_terms)
+    pet_list = default_perm(pet_names)
+    sports_list = default_perm(sports)
+    family_list = default_perm(family_members)
+    music_list = default_perm(music)
+    states_list = default_perm(states)
+    city_list = default_perm(cities)
+    school_list = default_perm(schools)
+    color_list = default_perm(colors)
+    street_list = default_perm(streets)
+    other_list = default_perm(other_terms)
 
     phone_list = []
     for phone in phone_numbers:
@@ -367,8 +362,8 @@ def main():
     collection = list(set(final_collection))
     collection = [word for word in collection if 14 >= len(word) > 6]
 
-    collection = sorted(sorted(collection, reverse=True), key=lambda x: (
-        x.isnumeric(), not x.isalpha(), x.casefold(), x.swapcase()))
+    # collection = sorted(sorted(collection, reverse=True), key=lambda x: (
+    #     x.isnumeric(), not x.isalpha(), x.casefold(), x.swapcase()))
 
     with open('dictionary.txt', 'a') as my_file:
         for word in collection:
