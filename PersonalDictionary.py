@@ -358,6 +358,7 @@ def main():
         for street_number in street_num_list:
             temp_list.append(word + street_number)
 
+    final_collection += combinations
     final_collection += temp_list
     collection = list(set(final_collection))
     collection = [word for word in collection if 14 >= len(word) > 6]
