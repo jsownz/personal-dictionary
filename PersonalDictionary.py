@@ -5,7 +5,7 @@
     Last Modified: 2016-06-19
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.0.9-2016-06-18(a)
+    r0.0.9-2016-06-19(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
@@ -15,6 +15,11 @@
     Usage:
     Currently no type checking. Enter each categorized set of terms separated
     by commas.
+
+    Contributions:
+    This project is open source and everyone is welcome to contribute in
+    development, testing, and feature suggestions. All pull requests approved
+    by John Vardanian at this time.
 """
 
 import itertools
@@ -261,9 +266,13 @@ def permute_lists(first, second):
 
 def main():
     """
-        All code below currently for testing and proof of concept. Generate
-        text file of potential passwords (dictionary list), tailored towards
-        information gathered during initial phase of pen test.
+        **All code below currently for testing and proof of concept**
+
+        @TODO: Rewrite logic of final dictionary generation after completing
+            and expanding upon algorithms above.
+
+        Generate text file of potential passwords (dictionary list), tailored
+        towards information gathered during initial phase of pen test.
     """
     print("\n** Personalized Dictionary Generator ** \n\nEnter data in the " +
           "prompts below, separated with commas.\nE.G. Phones: " +
