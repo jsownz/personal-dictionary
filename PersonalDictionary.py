@@ -38,15 +38,16 @@ def number_swap(term):
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
                        '2': ['Z', 'two'], '3': ['E', 'three'],
                        '4': ['A', 'four'], '5': ['S', 'five'],
-                       '6': ['G', 'six'], '7': ['T', 'seven'],
-                       '8': ['B', 'eight'], '9': ['g', 'nine']}
+                       '6': ['b', 'G', 'six'], '7': ['T', 'L', 'seven'],
+                       '8': ['B', 'eight'], '9': ['g', 'q', 'nine']}
     new_terms = []
     index = 0
     while index < len(term):
         number_list = list(term)
         if number_list[index] in number_alt_dict:
-            number_list[index] = number_alt_dict[number_list[index]][0]
-            new_terms.append(''.join(number_list))
+            for replace in number_alt_dict[number_list[index]]:
+                number_list[index] = replace
+                new_terms.append(''.join(number_list))
         index += 1
 
     return new_terms
@@ -84,16 +85,17 @@ def letter_swap(term):
     """
     letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['(', '['],
                        'e': ['3'], 'g': ['6', '9'], 'h': ['#'],
-                       'i': ['!', '|', 'eye'], 'l': ['1', 'el'],
+                       'i': ['!', '|'], 'l': ['1'],
                        'o': ['0', 'oh'], 's': ['5', '$'], 't': ['+', '7'],
-                       'Z': ['2', 'zee']}
+                       'Z': ['2']}
     new_terms = []
     index = 0
     while index < len(term):
         letter_list = list(term)
         if letter_list[index] in letter_alt_dict:
-            letter_list[index] = letter_alt_dict[letter_list[index]][0]
-            new_terms.append(''.join(letter_list))
+            for replace in letter_alt_dict[letter_list[index]]:
+                letter_list[index] = replace
+                new_terms.append(''.join(letter_list))
         index += 1
 
     return new_terms
@@ -244,11 +246,8 @@ def mangle(temp_list):
         new_list += letter_swap(temp)
         new_list += permute_casing(temp)
         new_list.append(reverse_string(temp))
-        # new_list.append(alternate_case(temp, True))
-        # new_list.append(alternate_case(temp, False))
-        # new_list += letter_swap(alternate_case(temp, True))
-        # new_list += letter_swap(alternate_case(temp, False))
-        # new_list += letter_swap(permute_casing(temp))
+        new_list.append(alternate_case(temp, True))
+        new_list.append(alternate_case(temp, False))
     return new_list
 
 
@@ -401,17 +400,12 @@ def main():
             alpha_lower.append(item)
         elif item.isalpha():
             alpha_mixed_case.append(item)
+        elif item.isalnum() and item.islower():
+            alpha_numeric_lower.append(item)
         elif item.isalnum():
             alpha_numeric_mixed_case.append(item)
         else:
             special_chars.append(item)
-
-    numeric.sort(key=lambda x: (len(x), x))
-    alpha_lower.sort(key=lambda x: (len(x), x))
-    alpha_mixed_case.sort(key=lambda x: (len(x), x))
-    alpha_numeric_lower.sort(key=lambda x: (len(x), x))
-    alpha_numeric_mixed_case.sort(key=lambda x: (len(x), x))
-    special_chars.sort(key=lambda x: (len(x), x))
 
     final_collection = numeric
     final_collection += alpha_lower
@@ -423,11 +417,13 @@ def main():
     count = 0
     with open('dictionary.txt', 'a') as my_file:
         for word in final_collection:
-            if count == 150000:
+            if count == 200000:
                 break
             my_file.write(word + '\n')
             count += 1
 
+    print("Dictionary list generation complete. File is \"dictionary.txt\"" +
+          " in script directory")
 
 if __name__ == "__main__":
     main()
