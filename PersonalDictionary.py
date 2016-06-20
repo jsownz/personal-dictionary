@@ -216,7 +216,7 @@ def permute_music(music):
     """
     return permute_casing(music) + [reverse_string(music)] + [
         alternate_case(music, True)] + [alternate_case(music, False)] + [
-               letter_swap_simple_full(music)]
+        letter_swap_simple_full(music)]
 
 
 def permute_street_number(street_number):
