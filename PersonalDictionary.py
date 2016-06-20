@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-19
+    Last Modified: 2016-06-20
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.0.9-2016-06-19(a)
+    r0.0.9-2016-06-20(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
