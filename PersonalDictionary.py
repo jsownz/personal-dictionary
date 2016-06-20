@@ -26,7 +26,7 @@ import itertools
 import shlex
 
 
-def numeric_alt_perm(term):
+def number_swap(term):
     """
         Replace numeric chars within a string with common substitutions of
         letters, spelling, and symbols.
@@ -52,7 +52,7 @@ def numeric_alt_perm(term):
     return new_terms
 
 
-def simple_letter_alternatives_full(term):
+def letter_swap_simple_full(term):
     """
         Replace alpha chars within a string with common substitutions of
         numbers and symbols.
@@ -73,7 +73,7 @@ def simple_letter_alternatives_full(term):
     return new_term
 
 
-def letter_alternatives_permute(term):
+def letter_swap(term):
     """
         Replace alpha chars within a string with common substitutions of
         numbers and symbols.
@@ -129,10 +129,10 @@ def permute_phone(phone):
         :rtype: list
     """
     return [phone, phone[3:], phone[0:3], phone[6:], phone[::-1],
-            reverse_term(phone[0:3])] + numeric_alt_perm(phone)
+            reverse_string(phone[0:3])] + number_swap(phone)
 
 
-def permute_case(term):
+def permute_casing(term):
     """
         Return list of term with title case, all lower, and all upper.
 
@@ -151,10 +151,10 @@ def permute_year(year):
         :return: list of 4 permuted strings derived from argument 'year'
         :rtype: list
     """
-    return [year[2:], year, year[::-1]] + numeric_alt_perm(year)
+    return [year[2:], year, year[::-1]] + number_swap(year)
 
 
-def reverse_term(term):
+def reverse_string(term):
     """
         Return string in reverse.
 
@@ -165,7 +165,7 @@ def reverse_term(term):
     return term[::-1]
 
 
-def full_string_permutation(term):
+def swap_char_positions(term):
     """
         Return all permutations of a string in a list.
 
@@ -180,7 +180,7 @@ def full_string_permutation(term):
     return words
 
 
-def split_by_comma(prompt):
+def store_info(prompt):
     """
         Return list of items exploded by char ',' and trimmed of whitespace.
         Spaces are replaced by commas to treat multi word entries as separate
@@ -203,7 +203,7 @@ def permute_zip_code(zip_code):
         :return: list of strings of permuted zip code argument
         :rtype: list
     """
-    return [reverse_term(zip_code)] + numeric_alt_perm(zip_code) + [zip_code]
+    return [reverse_string(zip_code)] + number_swap(zip_code) + [zip_code]
 
 
 def permute_music(music):
@@ -214,9 +214,9 @@ def permute_music(music):
         :return: list of permuted variations of string 'music'
         :rtype: list
     """
-    return permute_case(music) + [reverse_term(music)] + [
+    return permute_casing(music) + [reverse_string(music)] + [
         alternate_case(music, True)] + [alternate_case(music, False)] + [
-               simple_letter_alternatives_full(music)]
+               letter_swap_simple_full(music)]
 
 
 def permute_street_number(street_number):
@@ -227,11 +227,11 @@ def permute_street_number(street_number):
         :return: list of permutations of a street number
         :rtype: list
     """
-    return [street_number, reverse_term(street_number)] + numeric_alt_perm(
+    return [street_number, reverse_string(street_number)] + number_swap(
         street_number)
 
 
-def default_perm(temp_list):
+def mangle(temp_list):
     """
         Return a list containing most frequently used permutation functions
 
@@ -241,14 +241,14 @@ def default_perm(temp_list):
     """
     new_list = []
     for temp in temp_list:
-        new_list += letter_alternatives_permute(temp)
-        # new_list += letter_alternatives_permute(alternate_case(temp, True))
-        # new_list += letter_alternatives_permute(alternate_case(temp, False))
-        # new_list += letter_alternatives_permute(permute_case(temp))
-        new_list += permute_case(temp)
+        new_list += letter_swap(temp)
+        new_list += permute_casing(temp)
+        new_list.append(reverse_string(temp))
         # new_list.append(alternate_case(temp, True))
         # new_list.append(alternate_case(temp, False))
-        new_list.append(reverse_term(temp))
+        # new_list += letter_swap(alternate_case(temp, True))
+        # new_list += letter_swap(alternate_case(temp, False))
+        # new_list += letter_swap(permute_casing(temp))
     return new_list
 
 
@@ -293,34 +293,44 @@ def main():
 
     final_collection = []
 
-    years = split_by_comma("Years")
-    pet_names = split_by_comma("Pets")
-    sports = split_by_comma("Sports")
-    music = split_by_comma("Music")
-    family_members = split_by_comma("Family")
-    phone_numbers = split_by_comma("Phones")
-    states = split_by_comma("States")
-    cities = split_by_comma("Cities")
-    zip_codes = split_by_comma("Zip codes")
-    streets = split_by_comma("Street names")
-    street_numbers = split_by_comma("Street numbers")
-    schools = split_by_comma("Schools")
-    colors = split_by_comma("Colors")
-    other_terms = split_by_comma("Other terms")
+    years = store_info("Years")
+    pet_terms = store_info("Pets")
+    sports = store_info("Sports")
+    music = store_info("Music")
+    family_terms = store_info("Family")
+    phone_numbers = store_info("Phones")
+    states = store_info("States")
+    cities = store_info("Cities")
+    zip_codes = store_info("Zip codes")
+    streets = store_info("Street names")
+    street_numbers = store_info("Street numbers")
+    schools = store_info("Schools")
+    colors = store_info("Colors")
+    other_terms = store_info("Other terms")
 
     print("\nPlease wait while your dictionary is generated. " +
           "This may take several minutes.\n")
 
-    pet_list = default_perm(pet_names)
-    sports_list = default_perm(sports)
-    family_list = default_perm(family_members)
-    music_list = default_perm(music)
-    states_list = default_perm(states)
-    city_list = default_perm(cities)
-    school_list = default_perm(schools)
-    color_list = default_perm(colors)
-    street_list = default_perm(streets)
-    other_list = default_perm(other_terms)
+    pets = \
+        mangle(pet_terms)  # pet names, animal types, anything animals
+    sports = \
+        mangle(sports)  # sports teams, mascots, anything sports
+    family = \
+        mangle(family_terms)  # close friends, family, family traditions, etc.
+    music = \
+        mangle(music)  # music genres, bands, songs, anything music
+    states = \
+        mangle(states)  # states of importance, e.g: resident of or vacations
+    cities = \
+        mangle(cities)  # cities of importance, e.g: resident of or vacations
+    schools = \
+        mangle(schools)  # school names, mascots, teams, abbreviations, etc.
+    colors = \
+        mangle(colors)  # colors of significance to target, e.g. team colors
+    streets = \
+        mangle(streets)  # names of streets of importance, e.g: residence of
+    other = \
+        mangle(other_terms)  # terms of significance that don't meet a category
 
     phone_list = []
     for phone in phone_numbers:
@@ -338,9 +348,8 @@ def main():
     for number in phone_list:
         final_collection.append(number)
 
-    collections = [city_list, color_list, family_list, music_list, other_list,
-                   pet_list, school_list, sports_list, states_list,
-                   street_list]
+    collections = [cities, colors, family, music, other, pets, schools, sports,
+                   states, streets]
 
     combinations = []
     collection_count = len(collections)
@@ -352,12 +361,12 @@ def main():
             combinations += permute_lists(collections[marker], temp_list)
         marker += 1
 
-    length = len(other_list)
+    length = len(other)
     index = 0
     while index < length:
-        for item in other_list[index:]:
-            combinations.append(other_list[index] + item)
-            combinations.append(item + other_list[index])
+        for item in other[index:]:
+            combinations.append(other[index] + item)
+            combinations.append(item + other[index])
         index += 1
 
     temp_list = []
@@ -377,34 +386,47 @@ def main():
     collection = list(set(final_collection))
     collection = [word for word in collection if 14 >= len(word) > 6]
 
-    only_numric = []
-    lower_alpha = []
-    alpha_mixed = []
-    al_low_numr = []
-    al_mix_numr = []
-    special_chr = []
+    numeric = []
+    alpha_lower = []
+    alpha_mixed_case = []
+    alpha_numeric_lower = []
+    alpha_numeric_mixed_case = []
+    special_chars = []
 
     for item in collection:
         if item.isdigit():
-            only_numric.append(item)
+            numeric.append(item)
         elif item.isalpha() and (
                 item.islower() or (item[0].isupper() and item[1:].islower())):
-            lower_alpha.append(item)
+            alpha_lower.append(item)
         elif item.isalpha():
-            alpha_mixed.append(item)
-        elif item.isalnum() and item.islower():
-            al_low_numr.append(item)
+            alpha_mixed_case.append(item)
         elif item.isalnum():
-            al_mix_numr.append(item)
+            alpha_numeric_mixed_case.append(item)
         else:
-            special_chr.append(item)
+            special_chars.append(item)
 
-    final_collection = only_numric + lower_alpha + alpha_mixed + \
-        al_low_numr + al_mix_numr + special_chr
+    numeric.sort(key=lambda x: (len(x), x))
+    alpha_lower.sort(key=lambda x: (len(x), x))
+    alpha_mixed_case.sort(key=lambda x: (len(x), x))
+    alpha_numeric_lower.sort(key=lambda x: (len(x), x))
+    alpha_numeric_mixed_case.sort(key=lambda x: (len(x), x))
+    special_chars.sort(key=lambda x: (len(x), x))
 
+    final_collection = numeric
+    final_collection += alpha_lower
+    final_collection += alpha_numeric_lower
+    final_collection += alpha_numeric_mixed_case
+    final_collection += alpha_mixed_case
+    final_collection += special_chars
+
+    count = 0
     with open('dictionary.txt', 'a') as my_file:
         for word in final_collection:
+            if count == 150000:
+                break
             my_file.write(word + '\n')
+            count += 1
 
 
 if __name__ == "__main__":
