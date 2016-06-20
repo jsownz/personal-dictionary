@@ -292,6 +292,10 @@ def main():
 
     final_collection = []
 
+    min = int(input("Min length: "))
+    max = int(input("Max length: "))
+    password_count = int(input("Number of passwords: "))
+
     year_info = store_info("Years")
     pet_terms = store_info("Pets")
     sports = store_info("Sports")
@@ -383,7 +387,7 @@ def main():
     final_collection += combinations
     final_collection += temp_list
     collection = list(set(final_collection))
-    collection = [word for word in collection if 14 >= len(word) > 6]
+    collection = [word for word in collection if max >= len(word) >= min]
 
     numeric = []
     alpha_lower = []
@@ -417,7 +421,7 @@ def main():
     count = 0
     with open('dictionary.txt', 'a') as my_file:
         for word in final_collection:
-            if count == 200000:
+            if count == password_count:
                 break
             my_file.write(word + '\n')
             count += 1
