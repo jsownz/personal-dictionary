@@ -22,7 +22,6 @@
     by John Vardanian at this time.
 """
 
-import itertools
 import shlex
 
 
@@ -51,27 +50,6 @@ def number_swap(term):
         index += 1
 
     return new_terms
-
-
-def letter_swap_simple_full(term):
-    """
-        Replace alpha chars within a string with common substitutions of
-        numbers and symbols.
-
-        :param term: string
-        :return new_term: term with all letters replaced by common alternatives
-        :rtype: string
-    """
-    new_term = ""
-    letter_alt_dict = {'a': ['@'], 'b': ['8'], 'e': ['3'], 'i': ['!'],
-                       'l': ['1'], 'o': ['0'], 's': ['$'], 't': ['7'],
-                       'Z': ['2']}
-    for letter in term:
-        if letter in letter_alt_dict:
-            new_term += letter_alt_dict[letter][0]
-        else:
-            new_term += letter
-    return new_term
 
 
 def letter_swap(term):
@@ -167,36 +145,6 @@ def reverse_string(term):
     return term[::-1]
 
 
-def swap_char_positions(term):
-    """
-        Return all permutations of a string in a list.
-
-        :param term: string to have all letters locations swapped
-        :return: list of all permutations of argument 'term'
-        :rtype: list
-    """
-    words = []
-    res = itertools.permutations(term, len(term))
-    for i in res:
-        words.append(''.join(i))
-    return words
-
-
-def store_info(prompt):
-    """
-        Return list of items exploded by char ',' and trimmed of whitespace.
-        Spaces are replaced by commas to treat multi word entries as separate
-        words.
-
-        :param prompt: string
-        :return: list exploded by commas
-        :rtype: list
-    """
-    temp = input(prompt + ": ")
-    temp = ','.join(shlex.split(temp))
-    return [x.strip() for x in temp.split(',')]
-
-
 def permute_zip_code(zip_code):
     """
         Return list of string zip_code with 3 variations.
@@ -217,8 +165,8 @@ def permute_music(music):
         :rtype: list
     """
     return permute_casing(music) + [reverse_string(music)] + [
-        alternate_case(music, True)] + [alternate_case(music, False)] + [
-        letter_swap_simple_full(music)]
+        alternate_case(music, True)] + [alternate_case(music, False)] + \
+        letter_swap(music)
 
 
 def permute_street_number(street_number):
@@ -231,6 +179,23 @@ def permute_street_number(street_number):
     """
     return [street_number, reverse_string(street_number)] + number_swap(
         street_number)
+
+
+def permute_lists(first, second):
+    """
+        Return list of all combinations of words from lists sent as args
+
+        :param first: list to permute with 'second'
+        :param second: list to permute with 'first'
+        :return temp_list: list of combined words from arguments
+        :rtype: list
+    """
+    temp_list = []
+    for first_item in first:
+        for second_item in second:
+            temp_list.append(first_item + second_item)
+            temp_list.append(second_item + first_item)
+    return temp_list
 
 
 def mangle(temp_list):
@@ -251,21 +216,19 @@ def mangle(temp_list):
     return new_list
 
 
-def permute_lists(first, second):
+def store_info(prompt):
     """
-        Return list of all combinations of words from lists sent as args
+        Return list of items exploded by char ',' and trimmed of whitespace.
+        Spaces are replaced by commas to treat multi word entries as separate
+        words.
 
-        :param first: list to permute with 'second'
-        :param second: list to permute with 'first'
-        :return temp_list: list of combined words from arguments
+        :param prompt: string
+        :return: list exploded by commas
         :rtype: list
     """
-    temp_list = []
-    for first_item in first:
-        for second_item in second:
-            temp_list.append(first_item + second_item)
-            temp_list.append(second_item + first_item)
-    return temp_list
+    temp = input(prompt + ": ")
+    temp = ','.join(shlex.split(temp))
+    return [x.strip() for x in temp.split(',')]
 
 
 def main():
