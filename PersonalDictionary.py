@@ -332,20 +332,20 @@ def main():
     other = \
         mangle(other_terms)  # terms of significance that don't meet a category
 
-    phone_list = []
+    phones = []
     for phone in phone_numbers:
-        phone_list += permute_phone(phone)
-    year_list = []
+        phones += permute_phone(phone)
+    years = []
     for year in years:
-        year_list += permute_year(year)
-    zip_list = []
+        years += permute_year(year)
+    zips = []
     for zip_code in zip_codes:
-        zip_list += permute_zip_code(zip_code)
-    street_num_list = []
+        zips += permute_zip_code(zip_code)
+    street_nums = []
     for street_number in street_numbers:
-        street_num_list += permute_street_number(street_number)
+        street_nums += permute_street_number(street_number)
 
-    for number in phone_list:
+    for number in phones:
         final_collection.append(number)
 
     collections = [cities, colors, family, music, other, pets, schools, sports,
@@ -374,11 +374,11 @@ def main():
         temp_list.append(word + "!")
         temp_list.append(word + "1")
         temp_list.append(word + "123")
-        for year in year_list:
+        for year in years:
             temp_list.append(word + year)
         for zip_code in zip_codes:
             temp_list.append(word + zip_code)
-        for street_number in street_num_list:
+        for street_number in street_nums:
             temp_list.append(word + street_number)
 
     final_collection += combinations
