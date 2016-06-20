@@ -36,7 +36,7 @@ def number_swap(term):
         :rtype: list
     """
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
-                       '2': ['z', 'two'], '3': ['E', 'three'],
+                       '2': ['Z', 'two'], '3': ['E', 'three'],
                        '4': ['A', 'four'], '5': ['S', 'five'],
                        '6': ['G', 'six'], '7': ['T', 'seven'],
                        '8': ['B', 'eight'], '9': ['g', 'nine']}
