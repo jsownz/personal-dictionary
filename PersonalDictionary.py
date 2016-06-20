@@ -293,7 +293,7 @@ def main():
 
     final_collection = []
 
-    years = store_info("Years")
+    year_info = store_info("Years")
     pet_terms = store_info("Pets")
     sports = store_info("Sports")
     music = store_info("Music")
@@ -336,7 +336,7 @@ def main():
     for phone in phone_numbers:
         phones += permute_phone(phone)
     years = []
-    for year in years:
+    for year in year_info:
         years += permute_year(year)
     zips = []
     for zip_code in zip_codes:
