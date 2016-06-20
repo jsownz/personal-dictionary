@@ -255,8 +255,8 @@ def main():
 
     final_collection = []
 
-    min = int(input("Min length: "))
-    max = int(input("Max length: "))
+    min_length = int(input("Min length: "))
+    max_length = int(input("Max length: "))
     password_count = int(input("Number of passwords: "))
 
     year_info = store_info("Years")
@@ -352,7 +352,8 @@ def main():
     final_collection += combinations
     final_collection += temp_list
     collection = list(set(final_collection))
-    collection = [word for word in collection if max >= len(word) >= min]
+    collection = [word for word in collection if
+                  max_length >= len(word) >= min_length]
 
     numeric = []
     alpha_lower = []
