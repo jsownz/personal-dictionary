@@ -383,6 +383,8 @@ def main():
             temp_list.append(word + zip_code)
         for street_number in street_nums:
             temp_list.append(word + street_number)
+        for phone in phone_numbers:
+            temp_list.append(word + phone[0:3])
 
     final_collection += combinations
     final_collection += temp_list
