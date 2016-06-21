@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-20
+    Last Modified: 2016-06-21
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.0.9-2016-06-20(a)
+    r0.0.10-2016.06.21(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
@@ -185,7 +185,7 @@ def main():
           "authorized testing.\n\nLarge amounts of information may take " +
           "several minutes.\n\n")
 
-    final_collection = []
+    final = []
 
     # set pw and list length parameters
     min_length = int(input("Min length: "))
@@ -241,7 +241,7 @@ def main():
 
     # add phone number to top of list
     for number in phones:
-        final_collection.append(number)
+        final.append(number)
 
     # lists to permute for base passwords
     collections = [cities, colors, family, music, other, pets, schools, sports,
@@ -291,8 +291,8 @@ def main():
             temp_list.append(word + phone[0:3])
 
     # combine lists, remove duplicates, and enforce length limitations
-    final_collection += (combinations + temp_list)
-    collection = list(set(final_collection))
+    final[len(final):] = (combinations + temp_list)
+    collection = list(set(final))
     collection = [word for word in collection if
                   max_length >= len(word) >= min_length]
 
@@ -319,17 +319,17 @@ def main():
         else:
             special_chars.append(item)
 
-    final_collection = numeric
-    final_collection += alpha_lower
-    final_collection += alpha_numeric_lower
-    final_collection += alpha_numeric_mixed_case
-    final_collection += alpha_mixed_case
-    final_collection += special_chars
+    final = numeric
+    final[len(final):] = alpha_lower
+    final[len(final):] = alpha_numeric_lower
+    final[len(final):] = alpha_numeric_mixed_case
+    final[len(final):] = alpha_mixed_case
+    final[len(final):] = special_chars
 
     # create list based on size set by user
     count = 0
     with open('dictionary.txt', 'a') as my_file:
-        for word in final_collection:
+        for word in final:
             if count == password_count:
                 break
             my_file.write(word + '\n')
