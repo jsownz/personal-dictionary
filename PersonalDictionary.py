@@ -260,8 +260,9 @@ def main():
           "prompts below, separated with commas.\nE.G. Phones: " +
           "5555555555, 9995550000\n\nEach category is similar to that of a " +
           "security question to recover a password, or a topic that is " +
-          "commonly used by individuals to remember a password. " +
-          "When the script completes, a file titled 'dictionary.txt' " +
+          "commonly used by individuals to remember a password. List info " +
+          " of greater relevance towards the beginning of each category. " +
+          "When the script completes a file titled 'dictionary.txt' " +
           "will be generated in the same directory as the script. The " +
           "dictionary will contain a large number of permutations of the " +
           "information entered.\n\nThe more relevant information entered " +
