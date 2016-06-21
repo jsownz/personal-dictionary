@@ -15,11 +15,6 @@
     Usage:
     Currently no type checking. Enter each categorized set of terms separated
     by commas.
-
-    Contributions:
-    This project is open source and everyone is welcome to contribute in
-    development, testing, and feature suggestions. All pull requests approved
-    by John Vardanian at this time.
 """
 
 import shlex
@@ -29,10 +24,6 @@ def number_swap(term):
     """
         Replace numeric chars within a string with common substitutions of
         letters, spelling, and symbols.
-
-        :param term: string
-        :return new_terms: term with all numbers replaced by common subs
-        :rtype: list
     """
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
                        '2': ['Z', 'two'], '3': ['E', 'three'],
@@ -56,10 +47,6 @@ def letter_swap(term):
     """
         Replace alpha chars within a string with common substitutions of
         numbers and symbols.
-
-        :param term: string
-        :return new_terms: list of strings derived from term with replacements
-        :rtype: list
     """
     letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['(', '['],
                        'e': ['3'], 'g': ['6', '9'], 'h': ['#'],
@@ -83,11 +70,6 @@ def alternate_case(term, first):
     """
         Change case to alternate_case between lower and upper; if first is true
         begin with the fist char in caps.
-
-        :param term: string
-        :param first: boolean
-        :return ret: permutation of term with alternating casing on letters
-        :rtype: string
     """
     ret = ""
     for char in term:
@@ -103,10 +85,6 @@ def alternate_case(term, first):
 def permute_phone(phone):
     """
         Return list of various phone permutations (area code, reversed etc).
-
-        :param phone: string - intended to be 10 digits
-        :return: list of 6 phone number permutations of arg phone
-        :rtype: list
     """
     return [phone, phone[3:], phone[0:3], phone[6:], phone[::-1],
             reverse_string(phone[0:3])] + number_swap(phone)
@@ -115,10 +93,6 @@ def permute_phone(phone):
 def permute_casing(term):
     """
         Return list of term with title case, all lower, and all upper.
-
-        :param term: base string to case upper, title, & lower
-        :return: list of 3 casing permutations of 'term'
-        :rtype: list
     """
     return [term.upper(), term.lower(), term.capitalize()]
 
@@ -126,10 +100,6 @@ def permute_casing(term):
 def permute_year(year):
     """
         Return list of common year perms. (last 2 digits, backwards, etc).
-
-        :param year: string
-        :return: list of 4 permuted strings derived from argument 'year'
-        :rtype: list
     """
     return [year[2:], year, year[::-1]] + number_swap(year)
 
@@ -137,10 +107,6 @@ def permute_year(year):
 def reverse_string(term):
     """
         Return string in reverse.
-
-        :param term: string to be reversed
-        :return: argument term in reverse as string
-        :rtype: string
     """
     return term[::-1]
 
@@ -148,10 +114,6 @@ def reverse_string(term):
 def permute_zip_code(zip_code):
     """
         Return list of string zip_code with 3 variations.
-
-        :param zip_code: string intended to be 5 digits
-        :return: list of strings of permuted zip code argument
-        :rtype: list
     """
     return [reverse_string(zip_code)] + number_swap(zip_code) + [zip_code]
 
@@ -159,10 +121,6 @@ def permute_zip_code(zip_code):
 def permute_music(music):
     """
         Return common permutations of music related terms.
-
-        :param music: string
-        :return: list of permuted variations of string 'music'
-        :rtype: list
     """
     return permute_casing(music) + [reverse_string(music)] + [
         alternate_case(music, True)] + [alternate_case(music, False)] + \
@@ -172,10 +130,6 @@ def permute_music(music):
 def permute_street_number(street_number):
     """
         Return common permutations of street numbers.
-
-        :param street_number: string
-        :return: list of permutations of a street number
-        :rtype: list
     """
     return [street_number, reverse_string(street_number)] + number_swap(
         street_number)
@@ -184,11 +138,6 @@ def permute_street_number(street_number):
 def permute_lists(first, second):
     """
         Return list of all combinations of words from lists sent as args
-
-        :param first: list to permute with 'second'
-        :param second: list to permute with 'first'
-        :return temp_list: list of combined words from arguments
-        :rtype: list
     """
     temp_list = []
     for first_item in first:
@@ -201,10 +150,6 @@ def permute_lists(first, second):
 def mangle(temp_list):
     """
         Return a list containing most frequently used permutation functions
-
-        :param temp_list: list of typically non numeric strings to permute
-        :return new_list: most common variations of terms to be used in dict
-        :rtype: list
     """
     new_list = []
     for temp in temp_list:
@@ -221,10 +166,6 @@ def store_info(prompt):
         Return list of items exploded by char ',' and trimmed of whitespace.
         Spaces are replaced by commas to treat multi word entries as separate
         words.
-
-        :param prompt: string
-        :return: list exploded by commas
-        :rtype: list
     """
     temp = input(prompt + ": ")
     temp = ','.join(shlex.split(temp))
@@ -241,63 +182,61 @@ def main():
         Generate text file of potential passwords (dictionary list), tailored
         towards information gathered during initial phase of pen test.
     """
-    print("\n** Personalized Dictionary Generator ** \n\nEnter data in the " +
+    print("\n** Personalized Dictionary Generator ** \n\nEnter words in the " +
           "prompts below, separated with commas.\nE.G. Phones: " +
           "5555555555, 9995550000\n\nEach category is similar to that of a " +
-          "security question to recover a password, or a category that is " +
-          "commonly used by individuals to remember their passwords. " +
-          "When the script completes a file titled 'dictionary.txt' " +
+          "security question to recover a password, or a topic that is " +
+          "commonly used by individuals to remember a password. " +
+          "When the script completes, a file titled 'dictionary.txt' " +
           "will be generated in the same directory as the script. The " +
           "dictionary will contain a large number of permutations of the " +
           "information entered.\n\nThe more relevant information entered " +
           "the higher chance of success. The information entered determines " +
-          "the quality of dictionary that is generated.\n")
+          "the quality of dictionary that is generated.\nTo be used only " +
+          "authorized testing.\n\nLarge amounts of information may take " +
+          "several minutes.\n\n")
 
     final_collection = []
 
+    # set pw and list length parameters
     min_length = int(input("Min length: "))
     max_length = int(input("Max length: "))
     password_count = int(input("Number of passwords: "))
 
-    year_info = store_info("Years")
+    # prompt user for terms to form dictionary
     pet_terms = store_info("Pets")
-    sports = store_info("Sports")
-    music = store_info("Music")
-    family_terms = store_info("Family")
+    year_info = store_info("Years")
     phone_numbers = store_info("Phones")
+    sports = store_info("Sports")
+    family_terms = store_info("Family")
+    employment_terms = store_info("Employment")
     states = store_info("States")
     cities = store_info("Cities")
     zip_codes = store_info("Zip codes")
     streets = store_info("Street names")
     street_numbers = store_info("Street numbers")
     schools = store_info("Schools")
+    music = store_info("Music")
     colors = store_info("Colors")
     other_terms = store_info("Other terms")
 
-    print("\nPlease wait while your dictionary is generated. " +
-          "This may take several minutes.\n")
+    print("\nPlease wait while your dictionary is generated... This may " +
+          "take several minutes.\n")
 
-    pets = \
-        mangle(pet_terms)  # pet names, animal types, anything animals
-    sports = \
-        mangle(sports)  # sports teams, mascots, anything sports
-    family = \
-        mangle(family_terms)  # close friends, family, family traditions, etc.
-    music = \
-        mangle(music)  # music genres, bands, songs, anything music
-    states = \
-        mangle(states)  # states of importance, e.g: resident of or vacations
-    cities = \
-        mangle(cities)  # cities of importance, e.g: resident of or vacations
-    schools = \
-        mangle(schools)  # school names, mascots, teams, abbreviations, etc.
-    colors = \
-        mangle(colors)  # colors of significance to target, e.g. team colors
-    streets = \
-        mangle(streets)  # names of streets of importance, e.g: residence of
-    other = \
-        mangle(other_terms)  # terms of significance that don't meet a category
+    # use generic list permutation function 'mangle' for common permutations
+    pets = mangle(pet_terms)
+    sports = mangle(sports)
+    family = mangle(family_terms)
+    music = mangle(music)
+    states = mangle(states)
+    cities = mangle(cities)
+    schools = mangle(schools)
+    colors = mangle(colors)
+    streets = mangle(streets)
+    other = mangle(other_terms)
+    jobs = mangle(employment_terms)
 
+    # use specialized functions for numeric and less common data / permutations
     phones = []
     for phone in phone_numbers:
         phones += permute_phone(phone)
@@ -311,12 +250,15 @@ def main():
     for street_number in street_numbers:
         street_nums += permute_street_number(street_number)
 
+    # add phone number to top of list
     for number in phones:
         final_collection.append(number)
 
+    # lists to permute for base passwords
     collections = [cities, colors, family, music, other, pets, schools, sports,
-                   states, streets]
+                   states, streets, jobs]
 
+    # permute collections to combine 2 of every category
     combinations = []
     collection_count = len(collections)
     marker = 0
@@ -327,34 +269,42 @@ def main():
             combinations += permute_lists(collections[marker], temp_list)
         marker += 1
 
+    # permute other against itself
     length = len(other)
-    index = 0
-    while index < length:
-        for item in other[index:]:
-            combinations.append(other[index] + item)
-            combinations.append(item + other[index])
-        index += 1
+    marker = 0
+    while marker < length:
+        for item in other[marker:]:
+            combinations.append(other[marker] + item)
+            combinations.append(item + other[marker])
+        marker += 1
 
+    # add additional common variations
     temp_list = []
     for word in combinations:
+        # add generic numeric and special chars to base words
         temp_list.append(word + "!")
         temp_list.append(word + "1")
         temp_list.append(word + "123")
+        # append year permutations to base words
         for year in years:
             temp_list.append(word + year)
+        # append zip code permutations to base words
         for zip_code in zip_codes:
             temp_list.append(word + zip_code)
+        # append street number permutations to base words
         for street_number in street_nums:
             temp_list.append(word + street_number)
+        # append area code from phone numbers to base words
         for phone in phone_numbers:
             temp_list.append(word + phone[0:3])
 
-    final_collection += combinations
-    final_collection += temp_list
+    # combine lists, remove duplicates, and enforce length limitations
+    final_collection += (combinations + temp_list)
     collection = list(set(final_collection))
     collection = [word for word in collection if
                   max_length >= len(word) >= min_length]
 
+    # temporary sort algorithm to push more probable passwords higher
     numeric = []
     alpha_lower = []
     alpha_mixed_case = []
@@ -384,6 +334,7 @@ def main():
     final_collection += alpha_mixed_case
     final_collection += special_chars
 
+    # create list based on size set by user
     count = 0
     with open('dictionary.txt', 'a') as my_file:
         for word in final_collection:
@@ -393,7 +344,7 @@ def main():
             count += 1
 
     print("Dictionary list generation complete. File is \"dictionary.txt\"" +
-          " in script directory")
+          " in script directory.")
 
 if __name__ == "__main__":
     main()
