@@ -21,6 +21,10 @@ def number_swap(term):
     """
         Replace numeric chars within a string with common substitutions of
         letters, spelling, and symbols.
+
+        :param term: numeric string
+        :return: list of argument 'term' variations with number substitutions
+        :rtype: list
     """
     number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
                        '2': ['Z', 'two'], '3': ['E', 'three'],
@@ -44,6 +48,10 @@ def letter_swap(term):
     """
         Replace alpha chars within a string with common substitutions of
         numbers and symbols.
+
+        :param term: string of letters
+        :return: list of argument 'term' variations with letter substitutions
+        :rtype: list
     """
     letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['('],
                        'e': ['3'], 'g': ['6', '9'], 'h': ['#'],
@@ -67,6 +75,11 @@ def alternate_case(term, first):
     """
         Change case to alternate_case between lower and upper; if first is true
         begin with the fist char in caps.
+
+        :param term: string of letters to permute
+        :param first: boolean true if first letter is cased upper
+        :return: string 'term' with letters alternating upper/lower case
+        :rtype: string
     """
     new_string = ""
     for letter in term:
@@ -82,6 +95,10 @@ def alternate_case(term, first):
 def permute_phone(phone):
     """
         Return list of various phone permutations (area code, reversed etc).
+
+        :param phone: string of 10 digits
+        :return: list of 'phone' number permutations
+        :rtype: list
     """
     return [
         phone,
@@ -95,6 +112,10 @@ def permute_phone(phone):
 def permute_casing(term):
     """
         Return list of term with title case, all lower, and all upper.
+
+        :param term: string of letters
+        :return: list of 'term' with variations using 3 common casing styles
+        :rtype: list
     """
     return [
         term.upper(),
@@ -106,6 +127,10 @@ def permute_casing(term):
 def permute_year(year):
     """
         Return list of common year perms. (last 2 digits, backwards, etc).
+
+        :param year: string of 4 digits
+        :return: list of 'year' using 4 common styles
+        :rtype: list
     """
     return [
         year[2:],
@@ -117,6 +142,10 @@ def permute_year(year):
 def reverse_string(term):
     """
         Return string in reverse.
+
+        :param term: string of any character type
+        :return: string of 'term' after being reversed
+        :rtype: string
     """
     return term[::-1]
 
@@ -124,6 +153,10 @@ def reverse_string(term):
 def permute_zip_code(zip_code):
     """
         Return list of string zip_code with 3 variations.
+
+        :param zip_code: string of 5 digits
+        :return: list of 3 common permutation styles for zip codes
+        :rtype: list
     """
     return [
         reverse_string(zip_code)] + \
@@ -134,6 +167,10 @@ def permute_zip_code(zip_code):
 def permute_music(music):
     """
         Return common permutations of music related terms.
+
+        :param music: string of music related term
+        :return: list of 5 common permutations of generic terms
+        :rtype: list
     """
     return \
         permute_casing(music) + \
@@ -146,6 +183,10 @@ def permute_music(music):
 def perm_st_num(street_number):
     """
         Return common permutations of street numbers.
+
+        :param street_number: string of any number of digits
+        :return: list of 'street_number' with 3 common permutation styles
+        :rtype: list
     """
     return [
         street_number,
@@ -156,15 +197,19 @@ def perm_st_num(street_number):
 def mangle(target_list):
     """
         Return a list containing most frequently used permutation functions
+
+        :param target_list: generic string, typically only letters
+        :return: list of 5 common permutations of all terms in 'target_list'
+        :rtype: list
     """
-    new_list = []
+    mangled_list = []
     for item in target_list:
-        new_list[len(new_list):] = letter_swap(item)
-        new_list[len(new_list):] = permute_casing(item)
-        new_list.append(reverse_string(item))
-        new_list.append(alternate_case(item, True))
-        new_list.append(alternate_case(item, False))
-    return new_list
+        mangled_list[len(mangled_list):] = letter_swap(item)
+        mangled_list[len(mangled_list):] = permute_casing(item)
+        mangled_list.append(reverse_string(item))
+        mangled_list.append(alternate_case(item, True))
+        mangled_list.append(alternate_case(item, False))
+    return mangled_list
 
 
 def store_info(prompt):
@@ -172,6 +217,10 @@ def store_info(prompt):
         Return list of items exploded by char ',' and trimmed of whitespace.
         Spaces are replaced by commas to treat multi word entries as separate
         words.
+
+        :param prompt: to be displayed to user for input
+        :return: list stored after changing spaces to commas, exploding, trim
+        :rtype: list
     """
     user_input = input(prompt + ": ")
     user_input = ','.join(shlex.split(user_input))
