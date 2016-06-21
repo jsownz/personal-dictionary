@@ -11,6 +11,8 @@
     delimited by a comma. Terms are intended to be accumulated during
     information gathering phase of a penetration test. The more relevant the
     terms, the higher chance of success.
+
+    NOTE: Currently arguments are not validated. See 'README.md' for more.
 """
 
 import itertools
