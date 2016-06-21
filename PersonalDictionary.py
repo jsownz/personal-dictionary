@@ -28,14 +28,14 @@ def number_swap(term):
                        '6': ['b', 'G', 'six'], '7': ['T', 'L', 'seven'],
                        '8': ['B', 'eight'], '9': ['g', 'q', 'nine']}
     new_terms = []
-    index = 0
-    while index < len(term):
+    marker = 0
+    while marker < len(term):
         number_list = list(term)
-        if number_list[index] in number_alt_dict:
-            for replace in number_alt_dict[number_list[index]]:
-                number_list[index] = replace
+        if number_list[marker] in number_alt_dict:
+            for replace in number_alt_dict[number_list[marker]]:
+                number_list[marker] = replace
                 new_terms.append(''.join(number_list))
-        index += 1
+        marker += 1
 
     return new_terms
 
@@ -51,14 +51,14 @@ def letter_swap(term):
                        'o': ['0'], 's': ['5', '$'], 't': ['+', '7'],
                        'Z': ['2']}
     new_terms = []
-    index = 0
-    while index < len(term):
+    marker = 0
+    while marker < len(term):
         letter_list = list(term)
-        if letter_list[index] in letter_alt_dict:
-            for replace in letter_alt_dict[letter_list[index]]:
-                letter_list[index] = replace
+        if letter_list[marker] in letter_alt_dict:
+            for replace in letter_alt_dict[letter_list[marker]]:
+                letter_list[marker] = replace
                 new_terms.append(''.join(letter_list))
-        index += 1
+        marker += 1
 
     return new_terms
 
