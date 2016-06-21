@@ -122,7 +122,8 @@ def permute_phone(phone):
         phone[0:3],
         phone[6:],
         phone[::-1],
-        reverse_string(phone[0:3])] + number_swap(phone)
+        reverse_string(phone[0:3])] + \
+        number_swap(phone)
 
 
 def permute_casing(term):
