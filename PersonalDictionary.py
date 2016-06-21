@@ -17,6 +17,7 @@
     by commas.
 """
 
+import itertools
 import shlex
 
 
@@ -48,10 +49,10 @@ def letter_swap(term):
         Replace alpha chars within a string with common substitutions of
         numbers and symbols.
     """
-    letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['(', '['],
+    letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['('],
                        'e': ['3'], 'g': ['6', '9'], 'h': ['#'],
-                       'i': ['!', '|'], 'l': ['1'],
-                       'o': ['0', 'oh'], 's': ['5', '$'], 't': ['+', '7'],
+                       'i': ['!'], 'l': ['1'],
+                       'o': ['0'], 's': ['5', '$'], 't': ['+', '7'],
                        'Z': ['2']}
     new_terms = []
     index = 0
@@ -71,15 +72,15 @@ def alternate_case(term, first):
         Change case to alternate_case between lower and upper; if first is true
         begin with the fist char in caps.
     """
-    ret = ""
-    for char in term:
+    new_string = ""
+    for letter in term:
         if first:
-            ret += char.upper()
+            new_string += letter.upper()
         else:
-            ret += char.lower()
-        if char != ' ':
+            new_string += letter.lower()
+        if letter != ' ':
             first = not first
-    return ret
+    return new_string
 
 
 def permute_phone(phone):
@@ -133,18 +134,6 @@ def permute_street_number(street_number):
     """
     return [street_number, reverse_string(street_number)] + number_swap(
         street_number)
-
-
-def permute_lists(first, second):
-    """
-        Return list of all combinations of words from lists sent as args
-    """
-    temp_list = []
-    for first_item in first:
-        for second_item in second:
-            temp_list.append(first_item + second_item)
-            temp_list.append(second_item + first_item)
-    return temp_list
 
 
 def mangle(temp_list):
@@ -266,7 +255,10 @@ def main():
         for temp_list in collections[(marker + 1):]:
             for item in collections[marker]:
                 combinations.append(item)
-            combinations += permute_lists(collections[marker], temp_list)
+            combos = list(
+                itertools.product(collections[marker], temp_list))
+            for fst, snd in combos:
+                combinations.append(fst + snd)
         marker += 1
 
     # permute other against itself
