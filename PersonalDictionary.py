@@ -26,11 +26,18 @@ def number_swap(term):
         :return: list of argument 'term' variations with number substitutions
         :rtype: list
     """
-    number_alt_dict = {'0': ['O', 'zero'], '1': ['l', 'i', '|', 'one'],
-                       '2': ['Z', 'two'], '3': ['E', 'three'],
-                       '4': ['A', 'four'], '5': ['S', 'five'],
-                       '6': ['b', 'G', 'six'], '7': ['T', 'L', 'seven'],
-                       '8': ['B', 'eight'], '9': ['g', 'q', 'nine']}
+    number_alt_dict = {
+        '0': ['O', 'zero'],
+        '1': ['l', 'i', '!', 'one'],
+        '2': ['Z', 'two'],
+        '3': ['E', 'three'],
+        '4': ['A', 'four'],
+        '5': ['S', 'five'],
+        '6': ['b', 'G', 'six'],
+        '7': ['T', 'L', 'seven'],
+        '8': ['B', 'eight'],
+        '9': ['g', 'q', 'nine']
+    }
     new_terms = []
     marker = 0
     while marker < len(term):
@@ -53,11 +60,20 @@ def letter_swap(term):
         :return: list of argument 'term' variations with letter substitutions
         :rtype: list
     """
-    letter_alt_dict = {'a': ['@', '4'], 'b': ['8'], 'c': ['('],
-                       'e': ['3'], 'g': ['6', '9'], 'h': ['#'],
-                       'i': ['!'], 'l': ['1'],
-                       'o': ['0'], 's': ['5', '$'], 't': ['+', '7'],
-                       'Z': ['2']}
+    letter_alt_dict = {
+        'a': ['@', '4'],
+        'b': ['8'],
+        'c': ['('],
+        'e': ['3'],
+        'g': ['6', '9'],
+        'h': ['#'],
+        'i': ['!'],
+        'l': ['1'],
+        'o': ['0'],
+        's': ['5', '$'],
+        't': ['+', '7'],
+        'Z': ['2']
+    }
     new_terms = []
     marker = 0
     while marker < len(term):
