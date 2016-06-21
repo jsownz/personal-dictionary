@@ -248,13 +248,13 @@ def store_info(prompt):
 
 def main():
     """
-        **All code below currently for testing and proof of concept**
+        ** All code below currently for testing and proof of concept **
 
-        @TODO: Rewrite logic of final dictionary generation after completing
+        TODO: Rewrite logic of final dictionary generation after completing
             and expanding upon algorithms above.
 
-        Generate text file of potential passwords (dictionary list), tailored
-        towards information gathered during initial phase of pen test.
+        Generate personalized dictionary list of passwords, tailored towards a
+        target with information gathered during initial phase of pen test.
     """
     print("\n** Personalized Dictionary Generator ** \n\nEnter words in the " +
           "prompts below, separated with commas.\nE.G. Phones: " +
@@ -348,7 +348,7 @@ def main():
         other
     ]
 
-    # permute collections to combine 2 of every category
+    # permute collections to combine 2 of every list from collections
     combinations = []
     list_count = len(collections)
     marker = 0
@@ -362,7 +362,7 @@ def main():
                 combinations.append(term_one + term_two)
         marker += 1
 
-    # permute other against itself
+    # permute category 'other' against itself
     length = len(other)
     marker = 0
     while marker < length:
@@ -371,7 +371,7 @@ def main():
             combinations.append(item + other[marker])
         marker += 1
 
-    # add additional common variations to base passwords
+    # add suffix of additional common variations to existing combinations
     final_suffix = []
     for word in combinations:
 
@@ -393,13 +393,13 @@ def main():
         for phone in phone_numbers:
             final_suffix.append(word + phone[0:3])
 
-    # combine lists, remove duplicates, enforce length limitations
+    # remove duplicates and combine lists of words meeting length requisites
     final_collection[len(final_collection):] = combinations + final_suffix
     collection = list(set(final_collection))
     collection = [word for word in collection if
                   max_length >= len(word) >= min_length]
 
-    # unfinished sorting process to push probable passwords higher
+    # pending algorithm - sorting process to push probable passwords higher
     numeric = []
     alpha_lower = []
     alpha_mixed_case = []
@@ -411,7 +411,8 @@ def main():
         if item.isdigit():
             numeric.append(item)
         elif item.isalpha() and (
-                item.islower() or (item[0].isupper() and item[1:].islower())):
+                    item.islower() or (
+                            item[0].isupper() and item[1:].islower())):
             alpha_lower.append(item)
         elif item.isalpha():
             alpha_mixed_case.append(item)
@@ -429,7 +430,7 @@ def main():
     final_collection[len(final_collection):] = alpha_mixed_case
     final_collection[len(final_collection):] = special_chars
 
-    # create list based on size set by user
+    # create list of words with length specified by user
     count = 0
     with open('dictionary.txt', 'a') as my_file:
         for word in final_collection:
@@ -440,6 +441,7 @@ def main():
 
     print("Dictionary list generation complete. File is \"dictionary.txt\"" +
           " in script directory.")
+
 
 if __name__ == "__main__":
     main()
