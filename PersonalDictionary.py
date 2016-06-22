@@ -134,11 +134,10 @@ def permute_casing(term):
         Return list of term with title case, all lower, and all upper.
 
         :param term: string of letters
-        :return: list of 'term' with variations using 3 common casing styles
+        :return: list of 'term' with variations using 2 common casing styles
         :rtype: list
     """
     return [
-        term.upper(),
         term.lower(),
         term.capitalize()
     ]
@@ -226,8 +225,7 @@ def mangle(target_list):
     for item in target_list:
         mangled_list.extend(letter_swap(item))
         mangled_list.extend(permute_casing(item))
-        mangled_list.append(reverse_string(item))
-        mangled_list.append(alternate_case(item, True))
+`        mangled_list.append(alternate_case(item, True))
         mangled_list.append(alternate_case(item, False))
     return mangled_list
 
