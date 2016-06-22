@@ -428,9 +428,10 @@ def main():
 
     final_collection = numeric
     final_collection[len(final_collection):] = alpha_lower
-    final_collection[len(final_collection):] = alpha_numeric_lower
+    final_collection[len(final_collection):] = list(
+        itertools.chain.from_iterable(
+            zip(alpha_numeric_lower, alpha_mixed_case)))
     final_collection[len(final_collection):] = alpha_numeric_mixed_case
-    final_collection[len(final_collection):] = alpha_mixed_case
     final_collection[len(final_collection):] = special_chars
 
     # create list of words with length specified by user
