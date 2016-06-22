@@ -5,7 +5,7 @@
     Last Modified: 2016-06-22
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.1-2016.06.22(a)
+    r0.1.11-2016.06.22(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
@@ -276,9 +276,14 @@ def main():
     final_collection = []
 
     # user sets pw and list length parameters
-    min_length = int(input("Min length: "))
-    max_length = int(input("Max length: "))
-    password_count = int(input("Number of passwords: "))
+    while True:
+        try:
+            min_length = int(input("Min length: "))
+            max_length = int(input("Max length: "))
+            password_count = int(input("Number of passwords: "))
+            break
+        except ValueError:
+            print("Please enter a valid number.\n")
 
     # prompts user for terms to generate dictionary
     pet_terms = store_info("Pets")
