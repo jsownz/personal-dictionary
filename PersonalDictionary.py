@@ -225,7 +225,7 @@ def mangle(target_list):
     for item in target_list:
         mangled_list.extend(letter_swap(item))
         mangled_list.extend(permute_casing(item))
-`        mangled_list.append(alternate_case(item, True))
+        mangled_list.append(alternate_case(item, True))
         mangled_list.append(alternate_case(item, False))
     return mangled_list
 
