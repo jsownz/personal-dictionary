@@ -275,6 +275,9 @@ def main():
     # list to hold all passwords after processing
     final_collection = []
 
+    min_length = 8
+    max_length = 12
+    password_count = 10000
     # user sets pw and list length parameters
     while True:
         try:
@@ -288,13 +291,13 @@ def main():
     # prompts user for terms to generate dictionary
     pet_terms = store_info("Pets")
     year_info = store_info("Years")
-    phone_numbers = store_info("Phones")
+    phone_numbers = store_info("Phones (10 digits)")
     sports = store_info("Sports")
     family_terms = store_info("Family")
     employment_terms = store_info("Employment")
     states = store_info("States")
     cities = store_info("Cities")
-    zip_codes = store_info("Zip codes")
+    zip_codes = store_info("Zip codes (5 digits)")
     streets = store_info("Street names")
     street_numbers = store_info("Street numbers")
     schools = store_info("Schools")
