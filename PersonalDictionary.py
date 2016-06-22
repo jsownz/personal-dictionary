@@ -333,7 +333,7 @@ def main():
         street_nums[len(street_nums):] = perm_st_num(street_number)
 
     # add phone number to top of list
-    final_collection[:0] = phone_numbers
+    final_collection[:0] = phones
 
     # lists to permute for base passwords
     collections = [
