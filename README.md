@@ -31,6 +31,9 @@ This is an alpha release for a project that began on June 18th of 2016
 
 ## Contributors
 
-John Vardanian (Development)
+Development:
+- John Vardanian
 
-Jacob Wilkin (Testing and Implementation)
+Testing and Feature Suggestions
+- Jacob Wilkin
+- leeJenks
