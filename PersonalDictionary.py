@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-21
+    Last Modified: 2016-06-22
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.1-2016.06.21(a)
+    r0.1.1-2016.06.22(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
@@ -261,16 +261,16 @@ def main():
           "prompts below, separated with commas.\nE.G. Phones: " +
           "5555555555, 9995550000\n\nEach category is similar to that of a " +
           "security question to recover a password, or a topic that is " +
-          "commonly used by individuals to remember a password. List info " +
-          " of greater relevance towards the beginning of each category. " +
+          "commonly used by individuals to remember a password. Enter terms " +
+          "of greater relevance towards the beginning of each prompt. " +
           "When the script completes a file titled 'dictionary.txt' " +
           "will be generated in the same directory as the script. The " +
           "dictionary will contain a large number of permutations of the " +
           "information entered.\n\nThe more relevant information entered " +
-          "the higher chance of success. The information entered determines " +
-          "the quality of dictionary that is generated.\nTo be used only " +
-          "authorized testing.\n\nLarge amounts of information may take " +
-          "several minutes.\n\n")
+          "the higher chance of success, as the significance determines " +
+          "the quality of the dictionary that is generated.\nTo be used "
+          "only for authorized testing.\n\nLarge amounts of information may " +
+          "take several minutes.\n\n")
 
     # list to hold all passwords after processing
     final_collection = []
