@@ -362,6 +362,7 @@ def main():
                 itertools.product(collections[marker], list_portion))
             for term_one, term_two in variations:
                 combinations.append(term_one + term_two)
+                combinations.append(term_two + term_one)
         marker += 1
 
     # permute category 'other' against itself
