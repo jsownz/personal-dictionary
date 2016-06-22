@@ -224,8 +224,8 @@ def mangle(target_list):
     """
     mangled_list = []
     for item in target_list:
-        mangled_list[len(mangled_list):] = letter_swap(item)
-        mangled_list[len(mangled_list):] = permute_casing(item)
+        mangled_list.extend(letter_swap(item))
+        mangled_list.extend(permute_casing(item))
         mangled_list.append(reverse_string(item))
         mangled_list.append(alternate_case(item, True))
         mangled_list.append(alternate_case(item, False))
@@ -321,16 +321,16 @@ def main():
 
     # populate lists that don't use function 'mangle'
     for phone in phone_numbers:
-        phones[len(phones):] = permute_phone(phone)
+        phones.extend(permute_phone(phone))
 
     for year in year_info:
-        years[len(years):] = permute_year(year)
+        years.extend(permute_year(year))
 
     for zip_code in zip_codes:
-        zips[len(zips):] = permute_zip_code(zip_code)
+        zips.extend(permute_zip_code(zip_code))
 
     for street_number in street_numbers:
-        street_nums[len(street_nums):] = perm_st_num(street_number)
+        street_nums.extend(perm_st_num(street_number))
 
     # add phone number to top of list
     final_collection[:0] = phones
@@ -397,7 +397,7 @@ def main():
             final_suffix.append(word + phone[0:3])
 
     # remove duplicates and combine lists of words meeting length requisites
-    final_collection[len(final_collection):] = combinations + final_suffix
+    final_collection.extend(combinations + final_suffix)
     collection = list(set(final_collection))
     collection = [word for word in collection if
                   max_length >= len(word) >= min_length]
@@ -427,12 +427,12 @@ def main():
             special_chars.append(item)
 
     final_collection = numeric
-    final_collection[len(final_collection):] = alpha_lower
-    final_collection[len(final_collection):] = list(
+    final_collection.extend(alpha_lower)
+    final_collection.extend(list(
         itertools.chain.from_iterable(
-            zip(alpha_numeric_lower, alpha_mixed_case)))
-    final_collection[len(final_collection):] = alpha_numeric_mixed_case
-    final_collection[len(final_collection):] = special_chars
+            zip(alpha_numeric_lower, alpha_mixed_case))))
+    final_collection.extend(alpha_numeric_mixed_case)
+    final_collection.extend(special_chars)
 
     # create list of words with length specified by user
     count = 0
