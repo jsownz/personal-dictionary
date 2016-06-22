@@ -5,7 +5,7 @@
     Last Modified: 2016-06-21
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.0.10-2016.06.21(a)
+    r0.1.1-2016.06.21(a)
 
     Generate a dictionary list as a text file using permutations of terms
     delimited by a comma. Terms are intended to be accumulated during
@@ -62,6 +62,7 @@ def letter_swap(term):
         :return: list of argument 'term' variations with letter substitutions
         :rtype: list
     """
+    term = term.lower()
     letter_alt_dict = {
         'a': ['@', '4'],
         'b': ['8'],
@@ -74,7 +75,7 @@ def letter_swap(term):
         'o': ['0'],
         's': ['5', '$'],
         't': ['+', '7'],
-        'Z': ['2']
+        'z': ['2']
     }
     new_terms = []
     marker = 0
