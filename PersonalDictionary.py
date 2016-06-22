@@ -414,8 +414,8 @@ def main():
         if item.isdigit():
             numeric.append(item)
         elif item.isalpha() and (
-                    item.islower() or (
-                            item[0].isupper() and item[1:].islower())):
+            item.islower() or (
+                item[0].isupper() and item[1:].islower())):
             alpha_lower.append(item)
         elif item.isalpha():
             alpha_mixed_case.append(item)
