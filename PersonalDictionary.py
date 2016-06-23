@@ -242,26 +242,16 @@ def main():
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
     """
-    print("\n** Personalized Dictionary Generator ** \n\n" +
-          "Using a JSON file, fill out criteria as in 'config.json'" +
-          "\n\nEach category in the json file is similar to that of a " +
-          "security question to recover a password, or a topic that is " +
-          "commonly used by individuals to remember a password. Enter terms " +
-          "of greater relevance towards the beginning of each category. " +
-          "When the script completes a file titled 'dictionary.txt' " +
-          "will be generated in the same directory as the script. The " +
-          "dictionary will contain a large number of permutations of the " +
-          "information entered.\n\nThe more relevant information entered " +
-          "the higher chance of success, as the significance determines " +
-          "the quality of the dictionary that is generated.\nTo be used "
-          "only for authorized testing.\n\nLarge amounts of information may " +
-          "take several minutes.\n\n")
+    print("\n*X* Personalized Dictionary Generator *X* \n")
 
     # list to hold all passwords after processing
     final_collection = []
 
     # user sets pw and list length parameters
-    parser = argparse.ArgumentParser(description='Generate password file.')
+    parser = argparse.ArgumentParser(
+        description="Generate a dictionary list as a text file using " +
+                    "permutations of terms.\nData imported from populated " +
+                    "JSON template.\n\n")
     parser.add_argument('--min', type=int, required=True,
                         help='Minimum password length')
     parser.add_argument('--max', type=int, required=True,
