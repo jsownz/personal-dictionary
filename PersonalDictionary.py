@@ -17,6 +17,8 @@
 
 import itertools
 import shlex
+import argparse
+import json
 
 
 def number_swap(term):
@@ -273,51 +275,42 @@ def main():
     # list to hold all passwords after processing
     final_collection = []
 
-    min_length = 8
-    max_length = 12
-    password_count = 10000
     # user sets pw and list length parameters
-    while True:
-        try:
-            min_length = int(input("Min length: "))
-            max_length = int(input("Max length: "))
-            password_count = int(input("Number of passwords: "))
-            break
-        except ValueError:
-            print("Please enter a valid number.\n")
+    parser = argparse.ArgumentParser(description='Generate password file.')
+    parser.add_argument('--min', type=int, required=True, help='Minimum password length')
+    parser.add_argument('--max', type=int, required=True, help='Maximum password length')
+    parser.add_argument('-n', '--num', type=int, required=True,
+                        help='Number of passwords to be generated')
+    parser.add_argument('-f', '--file', required=True, help='Criteria file')
+    args = parser.parse_args()
+    min_length = args.min
+    max_length = args.max
+    password_count = args.num
 
-    # prompts user for terms to generate dictionary
-    pet_terms = store_info("Pets")
-    year_info = store_info("Years")
-    phone_numbers = store_info("Phones (10 digits)")
-    sports = store_info("Sports")
-    family_terms = store_info("Family")
-    employment_terms = store_info("Employment")
-    states = store_info("States")
-    cities = store_info("Cities")
-    zip_codes = store_info("Zip codes (5 digits)")
-    streets = store_info("Street names")
-    street_numbers = store_info("Street numbers")
-    schools = store_info("Schools")
-    music = store_info("Music")
-    colors = store_info("Colors")
-    other_terms = store_info("Other terms")
+    try:
+        criteria = json.loads("".join(open(args.file, "r").readlines()))
+    except FileNotFoundError as e:
+        print("Could not open criteria file: %s" % e)
+        exit(1)
 
     print("\nPlease wait while your dictionary is generated... This may " +
           "take several minutes.\n")
 
     # use function 'mangle' for most common permutation, typically alpha only
-    pets = mangle(pet_terms)
-    sports = mangle(sports)
-    family = mangle(family_terms)
-    music = mangle(music)
-    states = mangle(states)
-    cities = mangle(cities)
-    schools = mangle(schools)
-    colors = mangle(colors)
-    streets = mangle(streets)
-    other = mangle(other_terms)
-    jobs = mangle(employment_terms)
+    pets = mangle(criteria["pets"]) if criteria["pets"] else []
+    sports = mangle(criteria["sports"]) if criteria["sports"] else []
+    family = mangle(criteria["family"]) if criteria["family"] else []
+    music = mangle(criteria["music"]) if criteria["music"] else []
+    states = mangle(criteria["states"]) if criteria["states"] else []
+    cities = mangle(criteria["cities"]) if criteria["cities"] else []
+    schools = mangle(criteria["schools"]) if criteria["schools"] else []
+    colors = mangle(criteria["colors"]) if criteria["colors"] else []
+    streets = mangle(criteria["street_numbers"]) if criteria["streets"] else []
+    other = mangle(criteria["other"]) if criteria["other"] else []
+    jobs = mangle(criteria["employment"]) if criteria["employment"] else []
+
+    zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
+    phone_numbers = criteria["phone"] if criteria["phone"] else []
 
     # lists that don't make use of function 'mangle'
     phones = []
@@ -326,16 +319,16 @@ def main():
     street_nums = []
 
     # populate lists that don't use function 'mangle'
-    for phone in phone_numbers:
+    for phone in criteria["phone"]:
         phones.extend(permute_phone(phone))
 
-    for year in year_info:
+    for year in criteria["years"]:
         years.extend(permute_year(year))
 
-    for zip_code in zip_codes:
+    for zip_code in criteria["zip_codes"]:
         zips.extend(permute_zip_code(zip_code))
 
-    for street_number in street_numbers:
+    for street_number in criteria["street_numbers"]:
         street_nums.extend(perm_st_num(street_number))
 
     # add phone number to top of list
@@ -442,7 +435,7 @@ def main():
 
     # create list of words with length specified by user
     count = 0
-    with open('dictionary.txt', 'a') as my_file:
+    with open('dictionary.txt', 'w+') as my_file:
         for word in final_collection:
             if count == password_count:
                 break
@@ -451,7 +444,6 @@ def main():
 
     print("Dictionary list generation complete. File is \"dictionary.txt\"" +
           " in script directory.")
-
 
 if __name__ == "__main__":
     main()
