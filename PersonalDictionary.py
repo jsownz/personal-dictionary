@@ -13,8 +13,8 @@
     terms, the higher chance of success.
 """
 
-import itertools
 import argparse
+import itertools
 import json
 import re
 
@@ -379,13 +379,13 @@ def main():
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
 
-        # pending algorithm - sorting process to push probable passwords higher
+        # push probable passwords higher
         numeric = []
         alpha_lower = []
-        alpha_mixed_case = []
-        alpha_numeric_lower = []
-        alpha_numeric_mixed_case = []
-        special_chars = []
+        alpha_mixed = []
+        alnum_lower = []
+        alnul_mixed = []
+        special = []
 
         for item in collection:
             if item.isdigit():
@@ -395,21 +395,20 @@ def main():
                     item[0].isupper() and item[1:].islower())):
                 alpha_lower.append(item)
             elif item.isalpha():
-                alpha_mixed_case.append(item)
+                alpha_mixed.append(item)
             elif item.isalnum() and item.islower():
-                alpha_numeric_lower.append(item)
+                alnum_lower.append(item)
             elif item.isalnum():
-                alpha_numeric_mixed_case.append(item)
+                alnul_mixed.append(item)
             else:
-                special_chars.append(item)
+                special.append(item)
 
-        final_collection = numeric
-        final_collection.extend(alpha_lower)
+        final_collection = numeric + alpha_lower
         final_collection.extend(list(
             itertools.chain.from_iterable(
-                zip(alpha_numeric_lower, alpha_mixed_case))))
-        final_collection.extend(alpha_numeric_mixed_case)
-        final_collection.extend(special_chars)
+                zip(alnum_lower, alpha_mixed))))
+        final_collection[
+            len(final_collection):] = alnul_mixed + special
 
         # create list of words with length specified by user
         count = 0
