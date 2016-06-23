@@ -297,7 +297,6 @@ def main():
           "take a while depending on the amount of data.\n")
 
     # use function 'mangle' for most common permutation, typically alpha only
-    global criteria
     pets = mangle(criteria["pets"]) if criteria["pets"] else []
     sports = mangle(criteria["sports"]) if criteria["sports"] else []
     family = mangle(criteria["family"]) if criteria["family"] else []
