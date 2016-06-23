@@ -1,0 +1,17 @@
+{
+"pets": ["spike", "tiger"],
+"years": ["1984", "2016"],
+"phone": ["8885557676", "8885550909"],
+"sports": ["poker", "lakers"],
+"family":["mother", "father", "smith"],
+"employment": ["evilcorp"],
+"states": ["colorado", "texas"],
+"cities": ["denver", "austin"],
+"zip_codes": ["23434", "34567"],
+"streets": ["avenue", "pacific"],
+"street_numbers":  ["1233", "900"],
+"schools": ["yale", "harvard"],
+"music": ["doors", "prodigy"],
+"colors": ["crimson"],
+"other": ["python", "dictionary"]
+}
