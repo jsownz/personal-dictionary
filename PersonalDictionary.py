@@ -14,9 +14,9 @@
 """
 
 import itertools
-import shlex
 import argparse
 import json
+import re
 
 
 def number_swap(term):
@@ -217,10 +217,12 @@ def mangle(target_list):
     """
         Return a list containing most frequently used permutation functions
 
-        :param target_list: generic string, typically only letters
+        :param target_list: generic list of strings, typically only letters
         :return: list of 5 common permutations of all terms in 'target_list'
         :rtype: list
     """
+    target_list = re.sub('\s+', ' ', ','.join(target_list)).replace(' ', ',')
+    target_list = [x.strip() for x in target_list.split(',')]
     mangled_list = []
     for item in target_list:
         mangled_list.extend(letter_swap(item))
@@ -228,21 +230,6 @@ def mangle(target_list):
         mangled_list.append(alternate_case(item, True))
         mangled_list.append(alternate_case(item, False))
     return mangled_list
-
-
-def store_info(prompt):
-    """
-        Return list of items exploded by char ',' and trimmed of whitespace.
-        Spaces are replaced by commas to treat multi word entries as separate
-        words.
-
-        :param prompt: to be displayed to user for input
-        :return: list stored after changing spaces to commas, exploding, trim
-        :rtype: list
-    """
-    user_input = input(prompt + ": ")
-    user_input = ','.join(shlex.split(user_input))
-    return [x.strip() for x in user_input.split(',')]
 
 
 def main():
