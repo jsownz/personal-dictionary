@@ -2,17 +2,15 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-22
+    Last Modified: 2016-06-23
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.11-2016.06.22(a)
+    r0.1.2-2016.06.23(a)
 
     Generate a dictionary list as a text file using permutations of terms
-    delimited by a comma. Terms are intended to be accumulated during
+    stored in json file. Terms are intended to be accumulated during
     information gathering phase of a penetration test. The more relevant the
     terms, the higher chance of success.
-
-    NOTE: Currently arguments are not validated. See 'README.md' for more.
 """
 
 import itertools
@@ -257,12 +255,12 @@ def main():
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
     """
-    print("\n** Personalized Dictionary Generator ** \n\nEnter words in the " +
-          "prompts below, separated with commas.\nE.G. Phones: " +
-          "5555555555, 9995550000\n\nEach category is similar to that of a " +
+    print("\n** Personalized Dictionary Generator ** \n\n" +
+          "Using a JSON file, fill out criteria as in 'config.json'" +
+          "\n\nEach category in the json file is similar to that of a " +
           "security question to recover a password, or a topic that is " +
           "commonly used by individuals to remember a password. Enter terms " +
-          "of greater relevance towards the beginning of each prompt. " +
+          "of greater relevance towards the beginning of each category. " +
           "When the script completes a file titled 'dictionary.txt' " +
           "will be generated in the same directory as the script. The " +
           "dictionary will contain a large number of permutations of the " +
@@ -277,8 +275,10 @@ def main():
 
     # user sets pw and list length parameters
     parser = argparse.ArgumentParser(description='Generate password file.')
-    parser.add_argument('--min', type=int, required=True, help='Minimum password length')
-    parser.add_argument('--max', type=int, required=True, help='Maximum password length')
+    parser.add_argument('--min', type=int, required=True,
+                        help='Minimum password length')
+    parser.add_argument('--max', type=int, required=True,
+                        help='Maximum password length')
     parser.add_argument('-n', '--num', type=int, required=True,
                         help='Number of passwords to be generated')
     parser.add_argument('-f', '--file', required=True, help='Criteria file')
@@ -294,9 +294,10 @@ def main():
         exit(1)
 
     print("\nPlease wait while your dictionary is generated... This may " +
-          "take several minutes.\n")
+          "take a while depending on the amount of data.\n")
 
     # use function 'mangle' for most common permutation, typically alpha only
+    global criteria
     pets = mangle(criteria["pets"]) if criteria["pets"] else []
     sports = mangle(criteria["sports"]) if criteria["sports"] else []
     family = mangle(criteria["family"]) if criteria["family"] else []

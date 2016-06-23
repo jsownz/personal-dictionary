@@ -17,8 +17,6 @@ Enter terms delimited by a comma. Currently type checking is not implemented. Af
 
 ## Future Features
 
-Read from files instead of manual entry (allow for both).
-
 Weighting of category significance.
 
 Social Media Integration.
@@ -33,6 +31,7 @@ This is an alpha release for a project that began on June 18th of 2016
 
 Development:
 - John Vardanian
+- ASC3ND
 
 Testing and Feature Suggestions
 - Jacob Wilkin
