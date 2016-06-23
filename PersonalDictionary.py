@@ -279,158 +279,159 @@ def main():
     except FileNotFoundError as e:
         print("Could not open criteria file: %s" % e)
         exit(1)
+    else:
+        print("\nPlease wait while your dictionary is generated... This may " +
+              "take a while depending on the amount of data.\n")
 
-    print("\nPlease wait while your dictionary is generated... This may " +
-          "take a while depending on the amount of data.\n")
+        # use function 'mangle' for most common permutation
+        pets = mangle(criteria["pets"]) if criteria["pets"] else []
+        sports = mangle(criteria["sports"]) if criteria["sports"] else []
+        family = mangle(criteria["family"]) if criteria["family"] else []
+        music = mangle(criteria["music"]) if criteria["music"] else []
+        states = mangle(criteria["states"]) if criteria["states"] else []
+        cities = mangle(criteria["cities"]) if criteria["cities"] else []
+        schools = mangle(criteria["schools"]) if criteria["schools"] else []
+        colors = mangle(criteria["colors"]) if criteria["colors"] else []
+        streets = mangle(criteria["street_numbers"]) if criteria[
+            "streets"] else []
+        other = mangle(criteria["other"]) if criteria["other"] else []
+        jobs = mangle(criteria["employment"]) if criteria["employment"] else []
 
-    # use function 'mangle' for most common permutation, typically alpha only
-    pets = mangle(criteria["pets"]) if criteria["pets"] else []
-    sports = mangle(criteria["sports"]) if criteria["sports"] else []
-    family = mangle(criteria["family"]) if criteria["family"] else []
-    music = mangle(criteria["music"]) if criteria["music"] else []
-    states = mangle(criteria["states"]) if criteria["states"] else []
-    cities = mangle(criteria["cities"]) if criteria["cities"] else []
-    schools = mangle(criteria["schools"]) if criteria["schools"] else []
-    colors = mangle(criteria["colors"]) if criteria["colors"] else []
-    streets = mangle(criteria["street_numbers"]) if criteria["streets"] else []
-    other = mangle(criteria["other"]) if criteria["other"] else []
-    jobs = mangle(criteria["employment"]) if criteria["employment"] else []
+        zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
+        phone_numbers = criteria["phone"] if criteria["phone"] else []
 
-    zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
-    phone_numbers = criteria["phone"] if criteria["phone"] else []
+        # lists that don't make use of function 'mangle'
+        phones = []
+        years = []
+        zips = []
+        street_nums = []
 
-    # lists that don't make use of function 'mangle'
-    phones = []
-    years = []
-    zips = []
-    street_nums = []
+        # populate lists that don't use function 'mangle'
+        for phone in criteria["phone"]:
+            phones.extend(permute_phone(phone))
 
-    # populate lists that don't use function 'mangle'
-    for phone in criteria["phone"]:
-        phones.extend(permute_phone(phone))
+        for year in criteria["years"]:
+            years.extend(permute_year(year))
 
-    for year in criteria["years"]:
-        years.extend(permute_year(year))
+        for zip_code in criteria["zip_codes"]:
+            zips.extend(permute_zip_code(zip_code))
 
-    for zip_code in criteria["zip_codes"]:
-        zips.extend(permute_zip_code(zip_code))
+        for street_number in criteria["street_numbers"]:
+            street_nums.extend(perm_st_num(street_number))
 
-    for street_number in criteria["street_numbers"]:
-        street_nums.extend(perm_st_num(street_number))
+        # add phone number to top of list
+        final_collection[:0] = phones
 
-    # add phone number to top of list
-    final_collection[:0] = phones
+        # lists to permute for base passwords
+        collections = [
+            pets,
+            family,
+            sports,
+            schools,
+            cities,
+            music,
+            states,
+            jobs,
+            streets,
+            colors,
+            other
+        ]
 
-    # lists to permute for base passwords
-    collections = [
-        pets,
-        family,
-        sports,
-        schools,
-        cities,
-        music,
-        states,
-        jobs,
-        streets,
-        colors,
-        other
-    ]
+        # permute collections to combine 2 of every list from collections
+        combinations = []
+        list_count = len(collections)
+        marker = 0
+        while marker < list_count:
+            for list_portion in collections[(marker + 1):]:
+                for item in collections[marker]:
+                    combinations.append(item)
+                variations = list(
+                    itertools.product(collections[marker], list_portion))
+                for term_one, term_two in variations:
+                    combinations.append(term_one + term_two)
+                    combinations.append(term_two + term_one)
+            marker += 1
 
-    # permute collections to combine 2 of every list from collections
-    combinations = []
-    list_count = len(collections)
-    marker = 0
-    while marker < list_count:
-        for list_portion in collections[(marker + 1):]:
-            for item in collections[marker]:
-                combinations.append(item)
-            variations = list(
-                itertools.product(collections[marker], list_portion))
-            for term_one, term_two in variations:
-                combinations.append(term_one + term_two)
-                combinations.append(term_two + term_one)
-        marker += 1
+        # permute category 'other' against itself
+        length = len(other)
+        marker = 0
+        while marker < length:
+            for item in other[marker:]:
+                combinations.append(other[marker] + item)
+                combinations.append(item + other[marker])
+            marker += 1
 
-    # permute category 'other' against itself
-    length = len(other)
-    marker = 0
-    while marker < length:
-        for item in other[marker:]:
-            combinations.append(other[marker] + item)
-            combinations.append(item + other[marker])
-        marker += 1
+        # add suffix of additional common variations to existing combinations
+        final_suffix = []
+        for word in combinations:
 
-    # add suffix of additional common variations to existing combinations
-    final_suffix = []
-    for word in combinations:
+            # add generic numeric and special chars
+            final_suffix.append(word + "!")
+            final_suffix.append(word + "1")
+            final_suffix.append(word + "123")
 
-        # add generic numeric and special chars
-        final_suffix.append(word + "!")
-        final_suffix.append(word + "1")
-        final_suffix.append(word + "123")
+            for year in years:
+                final_suffix.append(word + year)
 
-        for year in years:
-            final_suffix.append(word + year)
+            for zip_code in zip_codes:
+                final_suffix.append(word + zip_code)
 
-        for zip_code in zip_codes:
-            final_suffix.append(word + zip_code)
+            for street_number in street_nums:
+                final_suffix.append(word + street_number)
 
-        for street_number in street_nums:
-            final_suffix.append(word + street_number)
+            # append area code from phone numbers to base words
+            for phone in phone_numbers:
+                final_suffix.append(word + phone[0:3])
 
-        # append area code from phone numbers to base words
-        for phone in phone_numbers:
-            final_suffix.append(word + phone[0:3])
+        # remove dupes and combine lists of words meeting length requisites
+        final_collection.extend(combinations + final_suffix)
+        collection = list(set(final_collection))
+        collection = [word for word in collection if
+                      max_length >= len(word) >= min_length]
 
-    # remove duplicates and combine lists of words meeting length requisites
-    final_collection.extend(combinations + final_suffix)
-    collection = list(set(final_collection))
-    collection = [word for word in collection if
-                  max_length >= len(word) >= min_length]
+        # pending algorithm - sorting process to push probable passwords higher
+        numeric = []
+        alpha_lower = []
+        alpha_mixed_case = []
+        alpha_numeric_lower = []
+        alpha_numeric_mixed_case = []
+        special_chars = []
 
-    # pending algorithm - sorting process to push probable passwords higher
-    numeric = []
-    alpha_lower = []
-    alpha_mixed_case = []
-    alpha_numeric_lower = []
-    alpha_numeric_mixed_case = []
-    special_chars = []
+        for item in collection:
+            if item.isdigit():
+                numeric.append(item)
+            elif item.isalpha() and (
+                item.islower() or (
+                    item[0].isupper() and item[1:].islower())):
+                alpha_lower.append(item)
+            elif item.isalpha():
+                alpha_mixed_case.append(item)
+            elif item.isalnum() and item.islower():
+                alpha_numeric_lower.append(item)
+            elif item.isalnum():
+                alpha_numeric_mixed_case.append(item)
+            else:
+                special_chars.append(item)
 
-    for item in collection:
-        if item.isdigit():
-            numeric.append(item)
-        elif item.isalpha() and (
-            item.islower() or (
-                item[0].isupper() and item[1:].islower())):
-            alpha_lower.append(item)
-        elif item.isalpha():
-            alpha_mixed_case.append(item)
-        elif item.isalnum() and item.islower():
-            alpha_numeric_lower.append(item)
-        elif item.isalnum():
-            alpha_numeric_mixed_case.append(item)
-        else:
-            special_chars.append(item)
+        final_collection = numeric
+        final_collection.extend(alpha_lower)
+        final_collection.extend(list(
+            itertools.chain.from_iterable(
+                zip(alpha_numeric_lower, alpha_mixed_case))))
+        final_collection.extend(alpha_numeric_mixed_case)
+        final_collection.extend(special_chars)
 
-    final_collection = numeric
-    final_collection.extend(alpha_lower)
-    final_collection.extend(list(
-        itertools.chain.from_iterable(
-            zip(alpha_numeric_lower, alpha_mixed_case))))
-    final_collection.extend(alpha_numeric_mixed_case)
-    final_collection.extend(special_chars)
+        # create list of words with length specified by user
+        count = 0
+        with open('dictionary.txt', 'w+') as my_file:
+            for word in final_collection:
+                if count == password_count:
+                    break
+                my_file.write(word + '\n')
+                count += 1
 
-    # create list of words with length specified by user
-    count = 0
-    with open('dictionary.txt', 'w+') as my_file:
-        for word in final_collection:
-            if count == password_count:
-                break
-            my_file.write(word + '\n')
-            count += 1
-
-    print("Dictionary list generation complete. File is \"dictionary.txt\"" +
-          " in script directory.")
+        print("Dictionary list generation complete. File is " +
+              "\"dictionary.txt\" in script directory.")
 
 if __name__ == "__main__":
     main()
