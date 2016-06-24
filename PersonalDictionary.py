@@ -259,7 +259,7 @@ def main():
     parser.add_argument('-n', '--num', type=int, required=True,
                         help='Number of passwords to be generated')
     parser.add_argument('-f', '--file', required=True, help='Criteria file')
-    parser.add_argument('-o', '--out', help='Generate password file')
+    parser.add_argument('-o', '--out', help='Generated password file')
     args = parser.parse_args()
     min_length = args.min
     max_length = args.max
