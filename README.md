@@ -2,6 +2,8 @@
 
 Generate a dictionary list as a text file using permutations of terms that are entered by the user into a JSON file. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. Terms are in categories that are similar to those of security questions or personal terms one would be prone to remember.
 
+This is an open project and all developers are welcome to join.
+
 ## Usage
 
 For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
