@@ -259,10 +259,12 @@ def main():
     parser.add_argument('-n', '--num', type=int, required=True,
                         help='Number of passwords to be generated')
     parser.add_argument('-f', '--file', required=True, help='Criteria file')
+    parser.add_argument('-o', '--out', help='Generate password file')
     args = parser.parse_args()
     min_length = args.min
     max_length = args.max
     password_count = args.num
+    output_file = args.out if args.out else "dictionary.txt"
 
     try:
         criteria = json.loads("".join(open(args.file, "r").readlines()))
@@ -412,15 +414,14 @@ def main():
 
         # create list of words with length specified by user
         count = 0
-        with open('dictionary.txt', 'w+') as my_file:
+        with open(output_file, 'w+') as my_file:
             for word in final_collection:
                 if count == password_count:
                     break
                 my_file.write(word + '\n')
                 count += 1
 
-        print("Dictionary list generation complete. File is " +
-              "\"dictionary.txt\" in script directory.")
+        print("Dictionary list generated: " + output_file)
 
 if __name__ == "__main__":
     main()
