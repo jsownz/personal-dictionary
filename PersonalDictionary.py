@@ -22,7 +22,7 @@ import re
 def number_swap(term):
     """
         Replace numeric chars within a string with common substitutions of
-        letters, spelling, and symbols.
+        letters.
 
         :param term: numeric string
         :return: list of argument 'term' variations with number substitutions
