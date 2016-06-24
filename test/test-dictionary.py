@@ -12,8 +12,10 @@ def test_number_swap():
     assert (number_swap('7') == ['T', 'L'])
     assert (number_swap('8') == ['B'])
     assert (number_swap('9') == ['g', 'q'])
-    assert(number_swap('0123456789') == ['O'], ['l'], ['Z'], ['E'], ['A'],
-           ['S'], ['b', 'G'], ['T', 'L'], ['B'], ['g', 'q'])
+    assert(number_swap('0123456789') == [
+        'O123456789', '0l23456789', '01Z3456789', '012E456789', '0123A56789',
+        '01234S6789', '012345b789', '012345G789', '0123456T89', '0123456L89',
+        '01234567B9', '012345678g', '012345678q'])
 
 
 def test_letter_swap():
@@ -43,11 +45,13 @@ def test_letter_swap():
     assert (letter_swap('x') == [])
     assert (letter_swap('y') == [])
     assert (letter_swap('z') == ['2'])
-    assert (letter_swap('abcdefg') == ['@', '4'], ['8'], ['('], [], ['3'], [])
+    assert (letter_swap('abcdefg') == [
+        '@bcdefg', '4bcdefg', 'a8cdefg', 'ab(defg', 'abcd3fg', 'abcdef6',
+        'abcdef9'])
     assert (letter_swap('hijklmnop') == [
-        '#'], ['!'], [], [], ['1'], [], [], ['0'], [])
-    assert (letter_swap('qrstuvwxyz') == [], [], ['5', '$'], ['+', 't'], [],
-            [], [], ['2'])
+        '#ijklmnop', 'h!jklmnop', 'hijk1mnop', 'hijklmn0p'])
+    assert (letter_swap('qrstuvwxyz') == [
+        'qr5tuvwxyz', 'qr$tuvwxyz', 'qrs+uvwxyz', 'qrs7uvwxyz', 'qrstuvwxy2'])
 
 
 def test_alternate_case():
