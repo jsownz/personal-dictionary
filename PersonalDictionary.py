@@ -384,7 +384,7 @@ def main():
         alpha_lower = []
         alpha_mixed = []
         alnum_lower = []
-        alnul_mixed = []
+        alnum_mixed = []
         special = []
 
         for item in collection:
@@ -399,7 +399,7 @@ def main():
             elif item.isalnum() and item.islower():
                 alnum_lower.append(item)
             elif item.isalnum():
-                alnul_mixed.append(item)
+                alnum_mixed.append(item)
             else:
                 special.append(item)
 
@@ -408,7 +408,7 @@ def main():
             itertools.chain.from_iterable(
                 zip(alnum_lower, alpha_mixed))))
         final_collection[
-            len(final_collection):] = alnul_mixed + special
+            len(final_collection):] = alnum_mixed + special
 
         # create list of words with length specified by user
         count = 0
