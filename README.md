@@ -13,7 +13,11 @@ Written using Python 3.5 with PyCharm, Atom, and Sublime Text 3.
 
 ## Usage
 
-Enter terms delimited by a comma. Currently type checking is not implemented. After script completes a file named dictionary.txt will be generated in the same directory as the script.
+Generate a dictionary list as a text file using permutations of terms. Data imported from populated JSON template 'config.json'.
+
+PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE
+
+python3 PersonalDictionary.py --min 8 --max 12 -n 10000 -f config.json
 
 ## Future Features
 
