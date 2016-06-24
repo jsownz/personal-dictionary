@@ -14,11 +14,17 @@ Generate a dictionary list as a text file using permutations of terms. Data
 imported from populated JSON template.
 
 optional arguments:
+
   -h, --help            show this help message and exit
+  
   --min MIN             Minimum password length
+  
   --max MAX             Maximum password length
+  
   -n NUM, --num NUM     Number of passwords to be generated
+  
   -f FILE, --file FILE  Criteria file
+  
   -o OUT, --out OUT     Generated password file
 
 ![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
