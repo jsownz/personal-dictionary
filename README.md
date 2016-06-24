@@ -8,11 +8,18 @@ This is an open project and all developers are welcome to join.
 
 For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
 
-Generate a dictionary list as a text file using permutations of terms. Data imported from populated JSON template 'config.json'.
+usage: PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
 
-PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE
+Generate a dictionary list as a text file using permutations of terms. Data
+imported from populated JSON template.
 
-python3 PersonalDictionary.py --min 8 --max 12 -n 10000 -f config.json
+optional arguments:
+  -h, --help            show this help message and exit
+  --min MIN             Minimum password length
+  --max MAX             Maximum password length
+  -n NUM, --num NUM     Number of passwords to be generated
+  -f FILE, --file FILE  Criteria file
+  -o OUT, --out OUT     Generated password file
 
 ![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
 
