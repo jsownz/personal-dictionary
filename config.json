@@ -54,6 +54,32 @@
   "colors": [
     "crimson"
   ],
+  "transport": [
+    "toyota",
+    "shitbox",
+    "trek",
+    "shimano"
+  ],
+  "tech": [
+    "fitbit",
+    "apple",
+    "pebble",
+    "sonos"
+  ],
+  "food": [
+    "merlot",
+    "espresso",
+    "pecorino"
+  ],
+  "film": [
+    "bladerunner",
+    "terminator",
+    "plan9"
+  ],
+  "hobby": [
+    "brewing",
+    "chess",
+  ],
   "other": [
     "python",
     "dictionary"
