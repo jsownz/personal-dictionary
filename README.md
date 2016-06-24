@@ -10,6 +10,8 @@ PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE
 
 python3 PersonalDictionary.py --min 8 --max 12 -n 10000 -f config.json
 
+![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
+
 ![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Screenshot.png)
 
 ## Future Features
