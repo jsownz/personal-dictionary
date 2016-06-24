@@ -4,6 +4,8 @@ Generate a dictionary list as a text file using permutations of terms that are e
 
 ## Usage
 
+For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
+
 Generate a dictionary list as a text file using permutations of terms. Data imported from populated JSON template 'config.json'.
 
 PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE
