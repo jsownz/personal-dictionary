@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-23
+    Last Modified: 2016-06-24
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.2-2016.06.23(a)
+    r0.1.3-2016.06.24(a)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in json file. Terms are intended to be accumulated during
