@@ -22,7 +22,7 @@ Social Media Integration.
 
 Possible integration of Flask or other UI.
 
-Formatting for locals outside of U.S.
+Formatting for locales outside of U.S.
 
 ## History
 
