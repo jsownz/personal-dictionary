@@ -36,19 +36,19 @@ def main():
         description="Generate a dictionary list as a text file using " +
                     "permutations of terms.\nData imported from populated " +
                     "JSON template.\n\n")
-    parser.add_argument('--min', type=int, required=True,
+    parser.add_argument('--min', type=int, required=False,
                         help='Minimum password length')
-    parser.add_argument('--max', type=int, required=True,
+    parser.add_argument('--max', type=int, required=False,
                         help='Maximum password length')
-    parser.add_argument('-n', '--num', type=int, required=True,
+    parser.add_argument('-n', '--num', type=int, required=False,
                         help='Number of passwords to be generated')
-    parser.add_argument('-f', '--file', required=True, help='Criteria file')
+    parser.add_argument('-f', '--file', required=True, help='Criteria file (JSON)')
     parser.add_argument('-o', '--out', help='Generated password file')
     args = parser.parse_args()
-    min_length = args.min
-    max_length = args.max
-    password_count = args.num
-    output_file = args.out if args.out else "dictionary.txt"
+    min_length = args.min or 3
+    max_length = args.max or 12
+    password_count = args.num or 20000
+    output_file = args.out or "dictionary.txt"
 
     try:
         criteria = json.loads("".join(open(args.file, "r").readlines()))
