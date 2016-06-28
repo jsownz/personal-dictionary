@@ -50,3 +50,6 @@ packages/*
 .tags1
 .gan
 deployment-config.json
+
+# Compiled
+Mangler.pyc
