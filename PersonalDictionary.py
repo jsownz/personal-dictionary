@@ -42,10 +42,11 @@ def main():
                         help='Maximum password length')
     parser.add_argument('-n', '--num', type=int, required=False,
                         help='Number of passwords to be generated')
-    parser.add_argument('-f', '--file', required=True, help='Criteria file (JSON)')
+    parser.add_argument('-f', '--file', required=True,
+                        help='Criteria file (JSON)')
     parser.add_argument('-o', '--out', help='Generated password file')
     args = parser.parse_args()
-    min_length = args.min or 3
+    min_length = args.min or 6
     max_length = args.max or 12
     password_count = args.num or 20000
     output_file = args.out or "dictionary.txt"
