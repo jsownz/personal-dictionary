@@ -54,6 +54,7 @@ Project started on June 18th of 2016 by John Vardanian
 Development:
 - John Vardanian
 - ASC3ND
+- jsownz
 
 Testing and Feature Suggestions
 - Jacob Wilkin
