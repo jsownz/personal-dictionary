@@ -52,7 +52,7 @@ Project started on June 18th of 2016 by John Vardanian
 ## Contributors
 
 Development:
-- John Vardanian
+- MC-GitFlow
 - ASC3ND
 - jsownz
 
