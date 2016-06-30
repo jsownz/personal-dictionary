@@ -13,8 +13,7 @@ usage: PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
 Generate a dictionary list as a text file using permutations of terms. Data
 imported from populated JSON template.
 
-optional arguments:
-
+```bash
   -h, --help            show this help message and exit
   
   --min MIN             Minimum password length
@@ -26,6 +25,7 @@ optional arguments:
   -f FILE, --file FILE  Criteria file
   
   -o OUT, --out OUT     Generated password file
+```
 
 ![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
 
