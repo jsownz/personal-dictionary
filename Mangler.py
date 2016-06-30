@@ -4,6 +4,70 @@
 """
 
 import re
+from itertools import product
+
+
+def full_number_swap(term):
+    """
+        Replace numeric chars within a string with common substitutions of
+        letters. Return all permutations.
+        Author: th3xer0
+
+        :param term: numeric string
+        :return: list of argument 'term' variations w/ number substitutions
+        :rtype: list
+    """
+    number_alt_dict = {
+        '0': 'O',
+        '1': 'l',
+        '2': 'Z',
+        '3': 'E',
+        '4': 'A',
+        '5': 'S',
+        '6': 'bG',
+        '7': 'TL',
+        '8': 'B',
+        '9': 'gq'
+    }
+    new_terms = []
+    for character in term:
+        alt_number = number_alt_dict.get(character, character)
+        new_terms.append([character, ] if alt_number == character else [
+            char for char in ",".join(character + alt_number).split(",")])
+    return [''.join(t) for t in product(*new_terms)]
+
+
+def full_letter_swap(term):
+    """
+        Replace alpha chars within a string with common substitutions of
+        numbers and symbols. Return all permutations
+        Author: th3xer0
+
+        :param term: string of letters
+        :return: list of argument 'term' variations w/ letter substitutions
+        :rtype: list
+    """
+    term = term.lower()
+    letter_alt_dict = {
+        'a': '@4',
+        'b': '8',
+        'c': '(',
+        'e': '3',
+        'g': '69',
+        'h': '#',
+        'i': '!1',
+        'l': '1!',
+        'o': '0',
+        's': '5$',
+        't': '+7',
+        'z': '2'
+    }
+    new_terms = []
+    for character in term:
+        alt_letter = letter_alt_dict.get(character, character)
+        new_terms.append([character, ] if alt_letter == character else [
+            char for char in ",".join(character + alt_letter).split(",")])
+    return [''.join(t) for t in product(*new_terms)]
 
 
 def number_swap(term):
