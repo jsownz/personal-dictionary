@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-25
+    Last Modified: 2016-06-30
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.3.1-2016.06.25(a)
+    r0.1.3.2-2016.06.30(a)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in json file. Terms are intended to be accumulated during
@@ -111,17 +111,8 @@ def main():
 
         # lists to permute for base passwords
         collections = [
-            pets,
-            family,
-            sports,
-            schools,
-            cities,
-            music,
-            states,
-            jobs,
-            streets,
-            colors,
-            other
+            pets, family, sports, schools, cities, music, states, jobs,
+            streets, colors, other
         ]
 
         # permute collections to combine 2 of every list from collections
