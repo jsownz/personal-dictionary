@@ -13,6 +13,8 @@ imported from populated JSON template.
 
 usage:
 
+Requires Python 3
+
 ```bash
 PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
 
