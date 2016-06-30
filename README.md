@@ -8,12 +8,14 @@ This is an open project and all developers are welcome to join.
 
 For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
 
-usage: PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
-
 Generate a dictionary list as a text file using permutations of terms. Data
 imported from populated JSON template.
 
+usage:
+
 ```bash
+PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
+
   -h, --help            show this help message and exit
   
   --min MIN             Minimum password length
