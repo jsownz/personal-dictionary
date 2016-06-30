@@ -65,6 +65,7 @@ def main():
         exit(1)
     except ValueError as e:
         print("Invalid formatting in JSON file: %s" % e)
+        exit(1)
     else:
         print("\nPlease wait while your dictionary is generated... This may " +
               "take a while depending on the amount of data.\n")
