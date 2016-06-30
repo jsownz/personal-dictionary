@@ -35,13 +35,20 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +
                     "permutations of terms.\nData imported from populated " +
-                    "JSON template.\n\n")
-    parser.add_argument('--min', type=int, required=False,
-                        help='Minimum password length')
-    parser.add_argument('--max', type=int, required=False,
-                        help='Maximum password length')
-    parser.add_argument('-n', '--num', type=int, required=False,
-                        help='Number of passwords to be generated')
+                    "JSON template.\n\n"
+    )
+    parser.add_argument(
+        '--min', type=int, required=False,
+        help='Minimum password length'
+    )
+    parser.add_argument(
+        '--max', type=int, required=False,
+        help='Maximum password length'
+    )
+    parser.add_argument(
+        '-n', '--num', type=int, required=False,
+        help='Number of passwords to be generated'
+    )
     parser.add_argument('-f', '--file', required=True,
                         help='Criteria file (JSON)')
     parser.add_argument('-o', '--out', help='Generated password file')
