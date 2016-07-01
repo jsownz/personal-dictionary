@@ -264,6 +264,38 @@ def perm_st_num(street_number):
         number_swap(street_number)
 
 
+def calculate_ord(term):
+    """
+        Return summation of ordinance of chars
+
+        :param term: string to be evaluated
+        :return: integer
+    """
+    return sum([ord(x) for x in term])
+
+
+def compare_num_of_chars(term):
+    """
+        Return number of chars in term
+
+        :param term: string to be evaluated
+        :return: integer
+    """
+    return len(term)
+
+
+def sort_by_ord(list_to_sort):
+    """
+        Return list sorted for simplicity then shuffled
+
+        :param list_to_sort: list of strings to sort to reduce chaos.
+        :type list_to_sort: list
+        :rtype: list
+    """
+    list_to_sort.sort(key=calculate_ord, reverse=True)
+    list_to_sort.sort(key=compare_num_of_chars)
+
+
 def mangle(target_list):
     """
         Return a list containing most frequently used permutation functions

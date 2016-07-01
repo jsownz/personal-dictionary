@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-06-30
+    Last Modified: 2016-07-01
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.1.3.2-2016.06.30(a)
+    r0.2.1.0-2016.07.01(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in json file. Terms are intended to be accumulated during
@@ -56,7 +56,7 @@ def main():
     parser.add_argument(
         '-o', '--out', help='Generated password file'
     )
-    
+
     args = parser.parse_args()
     min_length = args.min or 6
     max_length = args.max or 12
@@ -205,6 +205,13 @@ def main():
                 alnum_mixed.append(item)
             else:
                 special.append(item)
+
+        Mangler.sort_by_ord(numeric)
+        Mangler.sort_by_ord(alpha_lower)
+        Mangler.sort_by_ord(alpha_mixed)
+        Mangler.sort_by_ord(alnum_lower)
+        Mangler.sort_by_ord(alnum_mixed)
+        Mangler.sort_by_ord(special)
 
         final_collection = numeric + alpha_lower
         final_collection.extend(list(
