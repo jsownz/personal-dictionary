@@ -33,8 +33,6 @@ PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
 
 ![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
 
-![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Screenshot.png)
-
 ## Future Features
 
 Weighting of category significance.
