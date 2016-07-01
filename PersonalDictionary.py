@@ -217,8 +217,9 @@ def main():
         final_collection.extend(list(
             itertools.chain.from_iterable(
                 zip(alnum_lower, alpha_mixed))))
-        final_collection[
-            len(final_collection):] = alnum_mixed + special
+        final_collection.extend(list(
+            itertools.chain.from_iterable(
+                zip(alnum_mixed, special))))
 
         # create list of words with length specified by user
         count = 0
