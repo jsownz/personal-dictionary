@@ -284,7 +284,7 @@ def compare_num_of_chars(term):
     return len(term)
 
 
-def sort_by_ord(list_to_sort):
+def ord_sort(list_to_sort):
     """
         Return list sorted for simplicity then sorted by length
 

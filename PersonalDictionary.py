@@ -2,10 +2,10 @@
 
 """
     Author: John Vardanian
-    Last Modified: 2016-07-01
+    Last Modified: 2016-07-02
     Python3.5 using PyCharm / Atom / Sublime Text 3
 
-    r0.2.1.0-2016.07.01(b)
+    r0.2.1.0-2016.07.02(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in json file. Terms are intended to be accumulated during
@@ -35,27 +35,21 @@ def main():
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +
                     "permutations of terms.\nData imported from populated " +
-                    "JSON template.\n\n"
-    )
+                    "JSON template.\n\n")
     parser.add_argument(
         '--min', type=int, required=False,
-        help='Minimum password length'
-    )
+        help='Minimum password length')
     parser.add_argument(
         '--max', type=int, required=False,
-        help='Maximum password length'
-    )
+        help='Maximum password length')
     parser.add_argument(
         '-n', '--num', type=int, required=False,
-        help='Number of passwords to be generated'
-    )
+        help='Number of passwords to be generated')
     parser.add_argument(
         '-f', '--file', required=True,
-        help='Criteria file (JSON)'
-    )
+        help='Criteria file (JSON)')
     parser.add_argument(
-        '-o', '--out', help='Generated password file'
-    )
+        '-o', '--out', help='Generated password file')
 
     args = parser.parse_args()
     min_length = args.min or 6
@@ -126,8 +120,17 @@ def main():
 
         # lists to permute for base passwords
         collections = [
-            pets, family, sports, schools, cities, music, states, jobs,
-            streets, colors, other
+            pets,
+            family,
+            sports,
+            schools,
+            cities,
+            music,
+            states,
+            jobs,
+            streets,
+            colors,
+            other
         ]
 
         # permute collections to combine 2 of every list from collections
@@ -184,11 +187,11 @@ def main():
 
         # push probable passwords higher
         numeric = []
+        special = []
         alpha_lower = []
         alpha_mixed = []
         alnum_lower = []
         alnum_mixed = []
-        special = []
 
         for item in collection:
             if item.isdigit():
@@ -206,12 +209,12 @@ def main():
             else:
                 special.append(item)
 
-        Mangler.sort_by_ord(numeric)
-        Mangler.sort_by_ord(alpha_lower)
-        Mangler.sort_by_ord(alpha_mixed)
-        Mangler.sort_by_ord(alnum_lower)
-        Mangler.sort_by_ord(alnum_mixed)
-        Mangler.sort_by_ord(special)
+        Mangler.ord_sort(numeric)
+        Mangler.ord_sort(alpha_lower)
+        Mangler.ord_sort(alpha_mixed)
+        Mangler.ord_sort(alnum_lower)
+        Mangler.ord_sort(alnum_mixed)
+        Mangler.ord_sort(special)
 
         final_collection = numeric + alpha_lower
         final_collection.extend(list(
@@ -231,6 +234,7 @@ def main():
                 count += 1
 
         print("Dictionary list generated: " + output_file)
+
 
 if __name__ == "__main__":
     main()
