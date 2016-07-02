@@ -286,7 +286,7 @@ def compare_num_of_chars(term):
 
 def sort_by_ord(list_to_sort):
     """
-        Return list sorted for simplicity then shuffled
+        Return list sorted for simplicity then sorted by length
 
         :param list_to_sort: list of strings to sort to reduce chaos.
         :type list_to_sort: list
