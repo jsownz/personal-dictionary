@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
 """
-    Author: John Vardanian
+    Author: MC_GitFlow
     Last Modified: 2016-07-03
-    Python3.5 using PyCharm / Atom / Sublime Text 3
+    Python3.5 using PyCharm
 
-    r0.2.1.0-2016.07.03(b)
+    r0.2.1-2016.07.03(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in json file. Terms are intended to be accumulated during
@@ -21,7 +21,7 @@ import Mangler
 
 def main():
     """
-        ** All code below currently for testing and proof of concept **
+        ** Code is below temporary and for testing Manger / proof of concept **
 
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
