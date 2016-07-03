@@ -182,7 +182,7 @@ def main():
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
 
-        # push probable passwords higher
+        # add permutations to respective lists
         numeric = []
         special = []
         alpha_lower = []
@@ -193,19 +193,21 @@ def main():
         for item in collection:
             if item.isdigit():
                 numeric.append(item)
-            elif item.isalpha() and (
-                item.islower() or (
-                    item[0].isupper() and item[1:].islower())):
-                alpha_lower.append(item)
             elif item.isalpha():
-                alpha_mixed.append(item)
-            elif item.isalnum() and item.islower():
-                alnum_lower.append(item)
+                if item.islower() or (
+                        item[0].isupper() and item[1:].islower()):
+                    alpha_lower.append(item)
+                else:
+                    alpha_mixed.append(item)
             elif item.isalnum():
-                alnum_mixed.append(item)
+                if item.islower():
+                    alnum_lower.append(item)
+                else:
+                    alnum_mixed.append(item)
             else:
                 special.append(item)
 
+        # push probable passwords higher
         Mangler.ord_sort(numeric)
         Mangler.ord_sort(alpha_lower)
         Mangler.ord_sort(alpha_mixed)
@@ -213,7 +215,7 @@ def main():
         Mangler.ord_sort(alnum_mixed)
         Mangler.ord_sort(special)
 
-        # combine for end resulting wordlist
+        # combine password types for results
         results = numeric + alpha_lower
         results.extend(list(
             itertools.chain.from_iterable(
@@ -222,7 +224,7 @@ def main():
             itertools.chain.from_iterable(
                 zip(alnum_mixed, special))))
 
-        # create list of words with length specified by user
+        # save list with name & length specified by user
         count = 0
         with open(output_file, 'w+') as my_file:
             for word in results:
