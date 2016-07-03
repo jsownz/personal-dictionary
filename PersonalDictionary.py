@@ -21,7 +21,7 @@ import Mangler
 
 def main():
     """
-        ** Code below is temporary and for testing Mangler / proof of concept **
+        ** Code below is temporary & for testing Mangler / proof of concept **
 
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
@@ -130,8 +130,7 @@ def main():
             jobs,
             streets,
             colors,
-            other
-        ]
+            other]
 
         # permute collections to combine 2 of every list from collections
         combinations = []
@@ -144,8 +143,8 @@ def main():
                 variations = list(
                     itertools.product(collections[marker], list_portion))
                 for term_one, term_two in variations:
-                    combinations.append(term_one + term_two)
-                    combinations.append(term_two + term_one)
+                    combinations[len(combinations):] = \
+                        [term_one + term_two, term_two + term_one]
             marker += 1
 
         # permute category 'other' against itself
@@ -153,8 +152,8 @@ def main():
         marker = 0
         while marker < length:
             for item in other[marker:]:
-                combinations.append(other[marker] + item)
-                combinations.append(item + other[marker])
+                combinations[len(combinations):] = \
+                    [other[marker] + item, item + other[marker]]
             marker += 1
 
         # add suffix of additional common variations to existing combinations
