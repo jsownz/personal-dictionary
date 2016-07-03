@@ -8,9 +8,9 @@
     r0.2.1-2016.07.03(b)
 
     Generate a dictionary list as a text file using permutations of terms
-    stored in json file. Terms are intended to be accumulated during
+    stored in JSON file. Terms are intended to be accumulated during
     information gathering phase of a penetration test. The more relevant the
-    terms, the higher chance of success.
+    terms, the higher chance of success. See template 'config.json'
 """
 
 import argparse
@@ -130,7 +130,8 @@ def main():
             jobs,
             streets,
             colors,
-            other]
+            other
+        ]
 
         # permute collections to combine 2 of every list from collections
         combinations = []
