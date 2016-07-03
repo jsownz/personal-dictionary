@@ -115,7 +115,7 @@ def main():
         for street_number in criteria["street_numbers"]:
             street_nums.extend(Mangler.perm_st_num(street_number))
 
-        # add phone number to top of list
+        # ensure phones at top to prevent truncating due to length restrictions
         results[:0] = phones
 
         # lists to permute for base passwords
