@@ -162,9 +162,7 @@ def main():
         for word in combinations:
 
             # add generic numeric and special chars
-            suffix.append(word + "!")
-            suffix.append(word + "1")
-            suffix.append(word + "123")
+            suffix[len(suffix):] = [word + "!", word + "1", word + "123"]
 
             for year in years:
                 suffix.append(word + year)
