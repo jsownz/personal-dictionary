@@ -213,6 +213,7 @@ def main():
         Mangler.ord_sort(alnum_mixed)
         Mangler.ord_sort(special)
 
+        # combine for end resulting wordlist
         results = numeric + alpha_lower
         results.extend(list(
             itertools.chain.from_iterable(
