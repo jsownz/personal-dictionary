@@ -21,7 +21,7 @@ import Mangler
 
 def main():
     """
-        ** Code is below temporary and for testing Manger / proof of concept **
+        ** Code below is temporary and for testing Manger / proof of concept **
 
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
