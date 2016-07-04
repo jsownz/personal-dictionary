@@ -134,45 +134,31 @@ def main():
         jobs = Mangler.mangle(
             criteria["employment"]) if criteria["employment"] else []
 
+        # lists to permute for base passwords
+        collections = [
+            pets, family, sports, schools, cities, music, states, jobs,
+            streets, colors, other
+        ]
+
         zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
         phone_numbers = criteria["phone"] if criteria["phone"] else []
 
-        # lists that don't make use of function 'mangle'
-        phones = []
-        years = []
-        zips = []
-        street_nums = []
-
         # populate lists that don't use function 'mangle'
+        phones = []
         for phone in criteria["phone"]:
             phones.extend(Mangler.permute_phone(phone))
 
+        years = []
         for year in criteria["years"]:
             years.extend(Mangler.permute_year(year))
 
+        zips = []
         for zip_code in criteria["zip_codes"]:
             zips.extend(Mangler.permute_zip_code(zip_code))
 
+        street_nums = []
         for street_number in criteria["street_numbers"]:
             street_nums.extend(Mangler.perm_st_num(street_number))
-
-        # ensure phones at top to prevent truncating due to length restrictions
-        results[:0] = phones
-
-        # lists to permute for base passwords
-        collections = [
-            pets,
-            family,
-            sports,
-            schools,
-            cities,
-            music,
-            states,
-            jobs,
-            streets,
-            colors,
-            other
-        ]
 
         # permute collections to combine 2 of every list from collections
         combinations = []
@@ -218,8 +204,8 @@ def main():
             for phone in phone_numbers:
                 suffix.append(word + phone[0:3])
 
-        # remove dupes and combine lists of words meeting length requisites
-        results.extend(combinations + suffix)
+        # remove dupes and combine various lists meeting length requisites
+        results.extend(phones + combinations + suffix)
         collection = list(set(results))
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
