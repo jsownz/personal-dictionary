@@ -184,20 +184,15 @@ def main():
         # add suffix of additional common variations to existing combinations
         with_suffix = []
         for word in combinations:
-
             # add generic numeric and special chars
             with_suffix[
                 len(with_suffix):] = [word + "!", word + "1", word + "123"]
-
             for year in years:
                 with_suffix.append(word + year)
-
             for zip_code in zip_codes:
                 with_suffix.append(word + zip_code)
-
             for street_number in street_nums:
                 with_suffix.append(word + street_number)
-
             # append area code from phone numbers to base words
             for phone in phone_numbers:
                 with_suffix.append(word + phone[0:3])
