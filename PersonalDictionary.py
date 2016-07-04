@@ -19,6 +19,47 @@ import json
 import Mangler
 
 
+def split_words(collection):
+    """
+        Take list and split into categorized lists inside of a dictionary
+
+        :param collection: list of strings
+        :return: dictionary with lists of terms separated by casing and chars
+        :rtype: dictionary
+    """
+    numeric = []
+    special = []
+    alpha_lower = []
+    alpha_mixed = []
+    alnum_lower = []
+    alnum_mixed = []
+
+    for item in collection:
+        if item.isdigit():
+            numeric.append(item)
+        elif item.isalpha():
+            if item.islower() or (
+                        item[0].isupper() and item[1:].islower()):
+                alpha_lower.append(item)
+            else:
+                alpha_mixed.append(item)
+        elif item.isalnum():
+            if item.islower():
+                alnum_lower.append(item)
+            else:
+                alnum_mixed.append(item)
+        else:
+            special.append(item)
+    return {
+        'numeric': numeric,
+        'special': special,
+        'alpha_lower': alpha_lower,
+        'alpha_mixed': alpha_mixed,
+        'alnum_lower': alnum_lower,
+        'alnum_mixed': alnum_mixed
+    }
+
+
 def main():
     """
         ** Code below is temporary & for testing Mangler / proof of concept **
@@ -183,47 +224,19 @@ def main():
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
 
-        # add permutations to respective lists
-        numeric = []
-        special = []
-        alpha_lower = []
-        alpha_mixed = []
-        alnum_lower = []
-        alnum_mixed = []
-
-        for item in collection:
-            if item.isdigit():
-                numeric.append(item)
-            elif item.isalpha():
-                if item.islower() or (
-                        item[0].isupper() and item[1:].islower()):
-                    alpha_lower.append(item)
-                else:
-                    alpha_mixed.append(item)
-            elif item.isalnum():
-                if item.islower():
-                    alnum_lower.append(item)
-                else:
-                    alnum_mixed.append(item)
-            else:
-                special.append(item)
-
         # push probable passwords higher
-        Mangler.ord_sort(numeric)
-        Mangler.ord_sort(alpha_lower)
-        Mangler.ord_sort(alpha_mixed)
-        Mangler.ord_sort(alnum_lower)
-        Mangler.ord_sort(alnum_mixed)
-        Mangler.ord_sort(special)
+        word_groups = split_words(collection)
+        for word in word_groups:
+            Mangler.ord_sort(word_groups[word])
 
         # combine password types for results
-        results = numeric + alpha_lower
+        results = word_groups['numeric'] + word_groups['alpha_lower']
         results.extend(list(
             itertools.chain.from_iterable(
-                zip(alnum_lower, alpha_mixed))))
+                zip(word_groups['alnum_lower'], word_groups['alpha_mixed']))))
         results.extend(list(
             itertools.chain.from_iterable(
-                zip(alnum_mixed, special))))
+                zip(word_groups['alnum_mixed'], word_groups['special']))))
 
         # save list with name & length specified by user
         count = 0
