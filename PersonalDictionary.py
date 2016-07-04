@@ -113,31 +113,50 @@ def main():
         # use function 'mangle' for most common permutation
         pets = Mangler.mangle(
             criteria["pets"]) if criteria["pets"] else []
+
         sports = Mangler.mangle(
             criteria["sports"]) if criteria["sports"] else []
+
         family = Mangler.mangle(
             criteria["family"]) if criteria["family"] else []
+
         music = Mangler.mangle(
             criteria["music"]) if criteria["music"] else []
+
         states = Mangler.mangle(
             criteria["states"]) if criteria["states"] else []
+
         cities = Mangler.mangle(
             criteria["cities"]) if criteria["cities"] else []
+
         schools = Mangler.mangle(
             criteria["schools"]) if criteria["schools"] else []
+
         colors = Mangler.mangle(
             criteria["colors"]) if criteria["colors"] else []
+
         streets = Mangler.mangle(
             criteria["street_numbers"]) if criteria["streets"] else []
+
         other = Mangler.mangle(
             criteria["other"]) if criteria["other"] else []
+
         jobs = Mangler.mangle(
             criteria["employment"]) if criteria["employment"] else []
 
         # lists to permute for base passwords
         collections = [
-            pets, family, sports, schools, cities, music, states, jobs,
-            streets, colors, other
+            pets,
+            family,
+            sports,
+            schools,
+            cities,
+            music,
+            states,
+            jobs,
+            streets,
+            colors,
+            other
         ]
 
         zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
