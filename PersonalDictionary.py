@@ -19,7 +19,7 @@ import json
 import Mangler
 
 
-def categorize_terms(collection):
+def term_types(collection):
     """
         Take list and split into categorized lists inside of a dictionary
 
@@ -212,7 +212,7 @@ def main():
                       max_length >= len(word) >= min_length]
 
         # push probable passwords higher
-        word_groups = categorize_terms(collection)
+        word_groups = term_types(collection)
         for word in word_groups:
             Mangler.ord_sort(word_groups[word])
 
