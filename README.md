@@ -15,7 +15,7 @@ usage:
 
 Requires Python 3
 
-```bash
+```
 PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
 
   -h, --help            show this help message and exit
@@ -26,7 +26,7 @@ PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
   
   -n NUM, --num NUM     Number of passwords to be generated
   
-  -f FILE, --file FILE  Criteria file
+  -f FILE, --file FILE  Criteria file (JSON)
   
   -o OUT, --out OUT     Generated password file
 ```
