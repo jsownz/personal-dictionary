@@ -185,27 +185,28 @@ def main():
             marker += 1
 
         # add suffix of additional common variations to existing combinations
-        suffix = []
+        with_suffix = []
         for word in combinations:
 
             # add generic numeric and special chars
-            suffix[len(suffix):] = [word + "!", word + "1", word + "123"]
+            with_suffix[
+                len(with_suffix):] = [word + "!", word + "1", word + "123"]
 
             for year in years:
-                suffix.append(word + year)
+                with_suffix.append(word + year)
 
             for zip_code in zip_codes:
-                suffix.append(word + zip_code)
+                with_suffix.append(word + zip_code)
 
             for street_number in street_nums:
-                suffix.append(word + street_number)
+                with_suffix.append(word + street_number)
 
             # append area code from phone numbers to base words
             for phone in phone_numbers:
-                suffix.append(word + phone[0:3])
+                with_suffix.append(word + phone[0:3])
 
         # remove dupes and combine various lists meeting length requisites
-        results.extend(phones + combinations + suffix)
+        results.extend(phones + combinations + with_suffix)
         collection = list(set(results))
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
