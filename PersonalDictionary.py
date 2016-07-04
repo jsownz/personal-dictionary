@@ -147,15 +147,12 @@ def main():
         phones = []
         for phone in criteria["phone"]:
             phones.extend(Mangler.permute_phone(phone))
-
         years = []
         for year in criteria["years"]:
             years.extend(Mangler.permute_year(year))
-
         zips = []
         for zip_code in criteria["zip_codes"]:
             zips.extend(Mangler.permute_zip_code(zip_code))
-
         street_nums = []
         for street_number in criteria["street_numbers"]:
             street_nums.extend(Mangler.perm_st_num(street_number))
