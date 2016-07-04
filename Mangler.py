@@ -9,12 +9,13 @@ from itertools import product
 
 def full_number_swap(term):
     """
+        Author: th3xer0
         Replace numeric chars within a string with common substitutions of
         letters. Return all permutations.
-        Author: th3xer0
 
         :param term: numeric string
-        :return: list of argument 'term' variations w/ number substitutions
+        :type term: string
+        :return: all 'term' permutations w/ number substitutions
         :rtype: list
     """
     number_alt_dict = {
@@ -39,12 +40,13 @@ def full_number_swap(term):
 
 def full_letter_swap(term):
     """
+        Author: th3xer0
         Replace alpha chars within a string with common substitutions of
         numbers and symbols. Return all permutations
-        Author: th3xer0
 
-        :param term: string of letters
-        :return: list of argument 'term' variations w/ letter substitutions
+        :param term: term to change letters chars out for common replacements
+        :type term: string
+        :return: all 'term' permutations w/ letter substitutions
         :rtype: list
     """
     term = term.lower()
@@ -75,7 +77,8 @@ def number_swap(term):
         Replace numeric chars within a string with common substitutions of
         letters.
 
-        :param term: numeric string
+        :param term: contains numeric chars
+        :type term: string
         :return: list of argument 'term' variations w/ number substitutions
         :rtype: list
     """
@@ -110,6 +113,7 @@ def letter_swap(term):
         numbers and symbols.
 
         :param term: string of letters
+        :type term: string
         :return: list of argument 'term' variations w/ letter substitutions
         :rtype: list
     """
@@ -146,8 +150,10 @@ def alternate_case(term, first):
         Change case to alternate_case between lower and upper;
         if first is true begin with the fist char in caps.
 
-        :param term: string of letters to permute
+        :param term: target term to alter
+        :type term: string
         :param first: boolean true if first letter is cased upper
+        :type first: boolean
         :return: string 'term' with letters alternating upper/lower case
         :rtype: string
     """
@@ -166,7 +172,8 @@ def permute_phone(phone):
     """
         Return list of various phone permutations (area code, reversed etc).
 
-        :param phone: string of 10 digits
+        :param phone: phone number of format 10 digits
+        :type phone: string
         :return: list of 'phone' number permutations
         :rtype: list
     """
@@ -184,7 +191,8 @@ def permute_casing(term):
     """
         Return list of term with title case, all lower, and all upper.
 
-        :param term: string of letters
+        :param term: term of any length containing alpha chars
+        :type term: string
         :return: list of 'term' with variations using 2 common casing styles
         :rtype: list
     """
@@ -198,7 +206,8 @@ def permute_year(year):
     """
         Return list of common year perms. (last 2 digits, backwards, etc).
 
-        :param year: string of 4 digits
+        :param year: term containing year made of digits
+        :type year: string
         :return: list of 'year' using 4 common styles
         :rtype: list
     """
@@ -213,7 +222,8 @@ def reverse_string(term):
     """
         Return string in reverse.
 
-        :param term: string of any character type
+        :param term: term to be reversed
+        :type term: string
         :return: string of 'term' after being reversed
         :rtype: string
     """
@@ -224,7 +234,8 @@ def permute_zip_code(zip_code):
     """
         Return list of string zip_code with 3 variations.
 
-        :param zip_code: string of 5 digits
+        :param zip_code: 5 digits zip/postal code
+        :type zip_code: string
         :return: list of 3 common permutation styles for zip codes
         :rtype: list
     """
@@ -238,7 +249,8 @@ def permute_music(music):
     """
         Return common permutations of music related terms.
 
-        :param music: string of music related term
+        :param music: term categorized for music
+        :type music: string
         :return: list of 5 common permutations of generic terms
         :rtype: list
     """
@@ -255,6 +267,7 @@ def perm_st_num(street_number):
         Return common permutations of street numbers.
 
         :param street_number: string of any number of digits
+        :type street_number: string
         :return: list of 'street_number' with 3 common permutation styles
         :rtype: list
     """
@@ -266,10 +279,12 @@ def perm_st_num(street_number):
 
 def calculate_ord(term):
     """
-        Return summation of ordinance of chars
+        Return summation of ordinance of chars in arg term
 
-        :param term: string to be evaluated
-        :return: integer
+        :param term: term to be evaluated for complexity
+        :type term: string
+        :return: summation of ord function called on each char
+        :rtype: integer
     """
     return sum([ord(x) for x in term])
 
@@ -279,7 +294,9 @@ def compare_num_of_chars(term):
         Return number of chars in term
 
         :param term: string to be evaluated
-        :return: integer
+        :type term: string
+        :return: length of argument term
+        :rtype: integer
     """
     return len(term)
 
@@ -290,7 +307,6 @@ def ord_sort(list_to_sort):
 
         :param list_to_sort: list of strings to sort to reduce chaos.
         :type list_to_sort: list
-        :rtype: list
     """
     list_to_sort.sort(key=calculate_ord, reverse=True)
     list_to_sort.sort(key=compare_num_of_chars)
@@ -301,7 +317,8 @@ def mangle(target_list):
         Return a list containing most frequently used permutation functions
 
         :param target_list: generic list of strings, typically only letters
-        :return: list of 5 common permutations of all terms in 'target_list'
+        :type target_list: list
+        :return: 5 common permutations of all terms in 'target_list'
         :rtype: list
     """
     target_list = re.sub('\s+', ' ', ','.join(target_list)).replace(' ', ',')

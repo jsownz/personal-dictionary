@@ -2,10 +2,10 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-03
+    Last Modified: 2016-07-04
     Python3.5 using PyCharm
 
-    r0.2.1-2016.07.03(b)
+    r0.2.1-2016.07.04(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in JSON file. Terms are intended to be accumulated during
@@ -24,6 +24,7 @@ def term_types(collection):
         Take list and split into categorized lists inside of a dictionary
 
         :param collection: list of strings
+        :type collection: list
         :return: dictionary with lists of terms separated by casing and chars
         :rtype: dictionary
     """
@@ -167,9 +168,9 @@ def main():
                     combinations.append(item)
                 variations = list(
                     itertools.product(collections[marker], list_portion))
-                for term_one, term_two in variations:
+                for term in variations:
                     combinations[len(combinations):] = \
-                        [term_one + term_two, term_two + term_one]
+                        [term[0] + term[1], term[1] + term[0]]
             marker += 1
 
         # permute category 'other' against itself
