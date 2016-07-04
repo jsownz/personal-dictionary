@@ -39,7 +39,7 @@ def categorize_terms(collection):
             numeric.append(item)
         elif item.isalpha():
             if item.islower() or (
-                        item[0].isupper() and item[1:].islower()):
+                    item[0].isupper() and item[1:].islower()):
                 alpha_lower.append(item)
             else:
                 alpha_mixed.append(item)
