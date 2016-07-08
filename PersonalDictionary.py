@@ -2,10 +2,10 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-04
+    Last Modified: 2016-07-08
     Python3.5 using PyCharm
 
-    r0.2.1-2016.07.04(b)
+    r0.2.2-2016.07.08(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in JSON file. Terms are intended to be accumulated during
@@ -88,6 +88,10 @@ def main():
         '-n', '--num', type=int, required=False,
         help='Number of passwords to be generated')
     parser.add_argument(
+        '-i', '--input', required=False,
+        help='List to combine with criteria'
+    )
+    parser.add_argument(
         '-f', '--file', required=True,
         help='Criteria file (JSON)')
     parser.add_argument(
@@ -97,6 +101,7 @@ def main():
     min_length = args.min or 6
     max_length = args.max or 12
     password_count = args.num or 20000
+    input_file = args.input or ""
     output_file = args.out or "dictionary.txt"
 
     try:
@@ -152,7 +157,7 @@ def main():
         for year in criteria["years"]:
             years.extend(Mangler.permute_year(year))
         zips = []
-        for zip_code in criteria["zip_codes"]:
+        for zip_code in zip_codes:
             zips.extend(Mangler.permute_zip_code(zip_code))
         street_nums = []
         for street_number in criteria["street_numbers"]:
@@ -169,8 +174,7 @@ def main():
                 variations = list(
                     itertools.product(collections[marker], list_portion))
                 for term in variations:
-                    combinations[len(combinations):] = \
-                        [term[0] + term[1], term[1] + term[0]]
+                    combinations.extend([term[0] + term[1], term[1] + term[0]])
             marker += 1
 
         # permute category 'other' against itself
@@ -178,16 +182,15 @@ def main():
         marker = 0
         while marker < length:
             for item in other[marker:]:
-                combinations[len(combinations):] = \
-                    [other[marker] + item, item + other[marker]]
+                combinations.extend(
+                    [other[marker] + item, item + other[marker]])
             marker += 1
 
         # add suffix of additional common variations to existing combinations
         with_suffix = []
         for word in combinations:
             # add generic numeric and special chars
-            with_suffix[
-                len(with_suffix):] = [word + "!", word + "1", word + "123"]
+            with_suffix.extend([word + "!", word + "1", word + "123"])
             for year in years:
                 with_suffix.append(word + year)
             for zip_code in zip_codes:
@@ -218,13 +221,29 @@ def main():
             itertools.chain.from_iterable(
                 zip(word_groups['alnum_mixed'], word_groups['special']))))
 
+        input_terms = []
+        if input_file:
+            with open(str(input_file), 'r') as other_file:
+                for line in other_file:
+                    if max_length >= len(line) >= min_length:
+                        input_terms.append(line)
+
         # save list with name & length specified by user
         count = 0
+        it = iter(input_terms)
+        lines_left = True
         with open(output_file, 'w+') as my_file:
             for word in results:
                 if count == password_count:
                     break
-                my_file.write(word + '\n')
+                try:
+                    if count % 2 and lines_left:
+                        my_file.write(next(it))
+                    else:
+                        my_file.write(word + '\n')
+                except StopIteration:
+                    lines_left = False
+
                 count += 1
 
         print("Dictionary list generated: " + output_file)
