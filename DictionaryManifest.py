@@ -316,7 +316,7 @@ def main():
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
     """
-    print("\n*X* Personalized Dictionary Generator *X* \n")
+    print("\n*X* Dictionary Manifest *X* [Personalized  Generator]\n")
 
     # list to hold all passwords after processing
     results = []
