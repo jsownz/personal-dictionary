@@ -507,7 +507,7 @@ def main():
             with_suffix.extend([word + "!", word + "1", word + "123"])
             for year in years:
                 with_suffix.append(word + year)
-            for zip_code in zip_codes:
+            for zip_code in zips:
                 with_suffix.append(word + zip_code)
             for street_number in street_nums:
                 with_suffix.append(word + street_number)
