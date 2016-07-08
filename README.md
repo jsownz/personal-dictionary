@@ -25,9 +25,12 @@ PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
   --max MAX             Maximum password length
   
   -n NUM, --num NUM     Number of passwords to be generated
-  
+
+  -i INPUT, --input INPUT
+                        Wordlist to combine with terms
+
   -f FILE, --file FILE  Criteria file (JSON)
-  
+
   -o OUT, --out OUT     Generated password file
 ```
 
