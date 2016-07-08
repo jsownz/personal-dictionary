@@ -39,8 +39,6 @@ Weighting of category significance.
 
 Sub categories with common phrases.
 
-Additional permutations from importing existing dictionaries.
-
 Social Media Integration.
 
 Possible integration of Flask or other UI.
