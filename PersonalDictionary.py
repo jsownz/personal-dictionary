@@ -475,14 +475,18 @@ def main():
 
         input_terms = []
         if input_file:
-            with open(str(input_file), 'r') as other_file:
-                for line in other_file:
-                    if max_length >= len(line.strip()) >= min_length:
-                        input_terms.append(line)
+            try:
+                with open(str(input_file), 'r') as other_file:
+                    for line in other_file:
+                        if max_length >= len(line.strip()) >= min_length:
+                            input_terms.append(line)
+            except FileNotFoundError:
+                print("Unable to find: " + args.input + ". Finishing...")
+                input_terms = None
 
         # save list with name & length specified by user
         count = 0
-        it = iter(input_terms)
+        it = iter(input_terms) if input_terms else None
         lines_left = True
         with open(output_file, 'w+') as my_file:
             for word in results:
