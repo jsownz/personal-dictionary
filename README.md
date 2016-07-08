@@ -4,13 +4,13 @@ A brute force attack attempts to determine a secret by trying every possible com
 
 In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information (e.g.: pet names, sports, family members, etc).
 
-Dictionary Manifest quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. See template 'config.json'
+Dictionary Manifest quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. See template 'config.json'.
 
 This is an open project and all developers are welcome to join.
 
-## Usage
-
 For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
+
+## Usage
 
 Note: Requires Python 3
 
