@@ -1,12 +1,10 @@
 # Dictionary Manifest
 
-A brute force attack attempts to determine a secret by trying every possible combination.
+A brute force attack attempts to determine a secret by trying every possible combination. A dictionary attack is typically a guessing attack which uses a pre-compiled list of information. Rather then trying every option, it only tries combinations which are likely to work.
 
-A dictionary attack is typically a guessing attack which uses pre-compiled list of options. Rather then trying every option, only try complete options which are likely to work.
+In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information (e.g.: pet names, sports, family members, etc).
 
-In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of information.
-
-Dictionary Manifest quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test (e.g.: pet names, sports, family members, etc). The more relevant the terms, the higher chance of success. See template 'config.json'
+Dictionary Manifest quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. See template 'config.json'
 
 This is an open project and all developers are welcome to join.
 
