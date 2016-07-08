@@ -399,19 +399,19 @@ def main():
         # populate lists that don't use function 'mangle'
         phones = []
         for phone in criteria["phone"]:
-            phones.extend(permute_phone(phone))
+            phones[len(phones):] = permute_phone(phone)
 
         years = []
         for year in criteria["years"]:
-            years.extend(permute_year(year))
+            years[len(years):] = permute_year(year)
 
         zips = []
         for zip_code in zip_codes:
-            zips.extend(permute_zip_code(zip_code))
+            zips[len(zips):] = permute_zip_code(zip_code)
 
         street_nums = []
         for street_number in criteria["street_numbers"]:
-            street_nums.extend(perm_st_num(street_number))
+            street_nums[len(street_nums):] = perm_st_num(street_number)
 
         # permute collections to combine 2 of every list from collections
         combinations = []
@@ -424,7 +424,8 @@ def main():
                 variations = list(
                     itertools.product(collections[marker], list_portion))
                 for term in variations:
-                    combinations.extend([term[0] + term[1], term[1] + term[0]])
+                    combinations[len(combinations):] = \
+                        [term[0] + term[1], term[1] + term[0]]
             marker += 1
 
         # permute category 'other' against itself
@@ -432,15 +433,16 @@ def main():
         marker = 0
         while marker < length:
             for item in other[marker:]:
-                combinations.extend(
-                    [other[marker] + item, item + other[marker]])
+                combinations[len(combinations):] = \
+                    [other[marker] + item, item + other[marker]]
             marker += 1
 
         # add suffix of additional common variations to existing combinations
         with_suffix = []
         for word in combinations:
             # add generic numeric and special chars
-            with_suffix.extend([word + "!", word + "1", word + "123"])
+            with_suffix[len(with_suffix):] = \
+                [word + "!", word + "1", word + "123"]
             for year in years:
                 with_suffix.append(word + year)
             for zip_code in zips:
@@ -452,7 +454,7 @@ def main():
                 with_suffix.append(word + phone[0:3])
 
         # remove dupes and combine various lists meeting length requisites
-        results.extend(phones + combinations + with_suffix)
+        results[len(results):] = phones + combinations + with_suffix
         collection = list(set(results))
         collection = [word for word in collection if
                       max_length >= len(word) >= min_length]
@@ -475,7 +477,7 @@ def main():
         if input_file:
             with open(str(input_file), 'r') as other_file:
                 for line in other_file:
-                    if max_length >= len(line) >= min_length:
+                    if max_length >= len(line.strip()) >= min_length:
                         input_terms.append(line)
 
         # save list with name & length specified by user
