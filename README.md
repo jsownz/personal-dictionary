@@ -31,7 +31,7 @@ PersonalDictionary.py [-h] --min MIN --max MAX -n NUM -f FILE [-o OUT]
   -o OUT, --out OUT     Generated password file
 ```
 
-![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
+![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Components.png)
 
 ## Future Features
 
