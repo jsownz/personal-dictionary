@@ -488,15 +488,17 @@ def main():
             for word in results:
                 if count == password_count:
                     break
-                try:
-                    if count % 2 and lines_left:
-                        my_file.write(next(it))
-                    else:
-                        my_file.write(word + '\n')
-                except StopIteration:
-                    lines_left = False
-                    count -= 1
-
+                if input_terms:
+                    try:
+                        if count % 2 and lines_left:
+                            my_file.write(next(it))
+                        else:
+                            my_file.write(word + '\n')
+                    except StopIteration:
+                        lines_left = False
+                        count -= 1
+                else:
+                    my_file.write(word + '\n')
                 count += 1
 
         print("Dictionary list generated: " + output_file)
