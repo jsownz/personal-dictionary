@@ -89,8 +89,7 @@ def main():
         help='Number of passwords to be generated')
     parser.add_argument(
         '-i', '--input', required=False,
-        help='List to combine with criteria'
-    )
+        help='Wordlist to combine with terms')
     parser.add_argument(
         '-f', '--file', required=True,
         help='Criteria file (JSON)')
