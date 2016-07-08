@@ -18,8 +18,6 @@ import itertools
 import json
 import re
 
-from itertools import product
-
 
 def number_swap(term):
     """
@@ -350,11 +348,11 @@ def main():
         '-n', '--num', type=int, required=False,
         help='Number of passwords to be generated')
     parser.add_argument(
-        '-i', '--input', required=False,
-        help='Wordlist to combine with terms')
-    parser.add_argument(
         '-f', '--file', required=True,
         help='Criteria file (JSON)')
+    parser.add_argument(
+        '-i', '--input', required=False,
+        help='Wordlist to mix with results generated from criteria')
     parser.add_argument(
         '-o', '--out', help='Generated password file')
 
@@ -362,7 +360,7 @@ def main():
     min_length = args.min or 6
     max_length = args.max or 12
     password_count = args.num or 20000
-    input_file = args.input or ""
+    input_file = args.input or None
     output_file = args.out or "dictionary.txt"
 
     try:
