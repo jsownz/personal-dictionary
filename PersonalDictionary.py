@@ -143,10 +143,7 @@ def permute_casing(term):
         :return: list of 'term' with variations using 2 common casing styles
         :rtype: list
     """
-    return [
-        term.lower(),
-        term.capitalize()
-    ]
+    return [term.lower(), term.capitalize()]
 
 
 def permute_year(year):
@@ -158,11 +155,7 @@ def permute_year(year):
         :return: list of 'year' using 4 common styles
         :rtype: list
     """
-    return [
-        year[2:],
-        year,
-        year[::-1]] + \
-        number_swap(year)
+    return [year[2:], year, year[::-1]] + number_swap(year)
 
 
 def reverse_string(term):
@@ -186,10 +179,7 @@ def permute_zip_code(zip_code):
         :return: list of 3 common permutation styles for zip codes
         :rtype: list
     """
-    return [
-        reverse_string(zip_code)] + \
-        number_swap(zip_code) + \
-        [zip_code]
+    return [reverse_string(zip_code)] + number_swap(zip_code) + [zip_code]
 
 
 def permute_music(music):
@@ -218,9 +208,7 @@ def perm_st_num(street_number):
         :return: list of 'street_number' with 3 common permutation styles
         :rtype: list
     """
-    return [
-        street_number,
-        reverse_string(street_number)] + \
+    return [street_number, reverse_string(street_number)] + \
         number_swap(street_number)
 
 
