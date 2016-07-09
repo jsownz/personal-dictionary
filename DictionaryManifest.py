@@ -382,7 +382,7 @@ def main():
     min_length = args.min or 6
     max_length = args.max or 12
     password_count = args.num or 20000
-    input_file = args.input or None
+    input_file = args.input or False
     output_file = args.out or "dictionary.txt"
 
     try:
@@ -511,7 +511,7 @@ def main():
                             input_terms.append(line)
             except FileNotFoundError:
                 print("Unable to find: " + args.input + ". Finishing...")
-                input_terms = None
+                input_terms = False
 
         # save list with name & length specified by user
         count = 0
