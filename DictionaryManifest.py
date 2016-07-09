@@ -92,7 +92,7 @@ def letter_swap(term):
     return new_terms
 
 
-def alternate_case(term, first):
+def alternate_case(term, first=True):
     """
         Change case to alternate_case between lower and upper;
         if first is true begin with the fist char in caps.
@@ -201,8 +201,8 @@ def permute_music(music):
     return \
         permute_casing(music) + \
         [reverse_string(music)] + \
-        [alternate_case(music, True)] + \
-        [alternate_case(music, False)] + \
+        [alternate_case(music)] + \
+        [alternate_case(music, first=False)] + \
         letter_swap(music)
 
 
@@ -272,8 +272,8 @@ def mangle(target_list):
     for term in target_list:
         mangled_list.extend(letter_swap(term))
         mangled_list.extend(permute_casing(term))
-        mangled_list.append(alternate_case(first=True, term=term))
-        mangled_list.append(alternate_case(first=False, term=term))
+        mangled_list.append(alternate_case(term))
+        mangled_list.append(alternate_case(term, first=False))
 
     return mangled_list
 
