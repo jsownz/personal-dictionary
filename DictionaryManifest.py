@@ -528,7 +528,7 @@ def main():
                             my_file.write(word + "\n")
                     except StopIteration:
                         lines_left = False
-                        count -= 1
+                        continue
                 else:
                     my_file.write(word + "\n")
                 count += 1
