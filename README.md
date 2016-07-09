@@ -37,7 +37,7 @@ optional arguments:
 ```
 
 
-![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Components.png)
+![alt tag](https://raw.githubusercontent.com/MC-GitFlow/personal-dictionary/master/example/Usage.png)
 
 ## Future Features
 
