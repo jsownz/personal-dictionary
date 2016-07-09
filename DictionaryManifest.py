@@ -269,11 +269,11 @@ def mangle(target_list):
     target_list = re.sub(r"\s+", " ", ",".join(target_list)).replace(" ", ",")
     target_list = [x.strip() for x in target_list.split(",")]
     mangled_list = []
-    for item in target_list:
-        mangled_list.extend(letter_swap(item))
-        mangled_list.extend(permute_casing(item))
-        mangled_list.append(alternate_case(item, True))
-        mangled_list.append(alternate_case(item, False))
+    for term in target_list:
+        mangled_list.extend(letter_swap(term))
+        mangled_list.extend(permute_casing(term))
+        mangled_list.append(alternate_case(first=True, term=term))
+        mangled_list.append(alternate_case(first=False, term=term))
 
     return mangled_list
 
