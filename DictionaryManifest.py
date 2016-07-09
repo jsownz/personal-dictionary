@@ -2,10 +2,10 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-08
+    Last Modified: 2016-07-09
     Python3.5 using PyCharm
 
-    r0.2.2-2016.07.08(b)
+    r0.2.2-2016.07.09(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in JSON file. Terms are intended to be accumulated during
@@ -48,7 +48,7 @@ def number_swap(term):
         if number_list[marker] in number_alt_dict:
             for replace in number_alt_dict[number_list[marker]]:
                 number_list[marker] = replace
-                new_terms.append(''.join(number_list))
+                new_terms.append("".join(number_list))
         marker += 1
 
     return new_terms
@@ -86,7 +86,7 @@ def letter_swap(term):
         if letter_list[marker] in letter_alt_dict:
             for replace in letter_alt_dict[letter_list[marker]]:
                 letter_list[marker] = replace
-                new_terms.append(''.join(letter_list))
+                new_terms.append("".join(letter_list))
         marker += 1
 
     return new_terms
@@ -110,7 +110,7 @@ def alternate_case(term, first):
             new_string += letter.upper()
         else:
             new_string += letter.lower()
-        if letter != ' ':
+        if letter != " ":
             first = not first
 
     return new_string
@@ -266,8 +266,8 @@ def mangle(target_list):
         :return: 5 common permutations of all terms in 'target_list'
         :rtype: list
     """
-    target_list = re.sub(r'\s+', ' ', ','.join(target_list)).replace(' ', ',')
-    target_list = [x.strip() for x in target_list.split(',')]
+    target_list = re.sub(r"\s+", " ", ",".join(target_list)).replace(" ", ",")
+    target_list = [x.strip() for x in target_list.split(",")]
     mangled_list = []
     for item in target_list:
         mangled_list.extend(letter_swap(item))
@@ -494,13 +494,13 @@ def main():
             ord_sort(word_groups[word])
 
         # combine password types for results
-        results = word_groups['numeric'] + word_groups['alpha_lower']
+        results = word_groups["numeric"] + word_groups["alpha_lower"]
         results.extend(list(
             itertools.chain.from_iterable(
-                zip(word_groups['alnum_lower'], word_groups['alpha_mixed']))))
+                zip(word_groups["alnum_lower"], word_groups["alpha_mixed"]))))
         results.extend(list(
             itertools.chain.from_iterable(
-                zip(word_groups['alnum_mixed'], word_groups['special']))))
+                zip(word_groups["alnum_mixed"], word_groups["special"]))))
 
         input_terms = []
         if input_file:
@@ -517,7 +517,7 @@ def main():
         count = 0
         it = iter(input_terms) if input_terms else input_terms
         lines_left = True
-        with open(output_file, 'w+') as my_file:
+        with open(output_file, "w+") as my_file:
             for word in results:
                 if count == password_count:
                     break
@@ -526,12 +526,12 @@ def main():
                         if count % 2 and lines_left:
                             my_file.write(next(it))
                         else:
-                            my_file.write(word + '\n')
+                            my_file.write(word + "\n")
                     except StopIteration:
                         lines_left = False
                         count -= 1
                 else:
-                    my_file.write(word + '\n')
+                    my_file.write(word + "\n")
                 count += 1
 
         print("Dictionary list generated: " + output_file)
