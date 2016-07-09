@@ -256,7 +256,7 @@ def mangle(target_list):
         :return: 5 common permutations of all terms in 'target_list'
         :rtype: list
     """
-    target_list = re.sub('\s+', ' ', ','.join(target_list)).replace(' ', ',')
+    target_list = re.sub(r'\s+', ' ', ','.join(target_list)).replace(' ', ',')
     target_list = [x.strip() for x in target_list.split(',')]
     mangled_list = []
     for item in target_list:
