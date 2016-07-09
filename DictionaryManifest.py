@@ -408,19 +408,8 @@ def main():
         jobs = mangle(criteria["employment"]) if criteria["employment"] else []
 
         # lists to permute for base passwords
-        collections = [
-            pets,
-            family,
-            sports,
-            schools,
-            cities,
-            music,
-            states,
-            jobs,
-            streets,
-            colors,
-            other
-        ]
+        collections = [pets, family, sports, schools, cities, music, states,
+                       jobs, streets, colors, other]
 
         zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
         phone_numbers = criteria["phone"] if criteria["phone"] else []
