@@ -483,7 +483,7 @@ def main():
 
         # save list with name & length specified by user
         count = 0
-        it = iter(input_terms) if input_terms else None
+        it = iter(input_terms) if input_terms else input_terms
         lines_left = True
         with open(output_file, 'w+') as my_file:
             for word in results:
