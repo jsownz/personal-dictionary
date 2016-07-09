@@ -323,7 +323,8 @@ def term_types(collection):
 
 def main():
     """
-        ** Code below is temporary & for testing Mangler / proof of concept **
+        Receive arguments from call to CLI. Permute using code testing
+        functions above. Code below is temporary and to be refactored out later
 
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
