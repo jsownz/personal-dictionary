@@ -327,7 +327,7 @@ def parse_json(path):
 
         :param path: file to read JSON data from
         :type path: string
-        :return: multi dem list of file contents
+        :return: decoded dictionary of file contents
         :rtype: dictionary
     """
     handle = open(path, "r+")
