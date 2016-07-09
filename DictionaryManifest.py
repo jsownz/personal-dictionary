@@ -321,6 +321,27 @@ def term_types(collection):
     }
 
 
+def parse_json(path):
+    """
+        Handle parsing of JSON file to load into criteria
+
+        :param path: file to read JSON data from
+        :type path: string
+        :return: multi dem list of file contents
+        :rtype: dictionary
+    """
+    handle = open(path, "r+")
+    try:
+        data = handle.read()
+        op = json.loads(data)
+    except ValueError as e:
+        exit("Invalid formatting in JSON file: %s" % e)
+    else:
+        return op
+    finally:
+        handle.close()
+
+
 def main():
     """
         Receive arguments from call to CLI. Permute using code testing
@@ -365,11 +386,9 @@ def main():
     output_file = args.out or "dictionary.txt"
 
     try:
-        criteria = json.loads("".join(open(args.file, "r").readlines()))
+        criteria = parse_json(args.file)
     except FileNotFoundError as e:
         exit("Could not open criteria file: %s" % e)
-    except ValueError as e:
-        exit("Invalid formatting in JSON file: %s" % e)
     else:
         print("\nPlease wait while your dictionary is generated... This may " +
               "take a while depending on the amount of data.\n")
