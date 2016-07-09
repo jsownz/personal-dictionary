@@ -377,8 +377,17 @@ def main():
 
         # lists to permute for base passwords
         collections = [
-            pets, family, sports, schools, cities, music, states, jobs,
-            streets, colors, other
+            pets,
+            family,
+            sports,
+            schools,
+            cities,
+            music,
+            states,
+            jobs,
+            streets,
+            colors,
+            other
         ]
 
         zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
