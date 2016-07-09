@@ -505,13 +505,12 @@ def main():
         input_terms = []
         if input_file:
             try:
-                with open(str(input_file), 'r') as other_file:
+                with open(str(input_file), "r") as other_file:
                     for line in other_file:
                         if max_length >= len(line.strip()) >= min_length:
                             input_terms.append(line)
             except FileNotFoundError:
                 print("Unable to find: " + args.input + ". Finishing...")
-                input_terms = False
 
         # save list with name & length specified by user
         count = 0
