@@ -112,6 +112,7 @@ def alternate_case(term, first):
             new_string += letter.lower()
         if letter != ' ':
             first = not first
+
     return new_string
 
 
@@ -124,6 +125,7 @@ def permute_phone(phone):
         :return: list of 'phone' number permutations
         :rtype: list
     """
+
     return [
         phone,
         phone[3:],
@@ -143,6 +145,7 @@ def permute_casing(term):
         :return: list of 'term' with variations using 2 common casing styles
         :rtype: list
     """
+
     return [term.lower(), term.capitalize()]
 
 
@@ -155,6 +158,7 @@ def permute_year(year):
         :return: list of 'year' using 4 common styles
         :rtype: list
     """
+
     return [year[2:], year, year[::-1]] + number_swap(year)
 
 
@@ -167,6 +171,7 @@ def reverse_string(term):
         :return: string of 'term' after being reversed
         :rtype: string
     """
+
     return term[::-1]
 
 
@@ -179,6 +184,7 @@ def permute_zip_code(zip_code):
         :return: list of 3 common permutation styles for zip codes
         :rtype: list
     """
+
     return [reverse_string(zip_code)] + number_swap(zip_code) + [zip_code]
 
 
@@ -191,6 +197,7 @@ def permute_music(music):
         :return: list of 5 common permutations of generic terms
         :rtype: list
     """
+
     return \
         permute_casing(music) + \
         [reverse_string(music)] + \
@@ -208,6 +215,7 @@ def perm_st_num(street_number):
         :return: list of 'street_number' with 3 common permutation styles
         :rtype: list
     """
+
     return [street_number, reverse_string(street_number)] + \
         number_swap(street_number)
 
@@ -221,6 +229,7 @@ def calculate_ord(term):
         :return: summation of ord function called on each char
         :rtype: integer
     """
+
     return sum([ord(x) for x in term])
 
 
@@ -233,6 +242,7 @@ def compare_num_of_chars(term):
         :return: length of argument term
         :rtype: integer
     """
+
     return len(term)
 
 
@@ -264,6 +274,7 @@ def mangle(target_list):
         mangled_list.extend(permute_casing(item))
         mangled_list.append(alternate_case(item, True))
         mangled_list.append(alternate_case(item, False))
+
     return mangled_list
 
 
@@ -299,6 +310,7 @@ def term_types(collection):
                 alnum_mixed.append(item)
         else:
             special.append(item)
+
     return {
         'numeric': numeric,
         'special': special,
