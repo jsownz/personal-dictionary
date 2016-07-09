@@ -49,12 +49,12 @@ Formatting for locales outside of U.S.
 
 ## History
 
-Project started on June 18th of 2016 by MC-GitFlow
+Project started on June 18th of 2016 by MC_GitFlow
 
 ## Contributors
 
 Development:
-- MC-GitFlow
+- MC_GitFlow
 - ASC3ND
 - jsownz
 
