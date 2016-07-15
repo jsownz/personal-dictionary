@@ -2,10 +2,10 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-09
+    Last Modified: 2016-07-15
     Python3.5 using PyCharm
 
-    r0.2.2-2016.07.09(b)
+    r0.2.2-2016.07.15(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in JSON file. Terms are intended to be accumulated during
@@ -394,18 +394,28 @@ def main():
               "take a while depending on the amount of data.\n")
 
         # use function 'mangle' for most common permutation
-        pets = mangle(criteria["pets"]) if criteria["pets"] else []
-        sports = mangle(criteria["sports"]) if criteria["sports"] else []
-        family = mangle(criteria["family"]) if criteria["family"] else []
-        music = mangle(criteria["music"]) if criteria["music"] else []
-        states = mangle(criteria["states"]) if criteria["states"] else []
-        cities = mangle(criteria["cities"]) if criteria["cities"] else []
-        schools = mangle(criteria["schools"]) if criteria["schools"] else []
-        colors = mangle(criteria["colors"]) if criteria["colors"] else []
+        pets = mangle(
+            criteria["pets"]) if criteria["pets"] else []
+        sports = mangle(
+            criteria["sports"]) if criteria["sports"] else []
+        family = mangle(
+            criteria["family"]) if criteria["family"] else []
+        music = mangle(
+            criteria["music"]) if criteria["music"] else []
+        states = mangle(
+            criteria["states"]) if criteria["states"] else []
+        cities = mangle(
+            criteria["cities"]) if criteria["cities"] else []
+        schools = mangle(
+            criteria["schools"]) if criteria["schools"] else []
+        colors = mangle(
+            criteria["colors"]) if criteria["colors"] else []
         streets = mangle(
             criteria["street_numbers"]) if criteria["streets"] else []
-        other = mangle(criteria["other"]) if criteria["other"] else []
-        jobs = mangle(criteria["employment"]) if criteria["employment"] else []
+        other = mangle(
+            criteria["other"]) if criteria["other"] else []
+        jobs = mangle(
+            criteria["employment"]) if criteria["employment"] else []
 
         # lists to permute for base passwords
         collections = [pets, family, sports, schools, cities, music, states,
