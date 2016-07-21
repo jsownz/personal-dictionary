@@ -473,7 +473,7 @@ def main():
         for word in combinations:
             # add generic numeric and special chars
             with_suffix[len(with_suffix):] = \
-                [word + "!", word + "1", word + "123"]
+                [str(word) + "!", str(word) + "1", str(word) + "123"]
             for year in years:
                 with_suffix.append(word + year)
             for zip_code in zips:
