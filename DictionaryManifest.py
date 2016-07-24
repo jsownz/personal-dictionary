@@ -46,12 +46,11 @@ def parse_args():
     args = parser.parse_args()
     min_length = args.min or 6
     max_length = args.max or 12
-    password_count = args.num or 20000
+    pw_count = args.num or 20000
     input_file = args.input or False
     output_file = args.out or "dictionary.txt"
 
-    return args, input_file, max_length, min_length, output_file, \
-        password_count
+    return args, input_file, max_length, min_length, output_file, pw_count
 
 
 def parse_json(path):
@@ -518,8 +517,10 @@ def clean_list(max_length, min_length, results):
         :return: passwords meeting criteria in length without duplicates
     """
     collection = list(set(results))
-    return [word for word in collection if
-            max_length >= len(word) >= min_length]
+    return [
+        word for word in collection if max_length >= len(word) >= min_length
+
+    ]
 
 
 def read_input_list(args, max_length, min_length):
@@ -598,11 +599,12 @@ def main():
             permute_criteria(criteria)
         combinations = permute_collections(collections)
         permute_other(combinations, other)
-        results = phones + combinations + add_suffixes(combinations,
-                                                       phone_numbers,
-                                                       street_nums,
-                                                       years,
-                                                       zips)
+        results = phones + combinations + add_suffixes(
+            combinations,
+            phone_numbers,
+            street_nums,
+            years,
+            zips)
         results = consolidate_final(
             sort_words(
                 clean_list(
