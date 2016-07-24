@@ -298,8 +298,12 @@ def permute_criteria(criteria):
     other = criteria["other"] if criteria["other"] else []
 
     # permute lists for base passwords using function mangle
-    collections = [pets, family, sports, schools, cities, music, states,
-                   jobs, streets, colors, other]
+    collections = [
+        pets, family, sports,
+        schools, cities, music,
+        states, jobs, streets,
+        colors, other
+    ]
     collections = [mangle(x) for x in collections]
 
     # populate and permute lists that don't use function 'mangle'
@@ -519,7 +523,6 @@ def clean_list(max_length, min_length, results):
     collection = list(set(results))
     return [
         word for word in collection if max_length >= len(word) >= min_length
-
     ]
 
 
