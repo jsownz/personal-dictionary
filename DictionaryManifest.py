@@ -578,7 +578,7 @@ def generate_dictionary(input_terms, output, pw_count, results):
 def main():
     """
         Receive arguments from call to CLI. Permute using code testing
-        functions above. Code below is temporary and to be refactored out later
+        functions above.
 
         Generate personalized dictionary list of passwords, tailored towards a
         target with information gathered during initial phase of pen test.
