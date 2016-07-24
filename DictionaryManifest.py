@@ -2,10 +2,10 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-21
+    Last Modified: 2016-07-24
     Python3.5 using PyCharm
 
-    r0.2.3-2016.07.21(b)
+    r0.2.3-2016.07.24(b)
 
     Generate a dictionary list as a text file using permutations of terms
     stored in JSON file. Terms are intended to be accumulated during
