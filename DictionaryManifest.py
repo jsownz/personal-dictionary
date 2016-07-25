@@ -40,7 +40,7 @@ def main():
     try:
         criteria = Mangler.parse_json(args.file)
     except FileNotFoundError as fnf_e:
-        exit(u"Could not open criteria file: {0:s}".format(fnf_e))
+        exit(u"Could not open criteria file: {0:s}".format(fnf_e.strerror))
     else:
         print("\nPlease wait while your dictionary is generated... This may " +
               "take a while depending on the amount of data.\n")
