@@ -212,7 +212,7 @@ def permute_phone(phone):
         phone[3:],
         phone[0:3],
         phone[6:],
-        phone[::-1],
+        reverse_string(phone),
         reverse_string(phone[0:3])
     ] + number_swap(phone)
 
@@ -230,7 +230,7 @@ def permute_year(year):
     return [
         year[2:],
         year,
-        year[::-1]
+        reverse_string(year)
     ] + number_swap(year)
 
 
@@ -308,19 +308,19 @@ def permute_criteria(criteria):
 
     phones = []
     for phone in criteria["phone"]:
-        phones[len(phones):] = permute_phone(phone)
+        phones.extend(permute_phone(phone))
 
     years = []
     for year in criteria["years"]:
-        years[len(years):] = permute_year(year)
+        years.extend(permute_year(year))
 
     zips = []
     for zip_code in zip_codes:
-        zips[len(zips):] = permute_zip_code(zip_code)
+        zips.extend(permute_zip_code(zip_code))
 
     street_nums = []
     for street_number in criteria["street_numbers"]:
-        street_nums[len(street_nums):] = perm_st_num(street_number)
+        street_nums.extend(perm_st_num(street_number))
 
     return collections, other, phone_numbers, \
         phones, street_nums, years, zips
@@ -344,8 +344,8 @@ def permute_collections(collections):
             variations = list(
                 itertools.product(collections[marker], list_portion))
             for term in variations:
-                combinations[len(combinations):] = \
-                    [term[0] + term[1], term[1] + term[0]]
+                combinations.extend(
+                    [term[0] + term[1], term[1] + term[0]])
         marker += 1
 
     return combinations
@@ -362,8 +362,8 @@ def permute_other(combinations, other):
     marker = 0
     while marker < length:
         for item in other[marker:]:
-            combinations[len(combinations):] = \
-                [other[marker] + item, item + other[marker]]
+            combinations.extend(
+                [other[marker] + item, item + other[marker]])
         marker += 1
 
 
@@ -382,11 +382,11 @@ def add_suffixes(combinations, phone_numbers, street_nums, years, zips):
     with_suffix = []
     for word in combinations:
         # add generic numeric and special chars
-        with_suffix[len(with_suffix):] = [
+        with_suffix.extend([
             str(word) + "!",
             str(word) + "1",
             str(word) + "123"
-        ]
+        ])
 
         for year in years:
             with_suffix.append(word + year)
