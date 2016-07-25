@@ -7,10 +7,19 @@
 
     r0.3-2016.07.24(b)
 
-    Generate a dictionary list as a text file using permutations of terms
-    stored in JSON file. Terms are intended to be accumulated during
-    information gathering phase of a penetration test. The more relevant the
-    terms, the higher chance of success. See template 'config.json'
+    -----
+    Usage
+    -----
+    optional arguments:
+      -h, --help            show this help message and exit
+      --min MIN             Minimum password length
+      --max MAX             Maximum password length
+      -n NUM, --num NUM     Number of passwords to be generated
+      -f FILE, --file FILE  Criteria file (JSON)
+      -i INPUT, --input INPUT
+                            Wordlist to mix with results generated from
+                            criteria
+      -o OUT, --out OUT     Generated password file
 """
 
 import Mangler
@@ -18,13 +27,12 @@ import Mangler
 
 def main():
     """
-        Receive arguments from call to CLI. Permute using code testing
-        functions above.
-
-        Generate personalized dictionary list of passwords, tailored towards a
-        target with information gathered during initial phase of pen test.
+        Generate a dictionary list as a text file using permutations of terms
+        imported from a JSON file. Terms are intended to be accumulated during
+        information gathering phase of a penetration test.
     """
-    print("\n*X* Dictionary Manifest *X* [Personalized  Generator]\n")
+
+    print("\n*X* Dictionary Manifest *X* [Personalized Generator]\n")
 
     args, criteria, max_length, min_length, output, pw_count = \
         Mangler.parse_args()
