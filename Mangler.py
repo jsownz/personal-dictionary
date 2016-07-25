@@ -567,4 +567,3 @@ def generate_dictionary(input_terms, output, pw_count, results):
             else:
                 my_file.write(word + "\n")
             count += 1
-
