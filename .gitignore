@@ -46,7 +46,7 @@ packages/*
 .vagrant/*
 
 .env
-.tags
+.tags*
 .tags1
 .gan
 deployment-config.json

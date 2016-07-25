@@ -21,7 +21,48 @@
       -o OUT, --out OUT     Generated password file
 """
 
-import Mangler
+import mangler
+
+
+def finalize_collection(max_length, min_length, results):
+    """
+        Consolidate all lists of data from JSON file, sort for more probable
+        passwords to be towards start of list, remove duplicates and enforce
+        length limitations
+
+        :param max_length: upper bound char length on passwords
+        :param min_length: lower bound length on pws
+        :param results: permutations of criteria
+        :return: list
+    """
+    results = mangler.consolidate_final(
+        mangler.sort_words(
+            mangler.clean_list(
+                max_length,
+                min_length,
+                results)))
+    return results
+
+
+def save_dictionary(args, max_length, min_length, output, pw_count, results):
+    """
+        Combine with 3rd party list if present and save results to file
+
+        :param args: parameters from CLI
+        :param max_length: upper bound length on passwords
+        :param min_length: lower bound length on pws
+        :param output: name of file to save list as
+        :param pw_count: maximum number of passwords to choose
+        :param results: finalized collection of permuted criteria
+    """
+    mangler.generate_dictionary(
+        mangler.read_input_list(
+            args,
+            max_length,
+            min_length),
+        output,
+        pw_count,
+        results)
 
 
 def main():
@@ -34,10 +75,10 @@ def main():
     print("\n*X* Dictionary Manifest *X* [Personalized Generator]\n")
 
     args, criteria, max_length, min_length, output, pw_count = \
-        Mangler.parse_args()
+        mangler.parse_args()
 
     try:
-        criteria = Mangler.parse_json(args.file)
+        criteria = mangler.parse_json(args.file)
     except FileNotFoundError as fnf_e:
         exit(u"Could not open criteria file: {0:s}".format(fnf_e.strerror))
     else:
@@ -46,41 +87,27 @@ def main():
 
         # create permutations of individual categories
         collections, other, phone_numbers, phones, street_nums, years, zips = \
-            Mangler.permute_criteria(criteria)
+            mangler.permute_criteria(criteria)
 
         # combine permutations of multiple categories
-        combinations = Mangler.permute_collections(collections)
+        combinations = mangler.permute_collections(collections)
 
         # combine permutations of category "other" with itself
-        Mangler.permute_other(combinations, other)
+        mangler.permute_other(combinations, other)
 
         # combine current lists and add common suffixes
-        results = phones + combinations + Mangler.add_suffixes(
+        results = phones + combinations + mangler.add_suffixes(
             combinations,
             phone_numbers,
             street_nums,
             years,
             zips)
 
-        # consolidate all lists of data from JSON file
-        results = Mangler.consolidate_final(
-            # sort for more probable passwords to be towards start of list
-            Mangler.sort_words(
-                # remove duplicates and enforce length limitations
-                Mangler.clean_list(
-                    max_length,
-                    min_length,
-                    results)))
+        results = finalize_collection(
+            max_length, min_length, results)
 
-        # combine with 3rd party list if present and save results to file
-        Mangler.generate_dictionary(
-            Mangler.read_input_list(
-                args,
-                max_length,
-                min_length),
-            output,
-            pw_count,
-            results)
+        save_dictionary(
+            args, max_length, min_length, output, pw_count, results)
         print("Dictionary list generated: " + output)
 
 
