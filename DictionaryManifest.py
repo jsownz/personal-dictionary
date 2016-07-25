@@ -96,11 +96,7 @@ def main():
 
         # combine current lists and add common suffixes
         results = phones + combinations + add_suffixes(
-            combinations,
-            phone_numbers,
-            street_nums,
-            years,
-            zips)
+            combinations, phone_numbers, street_nums, years, zips)
 
         # enforce lengths, sort to push probable passwords to top, remove dupes
         results = finalize_collection(
