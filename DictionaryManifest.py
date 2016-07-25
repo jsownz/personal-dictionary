@@ -67,7 +67,7 @@ def parse_json(path):
         data = handle.read()
         opened = json.loads(data)
     except ValueError as val_e:
-        exit("Invalid formatting in JSON file: %s" % val_e)
+        exit(u"Invalid formatting in JSON file: {0:s}".format(val_e))
     else:
         return opened
     finally:
@@ -450,14 +450,13 @@ def term_types(collection):
         else:
             special.append(item)
 
-    return {
-        'numeric': numeric,
-        'special': special,
-        'alpha_lower': alpha_lower,
-        'alpha_mixed': alpha_mixed,
-        'alnum_lower': alnum_lower,
-        'alnum_mixed': alnum_mixed
-    }
+    return dict(
+        numeric=numeric,
+        special=special,
+        alpha_lower=alpha_lower,
+        alpha_mixed=alpha_mixed,
+        alnum_lower=alnum_lower,
+        alnum_mixed=alnum_mixed)
 
 
 def calculate_ord(term):
@@ -593,7 +592,7 @@ def main():
     try:
         criteria = parse_json(args.file)
     except FileNotFoundError as fnf_e:
-        exit("Could not open criteria file: %s" % fnf_e)
+        exit(u"Could not open criteria file: {0:s}".format(fnf_e))
     else:
         print("\nPlease wait while your dictionary is generated... This may " +
               "take a while depending on the amount of data.\n")
