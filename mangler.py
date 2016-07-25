@@ -1,7 +1,7 @@
 """
-    Mangler.py
+    mangler.py
     Python3.5
-    Last Modified: 2016-07-24
+    Last Modified: 2016-07-25
     Functions for Dictionary Manifest
 """
 

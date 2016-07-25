@@ -2,9 +2,9 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-24
+    Last Modified: 2016-07-25
     Python3.5 using PyCharm
-    r0.3-2016.07.24(b)
+    r0.3.1-2016.07.25(b)
 
     -----
     Usage
