@@ -1,10 +1,10 @@
-# Dictionary Manifest
+# Manifest Dictionary
 
 A brute force attack attempts to determine a secret by trying every possible combination. A dictionary attack is typically a guessing attack which uses a pre-compiled list of information. Rather than trying every option, it only tries combinations which are likely to work.
 
 In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information (e.g.: pet names, sports, family members, etc).
 
-Dictionary Manifest quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. See template 'config.json'. 
+Manifest Dictionary quickly generates an intelligent wordlist using permutations of terms entered into a JSON template. Terms are intended to be accumulated during information gathering phase of a penetration test. The more relevant the terms, the higher chance of success. See template 'config.json'. 
 
 Existing wordlists can be imported and combined during generation of personalized lists.
 
@@ -17,9 +17,9 @@ For authorized testing only. The biggest takeaway is perhaps what to not choose 
 Note: Requires Python 3
 
 ```
-*X* Dictionary Manifest *X* [Personalized  Generator]
+*X* Manifest Dictionary *X* [Personalized  Generator]
 
-usage: DictionaryManifest.py [-h] [--min MIN] [--max MAX] [-n NUM] -f FILE
+usage: ManifestDictionary.py [-h] [--min MIN] [--max MAX] [-n NUM] -f FILE
                              [-i INPUT] [-o OUT]
 
 Generate a dictionary list as a text file using permutations of terms. Data

@@ -2,7 +2,7 @@
     mangler.py
     Python3.5
     Last Modified: 2016-07-25
-    Functions for Dictionary Manifest
+    Functions for ManifestDictionary.py
 """
 
 import argparse

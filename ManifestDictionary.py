@@ -71,7 +71,7 @@ def main():
         information gathering phase of a penetration test.
     """
 
-    print("\n*X* Dictionary Manifest *X* [Personalized Generator]\n")
+    print("\n*X* Manifest Dictionary *X* [Personalized Generator]\n")
 
     args, criteria, max_length, min_length, output, pw_count = \
         parse_args()
