@@ -213,8 +213,8 @@ def permute_phone(phone):
         phone[0:3],
         phone[6:],
         phone[::-1],
-        reverse_string(phone[0:3])] + \
-        number_swap(phone)
+        reverse_string(phone[0:3])
+    ] + number_swap(phone)
 
 
 def permute_year(year):
@@ -227,7 +227,11 @@ def permute_year(year):
         :rtype: list
     """
 
-    return [year[2:], year, year[::-1]] + number_swap(year)
+    return [
+        year[2:],
+        year,
+        year[::-1]
+    ] + number_swap(year)
 
 
 def reverse_string(term):
@@ -318,7 +322,8 @@ def permute_criteria(criteria):
     for street_number in criteria["street_numbers"]:
         street_nums[len(street_nums):] = perm_st_num(street_number)
 
-    return collections, other, phone_numbers, phones, street_nums, years, zips
+    return collections, other, phone_numbers, \
+        phones, street_nums, years, zips
 
 
 def permute_collections(collections):
@@ -377,14 +382,21 @@ def add_suffixes(combinations, phone_numbers, street_nums, years, zips):
     with_suffix = []
     for word in combinations:
         # add generic numeric and special chars
-        with_suffix[len(with_suffix):] = \
-            [str(word) + "!", str(word) + "1", str(word) + "123"]
+        with_suffix[len(with_suffix):] = [
+            str(word) + "!",
+            str(word) + "1",
+            str(word) + "123"
+        ]
+
         for year in years:
             with_suffix.append(word + year)
+
         for zip_code in zips:
             with_suffix.append(word + zip_code)
+
         for street_number in street_nums:
             with_suffix.append(word + street_number)
+
         # append area code from phone numbers to base words
         for phone in phone_numbers:
             with_suffix.append(word + phone[0:3])
@@ -406,6 +418,7 @@ def consolidate_final(word_groups):
     results.extend(list(
         itertools.chain.from_iterable(
             zip(word_groups["alnum_mixed"], word_groups["special"]))))
+
     return results
 
 
@@ -457,7 +470,7 @@ def calculate_ord(term):
 
         :param term: term to be evaluated for complexity
         :type term: string
-        :return: summation of ord function called on each char
+        :return: summation of 'ord' function called on each char
         :rtype: integer
     """
 
