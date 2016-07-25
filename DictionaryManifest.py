@@ -103,11 +103,14 @@ def main():
             years,
             zips)
 
+        # enforce lengths, sort to push probable passwords to top, remove dupes
         results = finalize_collection(
             max_length, min_length, results)
 
+        # generate txt file of wordlist, combine with any third party lists
         save_dictionary(
             args, max_length, min_length, output, pw_count, results)
+
         print("Dictionary list generated: " + output)
 
 
