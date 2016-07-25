@@ -21,7 +21,7 @@
       -o OUT, --out OUT     Generated password file
 """
 
-import mangler
+from mangler import *
 
 
 def finalize_collection(max_length, min_length, results):
@@ -35,13 +35,12 @@ def finalize_collection(max_length, min_length, results):
         :param results: permutations of criteria
         :return: list
     """
-    results = mangler.consolidate_final(
-        mangler.sort_words(
-            mangler.clean_list(
+    return consolidate_final(
+        sort_words(
+            clean_list(
                 max_length,
                 min_length,
                 results)))
-    return results
 
 
 def save_dictionary(args, max_length, min_length, output, pw_count, results):
@@ -55,8 +54,8 @@ def save_dictionary(args, max_length, min_length, output, pw_count, results):
         :param pw_count: maximum number of passwords to choose
         :param results: finalized collection of permuted criteria
     """
-    mangler.generate_dictionary(
-        mangler.read_input_list(
+    generate_dictionary(
+        read_input_list(
             args,
             max_length,
             min_length),
@@ -75,10 +74,10 @@ def main():
     print("\n*X* Dictionary Manifest *X* [Personalized Generator]\n")
 
     args, criteria, max_length, min_length, output, pw_count = \
-        mangler.parse_args()
+        parse_args()
 
     try:
-        criteria = mangler.parse_json(args.file)
+        criteria = parse_json(args.file)
     except FileNotFoundError as fnf_e:
         exit(u"Could not open criteria file: {0:s}".format(fnf_e.strerror))
     else:
@@ -87,16 +86,16 @@ def main():
 
         # create permutations of individual categories
         collections, other, phone_numbers, phones, street_nums, years, zips = \
-            mangler.permute_criteria(criteria)
+            permute_criteria(criteria)
 
         # combine permutations of multiple categories
-        combinations = mangler.permute_collections(collections)
+        combinations = permute_collections(collections)
 
         # combine permutations of category "other" with itself
-        mangler.permute_other(combinations, other)
+        permute_other(combinations, other)
 
         # combine current lists and add common suffixes
-        results = phones + combinations + mangler.add_suffixes(
+        results = phones + combinations + add_suffixes(
             combinations,
             phone_numbers,
             street_nums,
