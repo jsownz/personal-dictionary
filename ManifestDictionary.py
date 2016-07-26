@@ -59,10 +59,10 @@ def main():
 
     print("\n*X* Manifest Dictionary *X* [Personalized Generator]\n")
 
-    params = mangler.store_cli_args()
+    user_params = mangler.store_cli_args()
 
     try:
-        criteria = mangler.parse_json(params['args'].file)
+        criteria = mangler.parse_json(user_params['args'].file)
     except FileNotFoundError as fnf_e:
         exit(u"Could not open criteria file: {0:s}".format(fnf_e.strerror))
     else:
@@ -85,12 +85,12 @@ def main():
 
         # enforce lengths, sort to push probable passwords to top, remove dupes
         results = finalize_collection(
-            params["max_length"], params["min_length"], results)
+            user_params["max_length"], user_params["min_length"], results)
 
         # generate txt file of wordlist, combine with any third party lists
-        save_dictionary(params, results)
+        save_dictionary(user_params, results)
 
-        print("Dictionary list generated: " + params["output_file"])
+        print("Dictionary list generated: " + user_params["output_file"])
 
 
 if __name__ == "__main__":
