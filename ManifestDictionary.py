@@ -2,8 +2,8 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-25
-    Python3.5 using PyCharm
+    Last Modified: 2016-07-26
+    Python 3
     r0.3.1-2016.07.25(b)
 """
 
