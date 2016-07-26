@@ -11,7 +11,7 @@ import json
 import re
 
 
-def parse_args():
+def store_cli_args():
     """ parse CLI arguments and assign defaults when needed """
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +

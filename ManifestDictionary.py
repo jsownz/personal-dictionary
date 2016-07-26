@@ -74,7 +74,7 @@ def main():
     print("\n*X* Manifest Dictionary *X* [Personalized Generator]\n")
 
     args, criteria, max_length, min_length, output, pw_count = \
-        mangler.parse_args()
+        mangler.store_cli_args()
 
     try:
         criteria = mangler.parse_json(args.file)
