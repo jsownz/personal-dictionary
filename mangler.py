@@ -42,7 +42,14 @@ def store_cli_args():
     input_file = args.input or False
     output_file = args.out or "dictionary.txt"
 
-    return args, input_file, max_length, min_length, output_file, pw_count
+    return {
+        'args': args,
+        'input_file': input_file,
+        'max_length': max_length,
+        'min_length': min_length,
+        'output_file': output_file,
+        'pw_count': pw_count
+    }
 
 
 def parse_json(path):
