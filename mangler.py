@@ -1,7 +1,7 @@
 """
     mangler.py
     Python3.5
-    Last Modified: 2016-07-25
+    Last Modified: 2016-07-26
     Functions for ManifestDictionary.py
 """
 
@@ -283,28 +283,37 @@ def permute_criteria(criteria):
         :param criteria: data from JSON file template
         :return: various collections of permuted data from JSON template
     """
-    cities = criteria["cities"] if criteria["cities"] else []
-    colors = criteria["colors"] if criteria["colors"] else []
-    family = criteria["family"] if criteria["family"] else []
-    jobs = criteria["employment"] if criteria["employment"] else []
-    music = criteria["music"] if criteria["music"] else []
-    other = criteria["other"] if criteria["other"] else []
-    pets = criteria["pets"] if criteria["pets"] else []
-    phone_numbers = criteria["phone"] if criteria["phone"] else []
-    schools = criteria["schools"] if criteria["schools"] else []
-    sports = criteria["sports"] if criteria["sports"] else []
-    states = criteria["states"] if criteria["states"] else []
-    streets = criteria["street_numbers"] if criteria["streets"] else []
-    zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
+    collections = {
+        "cities": criteria["cities"] if criteria["cities"] else [],
+        "colors": criteria["colors"] if criteria["colors"] else [],
+        "family": criteria["family"] if criteria["family"] else [],
+        "jobs": criteria["employment"] if criteria["employment"] else [],
+        "music": criteria["music"] if criteria["music"] else [],
+        "other": criteria["other"] if criteria["other"] else [],
+        "pets": criteria["pets"] if criteria["pets"] else [],
+        "phone_numbers": criteria["phone"] if criteria["phone"] else [],
+        "schools": criteria["schools"] if criteria["schools"] else [],
+        "sports": criteria["sports"] if criteria["sports"] else [],
+        "states": criteria["states"] if criteria["states"] else [],
+        "streets": criteria["street_numbers"] if criteria["streets"] else [],
+        "zip_codes": criteria["zip_codes"] if criteria["zip_codes"] else []
+    }
 
     # permute lists for base passwords using function mangle
-    collections = [
-        pets, family, sports,
-        schools, cities, music,
-        states, jobs, streets,
-        colors, other
+    to_mangle = [
+        collections["pets"],
+        collections["family"],
+        collections["sports"],
+        collections["schools"],
+        collections["cities"],
+        collections["music"],
+        collections["states"],
+        collections["jobs"],
+        collections["streets"],
+        collections["colors"],
+        collections["other"]
     ]
-    collections = [mangle(x) for x in collections]
+    mangled = [mangle(x) for x in to_mangle]
 
     # permute lists using category specific functions
     phones = []
@@ -316,14 +325,14 @@ def permute_criteria(criteria):
         years.extend(permute_year(year))
 
     zips = []
-    for zip_code in zip_codes:
+    for zip_code in collections["zip_codes"]:
         zips.extend(permute_zip_code(zip_code))
 
     street_nums = []
     for street_number in criteria["street_numbers"]:
         street_nums.extend(perm_st_num(street_number))
 
-    return collections, other, phone_numbers, \
+    return mangled, collections["other"], collections["phone_numbers"], \
         phones, street_nums, years, zips
 
 
