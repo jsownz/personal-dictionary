@@ -4,7 +4,7 @@
     Author: MC_GitFlow
     Last Modified: 2016-07-26
     Python 3
-    r0.3.1-2016.07.25(b)
+    r0.3.1-2016.07.26(b)
 """
 
 import mangler
