@@ -5,20 +5,6 @@
     Last Modified: 2016-07-25
     Python3.5 using PyCharm
     r0.3.1-2016.07.25(b)
-
-    -----
-    Usage
-    -----
-    optional arguments:
-      -h, --help            show this help message and exit
-      --min MIN             Minimum password length
-      --max MAX             Maximum password length
-      -n NUM, --num NUM     Number of passwords to be generated
-      -f FILE, --file FILE  Criteria file (JSON)
-      -i INPUT, --input INPUT
-                            Wordlist to mix with results generated from
-                            criteria
-      -o OUT, --out OUT     Generated password file
 """
 
 import mangler
