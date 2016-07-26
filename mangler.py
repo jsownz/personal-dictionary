@@ -270,8 +270,10 @@ def perm_st_num(street_number):
         :rtype: list
     """
 
-    return [street_number, reverse_string(street_number)] + \
-        number_swap(street_number)
+    return [
+        street_number,
+        reverse_string(street_number)
+    ] + number_swap(street_number)
 
 
 def permute_criteria(criteria):
@@ -281,17 +283,19 @@ def permute_criteria(criteria):
         :param criteria: data from JSON file template
         :return: various collections of permuted data from JSON template
     """
-    pets = criteria["pets"] if criteria["pets"] else []
-    family = criteria["family"] if criteria["family"] else []
-    sports = criteria["sports"] if criteria["sports"] else []
-    schools = criteria["schools"] if criteria["schools"] else []
     cities = criteria["cities"] if criteria["cities"] else []
-    music = criteria["music"] if criteria["music"] else []
-    states = criteria["states"] if criteria["states"] else []
-    jobs = criteria["employment"] if criteria["employment"] else []
-    streets = criteria["street_numbers"] if criteria["streets"] else []
     colors = criteria["colors"] if criteria["colors"] else []
+    family = criteria["family"] if criteria["family"] else []
+    jobs = criteria["employment"] if criteria["employment"] else []
+    music = criteria["music"] if criteria["music"] else []
     other = criteria["other"] if criteria["other"] else []
+    pets = criteria["pets"] if criteria["pets"] else []
+    phone_numbers = criteria["phone"] if criteria["phone"] else []
+    schools = criteria["schools"] if criteria["schools"] else []
+    sports = criteria["sports"] if criteria["sports"] else []
+    states = criteria["states"] if criteria["states"] else []
+    streets = criteria["street_numbers"] if criteria["streets"] else []
+    zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
 
     # permute lists for base passwords using function mangle
     collections = [
@@ -302,10 +306,7 @@ def permute_criteria(criteria):
     ]
     collections = [mangle(x) for x in collections]
 
-    # populate and permute lists that don't use function 'mangle'
-    zip_codes = criteria["zip_codes"] if criteria["zip_codes"] else []
-    phone_numbers = criteria["phone"] if criteria["phone"] else []
-
+    # permute lists using category specific functions
     phones = []
     for phone in criteria["phone"]:
         phones.extend(permute_phone(phone))
