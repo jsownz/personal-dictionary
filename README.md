@@ -8,6 +8,8 @@ Manifest Dictionary quickly generates an intelligent wordlist using permutations
 
 Existing wordlists can be imported and combined during generation of personalized lists.
 
+Included lists are from: https://github.com/MC-GitFlow/SecLists
+
 This is an open project and all developers are welcome to join.
 
 For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
