@@ -319,15 +319,12 @@ def permute_criteria(criteria):
     phones = []
     for phone in criteria["phone"]:
         phones.extend(permute_phone(phone))
-
     years = []
     for year in criteria["years"]:
         years.extend(permute_year(year))
-
     zips = []
     for zip_code in collections["zip_codes"]:
         zips.extend(permute_zip_code(zip_code))
-
     street_nums = []
     for street_number in criteria["street_numbers"]:
         street_nums.extend(perm_st_num(street_number))
