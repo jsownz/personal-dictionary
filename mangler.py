@@ -339,17 +339,17 @@ def permute_criteria(criteria):
 
     # permute lists for base passwords using function mangle
     to_mangle = [
-        collections["cities"],
-        collections["colors"],
-        collections["family"],
-        collections["jobs"],
-        collections["music"],
-        collections["other"],
         collections["pets"],
-        collections["schools"],
+        collections["family"],
         collections["sports"],
+        collections["schools"],
+        collections["cities"],
+        collections["music"],
         collections["states"],
-        collections["streets"]
+        collections["jobs"],
+        collections["streets"],
+        collections["colors"],
+        collections["other"]
     ]
     mangled = [mangle(x) for x in to_mangle]
 
