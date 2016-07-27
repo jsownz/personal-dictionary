@@ -166,16 +166,16 @@ def alternate_case(term, first=True):
         :return: string 'term' with letters alternating upper/lower case
         :rtype: string
     """
-    new_string = ""
+    new_string = []
     for letter in term:
         if first:
-            new_string += letter.upper()
+            new_string.append(letter.upper())
         else:
-            new_string += letter.lower()
+            new_string.append(letter.lower())
         if letter != " ":
             first = not first
 
-    return new_string
+    return "".join(new_string)
 
 
 def mangle(target_list):
