@@ -18,8 +18,8 @@
       - perm_st_num(street_number)
       - permute_criteria(criteria)
       - permute_collections(collections)
-      - permute_other(combinations, other)
-      - add_suffixes(combinations, phone_numbers, street_nums, years, zips)
+      - permute_other(base, other)
+      - add_suffixes(base, phone_numbers, street_nums, years, zips)
       - consolidate_final(word_groups)
       - term_types(collection)
       - calculate_ord(term)
@@ -393,27 +393,27 @@ def permute_collections(collections):
     return combinations
 
 
-def permute_other(combinations, other):
+def permute_other(base, other):
     """
         Permute category 'other' against itself
 
-        :param combinations: list of word permutations
+        :param base: list of word permutations
         :param other: list of miscellaneous info to permute against itself
     """
     length = len(other)
     marker = 0
     while marker < length:
         for item in other[marker:]:
-            combinations.extend(
+            base.extend(
                 [other[marker] + item, item + other[marker]])
         marker += 1
 
 
-def add_suffixes(combinations, phone_numbers, street_nums, years, zips):
+def add_suffixes(base, phone_numbers, street_nums, years, zips):
     """
-        Add suffix of additional common variations to existing combinations
+        Add suffix of additional common variations to existing base
 
-        :param combinations: current collection of words
+        :param base: current collection of words
         :param phone_numbers: permutations of phones
         :param street_nums: permutations of street numbers
         :param years: permutations of years
@@ -422,7 +422,7 @@ def add_suffixes(combinations, phone_numbers, street_nums, years, zips):
         :rtype: list
     """
     with_suffix = []
-    for word in combinations:
+    for word in base:
         # add generic numeric and special chars
         with_suffix.extend([
             str(word) + "!",
