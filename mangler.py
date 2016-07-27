@@ -38,7 +38,11 @@ import re
 
 
 def store_cli_args():
-    """ parse CLI arguments and assign defaults when needed """
+    """
+        parse CLI arguments and assign defaults when needed
+        :return: arguments passed to ManifestDictionary via CLI & defaults
+        :rtype: dictionary
+    """
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +
         "permutations of terms.\nData imported from populated " +
