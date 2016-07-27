@@ -71,8 +71,8 @@ def main():
               "take a while depending on the amount of data.\n")
 
         # create permutations of individual categories
-        collections, other, phone_numbers, phones, street_nums, years, zips = \
-            mangler.permute_criteria(criteria)
+        collections, other, phone_numbers, phones, \
+            street_nums, years, zips = mangler.permute_criteria(criteria)
 
         # combine permutations of multiple categories
         combinations = mangler.permute_collections(collections)
