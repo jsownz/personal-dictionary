@@ -1,7 +1,7 @@
 """
     mangler.py
     Python 3
-    Last Modified: 2016-07-26
+    Last Modified: 2016-07-27
 
     Functions:
       - store_cli_args()
@@ -151,7 +151,6 @@ def permute_casing(term):
         :return: list of 'term' with variations using 2 common casing styles
         :rtype: list
     """
-
     return [term.lower(), term.capitalize()]
 
 
@@ -244,7 +243,6 @@ def permute_phone(phone):
         :return: list of 'phone' number permutations
         :rtype: list
     """
-
     return [
         phone,
         phone[3:],
@@ -264,7 +262,6 @@ def permute_year(year):
         :return: list of 'year' using 4 common styles
         :rtype: list
     """
-
     return [
         year[2:],
         year,
@@ -281,7 +278,6 @@ def reverse_string(term):
         :return: string of 'term' after being reversed
         :rtype: string
     """
-
     return term[::-1]
 
 
@@ -294,7 +290,6 @@ def permute_zip_code(zip_code):
         :return: list of 3 common permutation styles for zip codes
         :rtype: list
     """
-
     return [reverse_string(zip_code)] + number_swap(zip_code) + [zip_code]
 
 
@@ -307,7 +302,6 @@ def perm_st_num(street_number):
         :return: list of 'street_number' with 3 common permutation styles
         :rtype: list
     """
-
     return [
         street_number,
         reverse_string(street_number)
@@ -521,7 +515,6 @@ def calculate_ord(term):
         :return: summation of 'ord' function called on each char
         :rtype: integer
     """
-
     return sum([ord(x) for x in term])
 
 
@@ -534,7 +527,6 @@ def compare_num_of_chars(term):
         :return: length of argument term
         :rtype: integer
     """
-
     return len(term)
 
 
@@ -596,7 +588,6 @@ def read_input_list(args, max_length, min_length):
                         input_terms.append(line)
         except FileNotFoundError:
             print("Unable to find: " + args.input + ". Finishing...")
-
     return input_terms
 
 
