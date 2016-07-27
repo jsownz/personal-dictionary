@@ -617,14 +617,13 @@ def generate_dictionary(input_terms, output, pw_count, results):
             if count == pw_count:
                 break
             if input_terms:
-                try:
-                    if count % 2 and lines_left:
+                if lines_left:
+                    try:
                         my_file.write(next(pws))
-                    else:
                         my_file.write(word + "\n")
-                except StopIteration:
-                    lines_left = False
-                    continue
+                    except StopIteration:
+                        lines_left = False
+                        continue
             else:
                 my_file.write(word + "\n")
             count += 1
