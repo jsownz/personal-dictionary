@@ -611,17 +611,16 @@ def generate_dictionary(input_terms, output, pw_count, results):
     """
     count = 0
     pws = iter(input_terms) if input_terms else input_terms
-    lines_left = True
     with open(output, "w+") as my_file:
         for word in results:
             if count == pw_count:
                 break
-            if input_terms and lines_left:
+            if input_terms:
                 try:
                     my_file.write(next(pws))
                     my_file.write(word + "\n")
                 except StopIteration:
-                    lines_left = False
+                    input_terms = False
                     continue
             else:
                 my_file.write(word + "\n")
