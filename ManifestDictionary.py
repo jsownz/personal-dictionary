@@ -9,6 +9,8 @@
     Generate a dictionary list as a text file using permutations of terms
     imported from a JSON file. Specify maximum number of passwords, min and
     max length of passwords, and combine with existing 3rd party lists.
+    Terms are intended to be accumulated during information gathering phase of
+    a penetration test.
 """
 
 import mangler
@@ -53,8 +55,7 @@ def save_dictionary(user_params, results):
 def main():
     """
         Generate a dictionary list as a text file using permutations of terms
-        imported from a JSON file. Terms are intended to be accumulated during
-        information gathering phase of a penetration test.
+        imported from a JSON file.
     """
 
     print("\n*X* Manifest Dictionary *X* [Personalized Generator]\n")
