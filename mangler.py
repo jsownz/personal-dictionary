@@ -608,8 +608,8 @@ def generate_dictionary(input_terms, output, pw_count, results):
                 break
             if input_terms:
                 try:
-                    my_file.write(next(pws))
                     my_file.write(word + "\n")
+                    my_file.write(next(pws))
                 except StopIteration:
                     input_terms = False
                     continue
