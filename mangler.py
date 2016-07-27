@@ -40,6 +40,7 @@ import re
 def store_cli_args():
     """
         parse CLI arguments and assign defaults when needed
+
         :return: arguments passed to ManifestDictionary via CLI & defaults
         :rtype: dictionary
     """
