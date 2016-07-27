@@ -1,6 +1,6 @@
 """
     mangler.py
-    Python3.5
+    Python 3
     Last Modified: 2016-07-26
     Functions for ManifestDictionary.py
 """
