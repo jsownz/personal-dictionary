@@ -606,13 +606,12 @@ def generate_dictionary(input_terms, output, pw_count, results):
         for word in results:
             if count == pw_count:
                 break
+            my_file.write(word + "\n")
+            count += 1
             if input_terms:
                 try:
-                    my_file.write(word + "\n")
                     my_file.write(next(pws))
+                    count += 1
                 except StopIteration:
                     input_terms = False
                     continue
-            else:
-                my_file.write(word + "\n")
-            count += 1
