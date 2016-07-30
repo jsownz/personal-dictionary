@@ -52,4 +52,4 @@ packages/*
 deployment-config.json
 
 # Compiled
-Mangler.pyc
+*.pyc
