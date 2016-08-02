@@ -97,7 +97,7 @@ def parse_json(path):
         data = handle.read()
         opened = json.loads(data)
     except ValueError as val_e:
-        exit(u"Invalid formatting in JSON file: {0:s}".format(val_e.__str__()))
+        exit(u"Invalid formatting in JSON file: {0:s}".format(str(val_e)))
     else:
         return opened
     finally:
