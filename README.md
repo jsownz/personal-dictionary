@@ -1,5 +1,7 @@
 # Manifest Dictionary
 
+**For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.**
+
 A brute force attack attempts to determine a secret by trying every possible combination. A dictionary attack is typically a guessing attack which uses a pre-compiled list of information. Rather than trying every option, it only tries combinations which are likely to work.
 
 In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information (e.g.: pet names, sports, family members, etc).
@@ -11,8 +13,6 @@ Existing wordlists can be imported and combined during generation of personalize
 Included lists are from: https://github.com/MC-GitFlow/SecLists
 
 This is an open project and all developers are welcome to join.
-
-For authorized testing only. The biggest takeaway is perhaps what to not choose as a password.
 
 ## Usage
 
