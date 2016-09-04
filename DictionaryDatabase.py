@@ -15,6 +15,7 @@
         > reset_database(self)
 """
 
+
 class DictionaryDatabase(object):
 
     """ Manage dictionary of terms mapped by categories """
