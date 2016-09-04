@@ -1,8 +1,8 @@
 """
     DictionaryDatabase.py
-    Author: John Vardanian
+    Author: MC_GitFlow
     Python3
-    Last Modified: 2016-09-04 11:59:31 AM CDT
+    Last Modified: 2016-09-04 12:03:27 PM CDT
 
     Class methods:
         > add_category(self, category_name)
