@@ -2,7 +2,7 @@
     DictionaryDatabase.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-09-07 08:58:29 AM CDT
+    Last Modified: 2016-09-07 09:42:04 AM CDT
 
     Class methods:
         > add_category(self, category_name)
@@ -11,6 +11,7 @@
         > get_all_words(self)
         > get_category_names(self)
         > clear_category(self, category_name)
+        > remove_term(self, category_name, term)
         > clear_all_categories(self)
         > reset_database(self)
 """
