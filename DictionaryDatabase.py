@@ -2,7 +2,7 @@
     DictionaryDatabase.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-09-04 12:03:27 PM CDT
+    Last Modified: 2016-09-07 08:58:29 AM CDT
 
     Class methods:
         > add_category(self, category_name)
@@ -96,6 +96,18 @@ class DictionaryDatabase(object):
             return True
         return False
 
+    def remove_term(self, category_name, term):
+        """
+            Remove a term from specified category
+            :param category_name: name of category to prune
+            :param term: term to prune
+            :return: true on success false if not found
+        """
+        if self._categories[category_name]:
+            self._categories[category_name].remove(term)
+            return True
+        return False
+
     def clear_all_categories(self):
         """
             Remove all words present in each category
@@ -112,4 +124,4 @@ class DictionaryDatabase(object):
         """
             Remove all categories and words
         """
-        self._categories = {}
+        self._categories.clear()
