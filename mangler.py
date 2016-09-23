@@ -1,7 +1,7 @@
 """
     mangler.py
     Python 3
-    Last Modified: 2016-07-27
+    Last Modified: 2016-09-22
 
     Functions:
       - store_cli_args()
@@ -246,10 +246,10 @@ def permute_phone(phone):
     return [
         phone,
         phone[3:],
-        phone[0:3],
+        phone[:3],
         phone[6:],
         reverse_string(phone),
-        reverse_string(phone[0:3])
+        reverse_string(phone[:3])
     ] + number_swap(phone)
 
 
@@ -441,7 +441,7 @@ def add_suffixes(base, phone_numbers, street_nums, years, zips):
 
         # append area code from phone numbers to base words
         for phone in phone_numbers:
-            with_suffix.append(word + phone[0:3])
+            with_suffix.append(word + phone[:3])
 
     return with_suffix
 
