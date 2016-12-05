@@ -102,7 +102,7 @@ def main():
     main_menu = "\n[+] Menu - *X* Manifest Dictionary *X* " \
                 "[Personalized Generator]\n\n" \
                 "1) Show Categories\n" \
-                "2) Add Categories\n" \
+                "2) Add Category\n" \
                 "3) Select Category\n" \
                 "4) Add Word to Category\n" \
                 "5) Remove Word from Category\n" \
