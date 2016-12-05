@@ -130,7 +130,7 @@ def main():
             elif selection == 6:
                 print(word_list.get_words_in_category(active_category))
             elif selection == 7:
-                print("Interactive mode still in development.")
+                print("Coming soon.")
             elif selection == 99:
                 print("Exiting...")
                 break

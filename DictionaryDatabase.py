@@ -2,7 +2,7 @@
     DictionaryDatabase.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-12-04 17:58:59 CDT
+    Last Modified: 2016-12-05
 
     Class methods:
         > add_category(self, category_name)
