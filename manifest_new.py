@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-05 10:48:57 CDT
+    Last Modified: 2016-12-05 11:16:27 CDT
     Python 3
 """
 
@@ -30,27 +30,43 @@ def add_category():
         :return: void
     """
     new_category = input("Enter category name: ").strip()
-    if word_list.add_category(new_category):
+    category_name = new_category.strip().replace(" ", "_").lower()
+    if word_list.add_category(category_name):
         print("Added category " + new_category)
-    else:
-        print("Category " + new_category + " already present.")
+        return True
+    return False
 
 
 def select_category():
     """
         Choose active category.
-        :return: void
+        :return: bool|string
     """
     show_categories()
     category_selection = input("Please enter a category name: ")
     try:
         selection = str(category_selection.strip().replace(" ", "_").lower())
-        if not word_list.get_words_in_category(selection):
+        if selection not in word_list.get_category_names():
             print("Category not in database.")
+            return False
         else:
             print("Selected category: " + category_selection)
+            return selection
     except ValueError:
         print("Please enter the name of a category.")
+
+
+def add_word(active_category):
+    """
+        Add word to specified category.
+        :param active_category: category to add new word to.
+    """
+    if active_category:
+        new_word = input(
+            "Add word to category " + str(active_category) + ": ")
+        word_list.add_word(str(active_category), new_word)
+    else:
+        print("Please select a category.")
 
 
 def main():
@@ -64,13 +80,17 @@ def main():
         for term in criteria[category]:
             word_list.add_word(category, term)
 
-    main_menu = "[+] Select an option\n\n" \
+    active_category = False
+    main_menu = "\n[+] Main Menu - *X* Manifest Dictionary *X* " \
+                "[Personalized Generator]\n\n" \
                 "1) Show Categories\n" \
                 "2) Add Categories\n" \
                 "3) Select Category\n" \
-                "4) Add Dictionary\n" \
-                "5) Quit\n" \
-                "\nSelection: "
+                "4) Add Word to Category\n" \
+                "5) Show Words in Category\n" \
+                "6) Add Word List\n" \
+                "99) Quit\n" \
+                "\nOption: "
 
     while True:
         try:
@@ -79,12 +99,17 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                add_category()
+                if not add_category():
+                    print("Category already exists.")
             elif selection == 3:
-                select_category()
+                active_category = select_category()
             elif selection == 4:
-                pass
+                add_word(active_category)
             elif selection == 5:
+                print(word_list.get_words_in_category(active_category))
+            elif selection == 6:
+                pass
+            elif selection == 99:
                 print("Exiting...")
                 break
             else:
