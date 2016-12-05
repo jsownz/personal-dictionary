@@ -16,11 +16,30 @@ word_list = DictionaryDatabase.DictionaryDatabase()
 
 
 def show_categories():
+    """
+        Display current categories in database.
+        :return: void
+    """
     for item in word_list.get_category_names():
         print(item.replace("_", " ").title())
 
 
+def add_category():
+    """
+        Add category to database of words.
+        :return: void
+    """
+    new_category = input("Enter category name: ").strip()
+    if word_list.add_category(new_category):
+        print("Added category " + new_category)
+    else:
+        print("Category " + new_category + " already present.")
+
+
 def main():
+    """
+        Begin interactive menu for Manifest Dictionary
+    """
     for item in categories:
         word_list.add_category(item)
 
@@ -43,7 +62,7 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                pass
+                add_category()
             elif selection == 3:
                 pass
             elif selection == 4:
