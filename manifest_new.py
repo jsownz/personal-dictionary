@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-05 11:16:27 CDT
+    Last Modified: 2016-12-05 11:18:02 CDT
     Python 3
 """
 
@@ -88,7 +88,6 @@ def main():
                 "3) Select Category\n" \
                 "4) Add Word to Category\n" \
                 "5) Show Words in Category\n" \
-                "6) Add Word List\n" \
                 "99) Quit\n" \
                 "\nOption: "
 
@@ -107,8 +106,6 @@ def main():
                 add_word(active_category)
             elif selection == 5:
                 print(word_list.get_words_in_category(active_category))
-            elif selection == 6:
-                pass
             elif selection == 99:
                 print("Exiting...")
                 break
