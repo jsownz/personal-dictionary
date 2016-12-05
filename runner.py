@@ -36,13 +36,15 @@ def main():
             selection = int(input(main_menu))
 
             if selection == 1:
-                print(word_list.get_category_names())
+                # display all categories currently in database
+                for item in word_list.get_category_names():
+                    print(item.replace("_", " ").title())
             elif selection == 2:
-                print("Pass")
+                pass
             elif selection == 3:
-                print("Pass")
+                pass
             elif selection == 4:
-                print("Pass")
+                pass
             elif selection == 5:
                 break
             else:
