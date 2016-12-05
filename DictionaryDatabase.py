@@ -19,7 +19,7 @@
 
 class DictionaryDatabase(object):
     """
-    Manage dictionary of terms mapped by categories
+        Manage dictionary of terms mapped by categories
     """
 
     def __init__(self):
