@@ -82,7 +82,7 @@ def main():
             word_list.add_word(category, term)
 
     active_category = False
-    main_menu = "\n[+] Main Menu - *X* Manifest Dictionary *X* " \
+    main_menu = "\n[+] Menu - *X* Manifest Dictionary *X* " \
                 "[Personalized Generator]\n\n" \
                 "1) Show Categories\n" \
                 "2) Add Categories\n" \
@@ -95,8 +95,10 @@ def main():
 
     while True:
         try:
-            selection = int(input(main_menu))
-
+            selection = int(input(main_menu).strip())
+        except ValueError:
+            print("Please enter a numeric value.")
+        else:
             if selection == 1:
                 show_categories()
             elif selection == 2:
@@ -114,12 +116,6 @@ def main():
                 break
             else:
                 print("Please enter a valid menu number.")
-
-        except ValueError:
-            print("Please enter a numeric value.")
-
-        else:
-            pass
         finally:
             pass
 
