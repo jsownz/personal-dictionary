@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-04
+    Last Modified: 2016-12-05 10:48:57 CDT
     Python 3
 """
 
@@ -36,6 +36,23 @@ def add_category():
         print("Category " + new_category + " already present.")
 
 
+def select_category():
+    """
+        Choose active category.
+        :return: void
+    """
+    show_categories()
+    category_selection = input("Please enter a category name: ")
+    try:
+        selection = str(category_selection.strip().replace(" ", "_").lower())
+        if not word_list.get_words_in_category(selection):
+            print("Category not in database.")
+        else:
+            print("Selected category: " + category_selection)
+    except ValueError:
+        print("Please enter the name of a category.")
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -64,7 +81,7 @@ def main():
             elif selection == 2:
                 add_category()
             elif selection == 3:
-                pass
+                select_category()
             elif selection == 4:
                 pass
             elif selection == 5:
@@ -75,6 +92,11 @@ def main():
 
         except ValueError:
             print("Please enter a numeric value.")
+
+        else:
+            pass
+        finally:
+            pass
 
 
 if __name__ == '__main__':
