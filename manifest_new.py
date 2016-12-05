@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-05 11:18:02 CDT
+    Last Modified: 2016-12-05
     Python 3
 """
 
@@ -27,13 +27,14 @@ def show_categories():
 def add_category():
     """
         Add category to database of words.
-        :return: void
+        :return: bool
     """
     new_category = input("Enter category name: ").strip()
     category_name = new_category.strip().replace(" ", "_").lower()
     if word_list.add_category(category_name):
         print("Added category " + new_category)
         return True
+    print("Category already exists.")
     return False
 
 
@@ -88,6 +89,7 @@ def main():
                 "3) Select Category\n" \
                 "4) Add Word to Category\n" \
                 "5) Show Words in Category\n" \
+                "6) Create Personalized Word List\n" \
                 "99) Quit\n" \
                 "\nOption: "
 
@@ -98,14 +100,15 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                if not add_category():
-                    print("Category already exists.")
+                add_category()
             elif selection == 3:
                 active_category = select_category()
             elif selection == 4:
                 add_word(active_category)
             elif selection == 5:
                 print(word_list.get_words_in_category(active_category))
+            elif selection == 6:
+                print("Interactive mode still in development.")
             elif selection == 99:
                 print("Exiting...")
                 break
