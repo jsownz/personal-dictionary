@@ -87,6 +87,17 @@ def remove_word(active_category):
         print("Please select a category.")
 
 
+def show_category_words(active_category):
+    """
+        Display words within selected category.
+        :param active_category: category to display words from
+    """
+    if active_category:
+        print(word_list.get_words_in_category(active_category))
+    else:
+        print("No category has been selected.")
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -128,7 +139,7 @@ def main():
             elif selection == 5:
                 remove_word(active_category)
             elif selection == 6:
-                print(word_list.get_words_in_category(active_category))
+                show_category_words(active_category)
             elif selection == 7:
                 print("Coming soon.")
             elif selection == 99:
