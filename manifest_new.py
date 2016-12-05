@@ -10,7 +10,7 @@ import DictionaryDatabase
 import mangler
 
 criteria = mangler.parse_json("config.json")
-categories = [item for item in criteria if item[0] != '_']
+categories = [item for item in criteria if item[0] != "_"]
 categories.sort()
 word_list = DictionaryDatabase.DictionaryDatabase()
 
@@ -41,7 +41,7 @@ def add_category():
 def select_category():
     """
         Choose active category.
-        :return: bool|string
+        :return: false if category not in database, otherwise key for category
     """
     show_categories()
     category_selection = input("Please enter a category name: ")
@@ -70,6 +70,23 @@ def add_word(active_category):
         print("Please select a category.")
 
 
+def remove_word(active_category):
+    """
+        Remove word from specified category
+        :param active_category: category to remove term from
+    """
+    if active_category:
+        new_word = input("Enter word to remove: ")
+        if word_list.remove_term(active_category, new_word):
+            print(new_word + " removed from category \""
+                  + active_category + "\"")
+        else:
+            print("Word \"" + new_word + "\" not found in category "
+                  + active_category)
+    else:
+        print("Please select a category.")
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -88,8 +105,9 @@ def main():
                 "2) Add Categories\n" \
                 "3) Select Category\n" \
                 "4) Add Word to Category\n" \
-                "5) Show Words in Category\n" \
-                "6) Create Personalized Word List\n" \
+                "5) Remove Word from Category\n" \
+                "6) Show Words in Category\n" \
+                "7) Create Personalized Word List\n" \
                 "99) Quit\n" \
                 "\nOption: "
 
@@ -108,8 +126,10 @@ def main():
             elif selection == 4:
                 add_word(active_category)
             elif selection == 5:
-                print(word_list.get_words_in_category(active_category))
+                remove_word(active_category)
             elif selection == 6:
+                print(word_list.get_words_in_category(active_category))
+            elif selection == 7:
                 print("Interactive mode still in development.")
             elif selection == 99:
                 print("Exiting...")

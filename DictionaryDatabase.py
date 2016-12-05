@@ -110,8 +110,9 @@ class DictionaryDatabase(object):
             :return: True on success; False if category not found
         """
         if self._categories[category_name]:
-            self._categories[category_name].remove(term)
-            return True
+            if term in self._categories[category_name]:
+                self._categories[category_name].remove(term)
+                return True
         return False
 
     def clear_all_categories(self):
