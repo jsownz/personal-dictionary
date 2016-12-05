@@ -15,6 +15,11 @@ categories.sort()
 word_list = DictionaryDatabase.DictionaryDatabase()
 
 
+def show_categories():
+    for item in word_list.get_category_names():
+        print(item.replace("_", " ").title())
+
+
 def main():
     for item in categories:
         word_list.add_category(item)
@@ -36,9 +41,7 @@ def main():
             selection = int(input(main_menu))
 
             if selection == 1:
-                # display all categories currently in database
-                for item in word_list.get_category_names():
-                    print(item.replace("_", " ").title())
+                show_categories()
             elif selection == 2:
                 pass
             elif selection == 3:
@@ -46,6 +49,7 @@ def main():
             elif selection == 4:
                 pass
             elif selection == 5:
+                print("Exiting...")
                 break
             else:
                 print("Please enter a valid menu number.")
