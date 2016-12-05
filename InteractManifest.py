@@ -132,12 +132,11 @@ def main():
             elif selection == 7:
                 print("Coming soon.")
             elif selection == 99:
-                print("Exiting...")
                 break
             else:
                 print("Please enter a valid menu number.")
-        finally:
-            pass
+
+    print("Exiting...")
 
 
 if __name__ == '__main__':
