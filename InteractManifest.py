@@ -51,13 +51,13 @@ def select_category():
     try:
         selection = str(category_selection.strip().replace(" ", "_").lower())
         if selection not in word_list.get_category_names():
-            print("Category not in database.")
+            print("Error: category not in database.")
             return False
         else:
             print("Selected category: " + category_selection)
             return selection
     except ValueError:
-        print("Please enter the name of a category.")
+        print("Error: lease enter the name of a category.")
 
 
 def add_word(active_category):
@@ -70,7 +70,7 @@ def add_word(active_category):
             "Add word to category " + str(active_category) + ": ")
         word_list.add_word(str(active_category), new_word)
     else:
-        print("Please select a category.")
+        print("Error: please select a category.")
 
 
 def remove_word(active_category):
@@ -84,10 +84,10 @@ def remove_word(active_category):
             print(new_word + " removed from category \""
                   + active_category + "\"")
         else:
-            print("Word \"" + new_word + "\" not found in category "
+            print("Error: word \"" + new_word + "\" not found in category "
                   + active_category)
     else:
-        print("Please select a category.")
+        print("Error: please select a category.")
 
 
 def show_category_words(active_category):
@@ -98,7 +98,14 @@ def show_category_words(active_category):
     if active_category:
         print(word_list.get_words_in_category(active_category))
     else:
-        print("No category has been selected.")
+        print("Error: no category has been selected.")
+
+
+def add_list():
+    """
+        Prompt for path to 3rd party word list for import
+    """
+    return input("Enter path to word list: ").strip()
 
 
 def main():
@@ -113,15 +120,17 @@ def main():
             word_list.add_word(category, term)
 
     active_category = False
+    # noinspection PyUnusedLocal
+    additional_list = False
     main_menu = "\n[+] Menu - *X* Manifest Dictionary *X* " \
                 "[Personalized Generator]\n\n" \
                 "1) Show Categories\n" \
-                "2) Add Category\n" \
-                "3) Select Category\n" \
-                "4) Add Word to Category\n" \
-                "5) Remove Word from Category\n" \
-                "6) Show Words in Category\n" \
-                "7) Create Personalized Word List\n" \
+                "2) Select Category\n" \
+                "3) Add Word to Category\n" \
+                "4) Remove Word from Category\n" \
+                "5) Show Words in Category\n" \
+                "6) Import Existing List\n" \
+                "6) Create Personalized Word List\n" \
                 "99) Quit\n" \
                 "\nOption: "
 
@@ -129,26 +138,27 @@ def main():
         try:
             selection = int(input(main_menu).strip())
         except ValueError:
-            print("Please enter a numeric value.")
+            print("Error: please enter a numeric value.")
         else:
             if selection == 1:
                 show_categories()
             elif selection == 2:
                 add_category()
             elif selection == 3:
-                active_category = select_category()
-            elif selection == 4:
                 add_word(active_category)
-            elif selection == 5:
+            elif selection == 4:
                 remove_word(active_category)
-            elif selection == 6:
+            elif selection == 5:
                 show_category_words(active_category)
+            elif selection == 6:
+                additional_list = add_list()
+                print(additional_list)
             elif selection == 7:
                 print("Coming soon.")
             elif selection == 99:
                 break
             else:
-                print("Please enter a valid menu number.")
+                print("Error: please enter a valid menu number.")
 
     print("Exiting...")
 
