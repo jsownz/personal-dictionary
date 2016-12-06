@@ -21,7 +21,6 @@ word_list = DictionaryDatabase.DictionaryDatabase()
 def show_categories():
     """
         Display current categories in database.
-        :return: void
     """
     for item in word_list.get_category_names():
         print(item.replace("_", " ").title())
@@ -84,8 +83,8 @@ def remove_word(active_category):
             print(new_word + " removed from category \""
                   + active_category + "\"")
         else:
-            print("Error: word \"" + new_word + "\" not found in category "
-                  + active_category)
+            print("Error: word \"" + new_word + "\" not found in category \""
+                  + active_category + "\"")
     else:
         print("Error: please select a category.")
 
@@ -130,7 +129,7 @@ def main():
                 "4) Remove Word from Category\n" \
                 "5) Show Words in Category\n" \
                 "6) Import Existing List\n" \
-                "6) Create Personalized Word List\n" \
+                "7) Create Personalized Word List\n" \
                 "99) Quit\n" \
                 "\nOption: "
 
