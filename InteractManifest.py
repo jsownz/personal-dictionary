@@ -4,6 +4,9 @@
     Author: MC_GitFlow
     Last Modified: 2016-12-05
     Python 3
+
+    Interactive menu to expand upon functionality of Manifest Dictionary
+    application; makes use of DictionaryDatabase module for book keeping.
 """
 
 import DictionaryDatabase
@@ -27,7 +30,7 @@ def show_categories():
 def add_category():
     """
         Add category to database of words.
-        :return: bool
+        :return: true on success; false if category already exists
     """
     new_category = input("Enter category name: ").strip()
     category_name = new_category.strip().replace(" ", "_").lower()
