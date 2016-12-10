@@ -28,7 +28,8 @@ def show_categories():
     for item in word_list.get_category_names():
         temp_count = len(word_list.get_words_in_category(item))
         full_count += temp_count
-        print(item.replace("_", " ").title() + " (" + str(temp_count) + ")")
+        print(item.replace("_", " ").title() + " (" + str(temp_count) +
+              " items)")
     print("\n" + str(full_count) + " total entries.")
 
 
@@ -51,16 +52,19 @@ def select_category():
         :return: false if category not in database, otherwise key for category
     """
     show_categories()
-    cat_select = input("Please enter a category name: ")
+    cat_select = input("Please enter a category name (empty to cancel): ")
     try:
-        selection = str(cat_select.strip().replace(" ", "_").lower())
-        if selection not in word_list.get_category_names():
-            print("\033[1;31mError: category not in database.\033[0m")
-            return False
+        if cat_select.strip() == "":
+            print("\033[94mSelect category cancelled.\033[0m")
         else:
-            cat_select = cat_select.replace("_", " ").title()
-            print("\033[94mSelected category: " + cat_select + "\033[0m")
-            return selection
+            selection = str(cat_select.strip().replace(" ", "_").lower())
+            if selection not in word_list.get_category_names():
+                print("\033[1;31mError: category not in database.\033[0m")
+                return False
+            else:
+                cat_select = cat_select.replace("_", " ").title()
+                print("\033[94mSelected category: " + cat_select + "\033[0m")
+                return selection
     except ValueError:
         print("\033[1;31mError: please enter the name of a category.\033[0m")
 
