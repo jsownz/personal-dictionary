@@ -54,7 +54,7 @@ def select_category():
                   "\033[0m")
             return selection
     except ValueError:
-        print("\033[1;31mError: lease enter the name of a category.\033[0m")
+        print("\033[1;31mError: please enter the name of a category.\033[0m")
 
 
 def add_word(active_category):
