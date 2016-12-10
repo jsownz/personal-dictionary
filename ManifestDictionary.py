@@ -112,6 +112,7 @@ def run_script(additional_list):
         run the ManifestDictionary script with the interactive modifications
         :param additional_list: third party list to combine if specified
     """
+    # todo: add type checking / validation
     cfg_file = "config.json"
     with open(cfg_file, 'w') as outfile:
         json.dump(word_list.export_database(), outfile)
