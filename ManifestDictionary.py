@@ -123,7 +123,7 @@ def run_script(additional_list):
     num_passwd = input("Enter max number of passwords: ")
     out_name = input("Enter name for output file (include extension): ")
     if additional_list:
-        if input("Combine 3rd party list? [y/n]").strip() == "y":
+        if input("Combine 3rd party list? [y/n]").strip().lower() == "y":
             use_list = True
     execution_string = "python3 manifest_core.py"
     execution_string += " -f " + cfg_file
@@ -192,6 +192,7 @@ def main():
                 additional_list = add_list()
             elif selection == 7:
                 run_script(additional_list)
+                break
             elif selection == 99:
                 break
             else:
