@@ -4,7 +4,7 @@
 
 A brute force attack attempts to determine a secret by trying every possible combination. A dictionary attack is typically a guessing attack which uses a pre-compiled list of information. Rather than trying every option, it only tries combinations which are likely to work.
 
-In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information (e.g.: pet names, sports, family members, etc).
+In current times most brute force attacks against sufficiently chaotic passwords are unlikely to be successful within a reasonable time frame. A dictionary attack on the other hand retains its relevance in the insistence of so many users creating passwords that are based off of predictable information easily found through OSINT (information such as pet names, sports, family members, etc).
 
 Manifest Dictionary quickly generates an intelligent wordlist using permutations of terms stored within a JSON file. The file can be manually edited via a text editor, or populated dynamically when ManifestDictionary.py is ran. View the contents of 'config.json' for further clarity. Terms are accumulated during the information gathering stage of a penetration test. The more relevant the terms in respect to the target: the higher chance of success.
 
