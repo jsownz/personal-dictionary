@@ -55,7 +55,8 @@ def select_category():
             print("\033[1;31mError: category not in database.\033[0m")
             return False
         else:
-            print("Selected category: " + category_selection)
+            print("\033[94mSelected category: " + category_selection +
+                  "\033[0m")
             return selection
     except ValueError:
         print("\033[1;31mError: lease enter the name of a category.\033[0m")
@@ -82,8 +83,8 @@ def remove_word(active_category):
     if active_category:
         new_word = input("Enter word to remove: ")
         if word_list.remove_term(active_category, new_word):
-            print(new_word + " removed from category \""
-                  + active_category + "\"")
+            print("\033[94m" + new_word + " removed from category \""
+                  + active_category + "\"\033[0m")
         else:
             print("\033[1;31mError: word \"" + new_word +
                   "\" not found in category \"" + active_category +
@@ -107,7 +108,7 @@ def add_list():
     """
         Prompt for path to 3rd party word list for import
     """
-    return input("\033[1;31mEnter path to word list: ").strip()
+    return input("\033[94mEnter path to word list: ").strip()
 
 
 def run_script(additional_list):
@@ -174,7 +175,7 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                select_category()
+                active_category = select_category()
             elif selection == 3:
                 add_word(active_category)
             elif selection == 4:
