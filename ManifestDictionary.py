@@ -162,6 +162,8 @@ def main():
     """
         Begin interactive menu for Manifest Dictionary
     """
+    add_blank_lines()
+
     for item in categories:
         word_list.add_category(item)
 
