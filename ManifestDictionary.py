@@ -185,11 +185,13 @@ def main():
     while True:
         try:
             main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
-                        "[Personalized Generator]"
+                        "[Personalized Generator]\n\n" \
+                        "\033[94mFormats - Years: #### Zip Codes: " \
+                        "##### Phone Numbers: ##########\033[95m"
             if first_run:
                 main_menu += "\033[95m\n\nUse the options below to " \
                              "generate a personalized dictionary list." \
-                             "\n \033[94m-> Interactive mode is " \
+                             "\n \033[91m-> Interactive mode is " \
                              "still in beta <-\033[95m\n\nTerms can be " \
                              "loaded into categories using the " \
                              "\"config.json\"\nfile in the script directory."
