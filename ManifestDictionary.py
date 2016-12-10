@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-09
+    Last Modified: 2016-12-10
     Python 3
 
     Interactive menu to make use of manifest_core application
@@ -147,7 +147,15 @@ def clear_categories():
     if input("Are you sure you want to remove *all* words "
              "from the session? [y/n]").strip().lower() == "y":
         word_list.clear_all_categories()
+        add_blank_lines()
         print("All words have been removed from the session.")
+
+
+def add_blank_lines():
+    """
+        Print 100 blank lines to reduce clutter
+    """
+    print("\n" * 100)
 
 
 def main():
@@ -185,10 +193,10 @@ def main():
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
         except ValueError:
-            print("\n" * 100)
+            add_blank_lines()
             print("\033[1;31mError: please enter a numeric value.\033[0m")
         else:
-            print("\n" * 100)
+            add_blank_lines()
             if selection == 1:
                 show_categories()
             elif selection == 2:
