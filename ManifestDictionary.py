@@ -140,6 +140,16 @@ def run_script(additional_list):
     os.system(execution_string)
 
 
+def clear_categories():
+    """
+        Remove all words from all categories for the active session
+    """
+    if input("Are you sure you want to remove *all* words "
+             "from the session? [y/n]").strip().lower() == "y":
+        word_list.clear_all_categories()
+        print("All words have been removed from the session.")
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -169,7 +179,8 @@ def main():
                          "4) Remove Word from Category\n" \
                          "5) Show Words in Category\n" \
                          "6) Import Existing List\n" \
-                         "7) Create Personalized Word List\n" \
+                         "7) Remove All Words\n" \
+                         "8) Create Personalized Word List\n" \
                          "99) Quit\n" \
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
@@ -191,6 +202,8 @@ def main():
             elif selection == 6:
                 additional_list = add_list()
             elif selection == 7:
+                clear_categories()
+            elif selection == 8:
                 run_script(additional_list)
                 break
             elif selection == 99:
