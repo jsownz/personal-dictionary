@@ -2,7 +2,7 @@
     DictionaryDatabase.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-12-09
+    Last Modified: 2016-12-10
 
     Class methods:
         > add_category(self, category_name)
@@ -16,6 +16,7 @@
         > reset_database(self)
         > export_database(self)
 """
+
 
 class DictionaryDatabase(object):
     """

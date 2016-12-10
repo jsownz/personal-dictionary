@@ -191,6 +191,7 @@ def main():
                          "6) Import Existing List\n" \
                          "7) Remove All Words\n" \
                          "8) Create Personalized Word List\n" \
+                         "0) Display Help From Core Script\n" \
                          "99) Quit\n" \
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
@@ -216,6 +217,8 @@ def main():
             elif selection == 8:
                 run_script(additional_list)
                 break
+            elif selection == 0:
+                os.system("python3 manifest_core.py -h")
             elif selection == 99:
                 break
             else:
