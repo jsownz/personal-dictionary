@@ -162,20 +162,25 @@ def main():
 
     active_category = False
     additional_list = False
-    main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
-                "[Personalized Generator]\033[92m\n\n" \
-                "1) Show Categories\n" \
-                "2) Select Category\n" \
-                "3) Add Word to Category\n" \
-                "4) Remove Word from Category\n" \
-                "5) Show Words in Category\n" \
-                "6) Import Existing List\n" \
-                "7) Create Personalized Word List\n" \
-                "99) Quit\n" \
-                "\nOption:\033[0m "
 
     while True:
         try:
+            main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
+                        "[Personalized Generator]\033[92m\n\n" \
+                        "Selected Category: "
+            if active_category:
+                main_menu += "\033[94m" + active_category + "\033[92m"
+            else:
+                main_menu += "\033[1;31mNot Selected\033[92m"
+            main_menu += "\n\n1) Show Categories\n" \
+                         "2) Select Category\n" \
+                         "3) Add Word to Category\n" \
+                         "4) Remove Word from Category\n" \
+                         "5) Show Words in Category\n" \
+                         "6) Import Existing List\n" \
+                         "7) Create Personalized Word List\n" \
+                         "99) Quit\n" \
+                         "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
         except ValueError:
             print("\n" * 100)
