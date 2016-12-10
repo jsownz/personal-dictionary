@@ -105,7 +105,13 @@ def add_list():
     """
         Prompt for path to 3rd party word list for import
     """
-    return input("\033[94mEnter path to word list: ").strip()
+    file_name = input("\033[94mEnter path to word list: \033[0m").strip()
+    if os.path.isfile(file_name):
+        print("The final word list can now be combined with: " + file_name)
+        return file_name
+    else:
+        print("\033[1;31mError: specified file not found.\033[0m")
+        return False
 
 
 def run_script(additional_list):
