@@ -8,10 +8,12 @@
       > store_cli_args()
       > parse_json(path)
       > letter_swap(term)
+      > full_letter_swap(term)
       > permute_casing(term)
       > alternate_case(term, first=True)
       > mangle(target_list)
       > number_swap(term)
+      > full_letter_swap(term)
       > permute_phone(phone)
       > permute_year(year)
       > reverse_string(term)
@@ -37,6 +39,8 @@ import itertools
 import json
 import re
 
+from itertools import product
+
 
 def store_cli_args():
     """
@@ -47,8 +51,8 @@ def store_cli_args():
     """
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +
-        "permutations of terms.\nData imported from populated " +
-        "JSON template.\n\n")
+                    "permutations of terms.\nData imported from populated " +
+                    "JSON template.\n\n")
     parser.add_argument(
         '--min', type=int, required=False,
         help='Minimum password length')
@@ -143,6 +147,40 @@ def letter_swap(term):
     return new_terms
 
 
+def full_letter_swap(term):
+    """
+        Replace all alpha chars within a string with common substitutions of
+        numbers and symbols.
+        Author: th3xer0
+
+        :param term: string of letters
+        :return: list of argument 'term' variations w/ letter substitutions
+        :rtype: list
+    """
+    term = term.lower()
+    letter_alt_dict = {
+        'a': '@4',
+        'b': '8',
+        'c': '(',
+        'e': '3',
+        'g': '69',
+        'h': '#',
+        'i': '!1',
+        'l': '1!',
+        'o': '0',
+        's': '5$',
+        't': '+7',
+        'z': '2'
+    }
+    new_terms = []
+    for character in term:
+        alt_letter = letter_alt_dict.get(character, character)
+        new_terms.append([character, ] if alt_letter == character else
+                         [char for char in ",".join(
+                             character + alt_letter).split(",")])
+    return [''.join(t) for t in product(*new_terms)]
+
+
 def permute_casing(term):
     """
         Return list of term with title case, all lower, and all upper.
@@ -233,6 +271,39 @@ def number_swap(term):
         marker += 1
 
     return new_terms
+
+
+def full_number_swap(term):
+    """
+        Replace all numeric chars within a string with common substitutions of
+        letters.
+        Author: th3xer0
+
+        :param term: numeric string
+        :return: list of argument 'term' variations w/ number substitutions
+        :rtype: list
+    """
+    number_alt_dict = {
+        '0': 'O',
+        '1': 'l',
+        '2': 'Z',
+        '3': 'E',
+        '4': 'A',
+        '5': 'S',
+        '6': 'bG',
+        '7': 'TL',
+        '8': 'B',
+        '9': 'gq'
+    }
+    new_terms = []
+    for character in term:
+        alt_number = number_alt_dict.get(character, character)
+        new_terms.append(
+            [character, ] if alt_number == character else
+            [
+                char for char in ",".join(character + alt_number).split(",")
+                ])
+    return [''.join(t) for t in product(*new_terms)]
 
 
 def permute_phone(phone):
@@ -486,7 +557,7 @@ def term_types(collection):
             numeric.append(item)
         elif item.isalpha():
             if item.islower() or (
-                    item[0].isupper() and item[1:].islower()):
+                        item[0].isupper() and item[1:].islower()):
                 alpha_lower.append(item)
             else:
                 alpha_mixed.append(item)
@@ -568,7 +639,7 @@ def clean_list(max_length, min_length, results):
     collection = list(set(results))
     return [
         word for word in collection if max_length >= len(word) >= min_length
-    ]
+        ]
 
 
 def read_input_list(args, max_length, min_length):
