@@ -212,7 +212,7 @@ def main():
                          "6) Import Existing List\n" \
                          "7) Remove All Words\n" \
                          "8) Display Help From Core Script\n" \
-                         "9) Generate Final Word List\n" \
+                         "9) Generate Word List (Overwrites Config File)\n" \
                          "99) Quit\n" \
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
