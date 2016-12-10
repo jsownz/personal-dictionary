@@ -174,12 +174,20 @@ def main():
 
     active_category = False
     additional_list = False
+    first_run = True
 
     while True:
         try:
             main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
-                        "[Personalized Generator]\033[92m\n\n" \
-                        "Selected Category: "
+                        "[Personalized Generator]"
+            if first_run:
+                main_menu += "\033[95m\n\nUse the options below to " \
+                             "generate a personalized dictionary list." \
+                             "\n \033[94m-> Interactive mode is " \
+                             "still in beta <-\033[95m\n\nTerms can be " \
+                             "loaded into categories using the " \
+                             "\"config.json\"\nfile in the script directory."
+            main_menu += "\033[92m\n\nSelected Category: "
             if active_category:
                 main_menu += "\033[94m" + active_category + "\033[92m"
             else:
@@ -192,7 +200,7 @@ def main():
                          "6) Import Existing List\n" \
                          "7) Remove All Words\n" \
                          "8) Create Personalized Word List\n" \
-                         "0) Display Help From Core Script\n" \
+                         "9) Display Help From Core Script\n" \
                          "99) Quit\n" \
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
@@ -200,6 +208,7 @@ def main():
             add_blank_lines()
             print("\033[1;31mError: please enter a numeric value.\033[0m")
         else:
+            first_run = False
             add_blank_lines()
             if selection == 1:
                 show_categories()
@@ -218,7 +227,7 @@ def main():
             elif selection == 8:
                 run_script(additional_list)
                 break
-            elif selection == 0:
+            elif selection == 9:
                 os.system("python3 manifest_core.py -h")
             elif selection == 99:
                 break
