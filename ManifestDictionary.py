@@ -120,7 +120,7 @@ def add_list():
 
 def run_script(additional_list):
     """
-        run the ManifestDictionary script with the interactive modifications
+        run the manifest_core script with the interactive modifications
         :param additional_list: third party list to combine if specified
     """
     # todo: add type checking / validation
