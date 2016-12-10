@@ -37,20 +37,6 @@ def show_words(active_category):
         print(item)
 
 
-def add_category():
-    """
-        Add category to database of words.
-        :return: true on success; false if category already exists
-    """
-    new_category = input("Enter category name: ").strip()
-    category_name = new_category.strip().replace(" ", "_").lower()
-    if word_list.add_category(category_name):
-        print("Added category " + new_category)
-        return True
-    print("Category already exists.")
-    return False
-
-
 def select_category():
     """
         Choose active category.
