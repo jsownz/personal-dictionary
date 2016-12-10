@@ -5,8 +5,8 @@
     Last Modified: 2016-12-09
     Python 3
 
-    Interactive menu to expand upon functionality of Manifest Dictionary
-    application; makes use of DictionaryDatabase module for book keeping.
+    Interactive menu to make use of manifest_core application
+    makes use of DictionaryDatabase module for book keeping.
 """
 
 import os
@@ -116,7 +116,8 @@ def run_script(additional_list):
         run the ManifestDictionary script with the interactive modifications
         :param additional_list: third party list to combine if specified
     """
-    # add code to update json config file
+    print("Note: this feature is still in development and will not"
+          " reflect changes made in interactive mode at this time.")
 
     use_list = False
     min_length = input("Enter minimum password length: ")
