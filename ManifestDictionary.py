@@ -116,9 +116,11 @@ def run_script(additional_list):
     with open(cfg_file, 'w') as outfile:
         json.dump(word_list.export_database(), outfile)
     use_list = False
+    print("Leave values blank for defaults.")
     min_length = input("Enter minimum password length: ")
     max_length = input("Enter maximum password length: ")
     num_passwd = input("Enter max number of passwords: ")
+    out_name = input("Enter name for output file (include extension): ")
     if additional_list:
         if input("Combine 3rd party list? [y/n]").strip() == "y":
             use_list = True
@@ -132,6 +134,8 @@ def run_script(additional_list):
         execution_string += " --num " + num_passwd
     if use_list:
         execution_string += " --input " + additional_list
+    if out_name:
+        execution_string += " --out " + out_name.strip()
     os.system(execution_string)
 
 
