@@ -5,8 +5,8 @@
     Last Modified: 2016-12-10
     Python 3
 
-    Interactive menu to make use of manifest_core application
-    Uses DictionaryDatabase module for book keeping.
+    Interactive menu to make use of manifest_core script
+    Depends on DictionaryDatabase module for book keeping of terms.
 """
 
 import json
@@ -37,8 +37,12 @@ def show_words(active_category):
         Show currently stored words in specified category
         :param active_category: Category to display words from
     """
-    for item in word_list.get_words_in_category(active_category):
+    words = word_list.get_words_in_category(active_category)
+    print(str(len(words)) + " term(s) in category \""
+          + active_category.title() + "\"\n")
+    for item in words:
         print(item)
+    print("\n")
 
 
 def select_category():
@@ -47,15 +51,15 @@ def select_category():
         :return: false if category not in database, otherwise key for category
     """
     show_categories()
-    category_selection = input("Please enter a category name: ")
+    cat_select = input("Please enter a category name: ")
     try:
-        selection = str(category_selection.strip().replace(" ", "_").lower())
+        selection = str(cat_select.strip().replace(" ", "_").lower())
         if selection not in word_list.get_category_names():
             print("\033[1;31mError: category not in database.\033[0m")
             return False
         else:
-            print("\033[94mSelected category: " + category_selection +
-                  "\033[0m")
+            cat_select = cat_select.replace("_", " ").title()
+            print("\033[94mSelected category: " + cat_select + "\033[0m")
             return selection
     except ValueError:
         print("\033[1;31mError: please enter the name of a category.\033[0m")
@@ -67,9 +71,13 @@ def add_word(active_category):
         :param active_category: category to add new word to.
     """
     if active_category:
-        new_word = input(
-            "Add word to category " + str(active_category) + ": ")
-        word_list.add_word(str(active_category), new_word)
+        show_words(active_category)
+        new_word = input("Add word to category \"" + format_category(
+            active_category) + "\" (empty to cancel): ")
+        if new_word.strip() == "":
+            print("\033[94mAdd Term Cancelled.\033[0m")
+        else:
+            word_list.add_word(str(active_category), new_word)
     else:
         print("\033[1;31mError: please select a category.\033[0m")
 
@@ -81,14 +89,18 @@ def remove_word(active_category):
     """
     if active_category:
         show_words(active_category)
-        new_word = input("Enter word to remove: ")
-        if word_list.remove_term(active_category, new_word):
-            print("\033[94m" + new_word + " removed from category \""
-                  + active_category + "\"\033[0m")
+        new_word = input("Enter term to remove (empty to cancel): ")
+        if new_word.strip() == "":
+            print("\033[94mRemoval Cancelled.\033[0m")
         else:
-            print("\033[1;31mError: word \"" + new_word +
-                  "\" not found in category \"" + active_category +
-                  "\"\033[0m")
+            if word_list.remove_term(active_category, new_word):
+                print("\033[94m" + new_word + " removed from category \""
+                      + active_category + "\"\033[0m")
+            else:
+                print("\033[1;31mError: word \"" + new_word +
+                      "\" not found in category \""
+                      + format_category(active_category) +
+                      "\"\033[0m")
     else:
         print("\033[1;31mError: please select a category.\033[0m")
 
@@ -162,6 +174,21 @@ def clear_categories():
         print("All words have been removed from the configuration file.")
 
 
+def format_category(active_category):
+    """
+        Print category formatted for readability
+        :param active_category: specified category to print
+    """
+    return active_category.replace("_", " ").title()
+
+
+def script_help_display():
+    """
+        Print the help section of manifest_core
+    """
+    os.system("python3 manifest_core.py -h")
+
+
 def add_blank_lines():
     """
         Print 100 blank lines to reduce clutter
@@ -191,7 +218,7 @@ def main():
             main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
                         "[Personalized Generator]\n\n" \
                         "\033[94mFormats - Years: #### Zip Codes: " \
-                        "##### Phone Numbers: ##########\033[95m"
+                        "##### Phone: ##########\033[95m"
             if first_run:
                 main_menu += "\033[95m\n\nUse the options below to " \
                              "generate a personalized dictionary list." \
@@ -201,7 +228,9 @@ def main():
                              "\"config.json\"\nfile in the script directory."
             main_menu += "\033[92m\n\nSelected Category: "
             if active_category:
-                main_menu += "\033[94m" + active_category + "\033[92m"
+                main_menu += "\033[94m" + \
+                             format_category(active_category) + \
+                             "\033[92m"
             else:
                 main_menu += "\033[1;31mNot Selected\033[92m"
             main_menu += "\n\n1) Show Categories & Word Count\n" \
@@ -212,7 +241,9 @@ def main():
                          "6) Import Existing List\n" \
                          "7) Remove All Words\n" \
                          "8) Display Help From Core Script\n" \
-                         "9) Generate Word List (Overwrites Config File)\n" \
+                         "9) Generate Word List " \
+                         "\033[91m(\033[93mOverwrites Config File" \
+                         "\033[91m)\033[92m\n" \
                          "99) Quit\n" \
                          "\nOption:\033[0m "
             selection = int(input(main_menu).strip())
@@ -237,16 +268,14 @@ def main():
             elif selection == 7:
                 clear_categories()
             elif selection == 8:
-                os.system("python3 manifest_core.py -h")
+                script_help_display()
             elif selection == 9:
                 run_script(additional_list)
                 break
             elif selection == 99:
                 break
             else:
-                print(
-                    "\033[1;31mError: please enter a valid menu number.\033[0m"
-                )
+                print("\033[1;31mError: please enter a valid option.\033[0m")
 
     print("Exiting...")
 
