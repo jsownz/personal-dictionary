@@ -52,13 +52,13 @@ def select_category():
     try:
         selection = str(category_selection.strip().replace(" ", "_").lower())
         if selection not in word_list.get_category_names():
-            print("Error: category not in database.")
+            print("\033[1;31mError: category not in database.\033[0m")
             return False
         else:
             print("Selected category: " + category_selection)
             return selection
     except ValueError:
-        print("Error: lease enter the name of a category.")
+        print("\033[1;31mError: lease enter the name of a category.\033[0m")
 
 
 def add_word(active_category):
@@ -71,7 +71,7 @@ def add_word(active_category):
             "Add word to category " + str(active_category) + ": ")
         word_list.add_word(str(active_category), new_word)
     else:
-        print("Error: please select a category.")
+        print("\033[1;31mError: please select a category.\033[0m")
 
 
 def remove_word(active_category):
@@ -85,10 +85,11 @@ def remove_word(active_category):
             print(new_word + " removed from category \""
                   + active_category + "\"")
         else:
-            print("Error: word \"" + new_word + "\" not found in category \""
-                  + active_category + "\"")
+            print("\033[1;31mError: word \"" + new_word +
+                  "\" not found in category \"" + active_category +
+                  "\"\033[0m")
     else:
-        print("Error: please select a category.")
+        print("\033[1;31mError: please select a category.\033[0m")
 
 
 def show_category_words(active_category):
@@ -99,14 +100,14 @@ def show_category_words(active_category):
     if active_category:
         print(word_list.get_words_in_category(active_category))
     else:
-        print("Error: no category has been selected.")
+        print("\033[1;31mError: no category has been selected.\033[0m")
 
 
 def add_list():
     """
         Prompt for path to 3rd party word list for import
     """
-    return input("Enter path to word list: ").strip()
+    return input("\033[1;31mEnter path to word list: ").strip()
 
 
 def run_script(additional_list):
@@ -167,13 +168,13 @@ def main():
             selection = int(input(main_menu).strip())
         except ValueError:
             print("\n" * 100)
-            print("Error: please enter a numeric value.")
+            print("\033[1;31mError: please enter a numeric value.\033[0m")
         else:
             print("\n" * 100)
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                add_category()
+                select_category()
             elif selection == 3:
                 add_word(active_category)
             elif selection == 4:
@@ -187,7 +188,9 @@ def main():
             elif selection == 99:
                 break
             else:
-                print("Error: please enter a valid menu number.")
+                print(
+                    "\033[1;31mError: please enter a valid menu number.\033[0m"
+                )
 
     print("Exiting...")
 
