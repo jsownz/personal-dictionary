@@ -16,6 +16,8 @@ This is an open project and all developers are welcome to join.
 
 ## Usage
 
+Directions below are for manual usage of manifest_core.py
+
 Note: Requires Python 3
 
 ```
