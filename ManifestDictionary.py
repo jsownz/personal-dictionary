@@ -123,7 +123,7 @@ def run_script(additional_list):
     num_passwd = input("Enter max number of passwords: ")
     out_name = input("Enter name for output file (include extension): ")
     if additional_list:
-        if input("Combine 3rd party list? [y/n]").strip().lower() == "y":
+        if input("Combine 3rd party list? [y/n]: ").strip().lower() == "y":
             use_list = True
     execution_string = "python3 manifest_core.py"
     execution_string += " -f " + cfg_file
@@ -145,7 +145,7 @@ def clear_categories():
         Remove all words from all categories for the active session
     """
     if input("Are you sure you want to remove *all* words "
-             "from the session? [y/n]").strip().lower() == "y":
+             "from the session? [y/n]: ").strip().lower() == "y":
         word_list.clear_all_categories()
         add_blank_lines()
         print("All words have been removed from the session.")
