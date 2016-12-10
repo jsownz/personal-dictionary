@@ -6,11 +6,11 @@
     Python 3
 
     Interactive menu to make use of manifest_core application
-    makes use of DictionaryDatabase module for book keeping.
+    Uses DictionaryDatabase module for book keeping.
 """
 
+import json
 import os
-
 import DictionaryDatabase
 import mangler
 
@@ -26,6 +26,15 @@ def show_categories():
     """
     for item in word_list.get_category_names():
         print(item.replace("_", " ").title())
+
+
+def show_words(active_category):
+    """
+        Show currently stored words in specified category
+        :param active_category: Category to display words from
+    """
+    for item in word_list.get_words_in_category(active_category):
+        print(item)
 
 
 def add_category():
@@ -81,6 +90,7 @@ def remove_word(active_category):
         :param active_category: category to remove term from
     """
     if active_category:
+        show_words(active_category)
         new_word = input("Enter word to remove: ")
         if word_list.remove_term(active_category, new_word):
             print("\033[94m" + new_word + " removed from category \""
@@ -116,9 +126,9 @@ def run_script(additional_list):
         run the ManifestDictionary script with the interactive modifications
         :param additional_list: third party list to combine if specified
     """
-    print("Note: this feature is still in development and will not"
-          " reflect changes made in interactive mode at this time.")
-
+    cfg_file = "config.json"
+    with open(cfg_file, 'w') as outfile:
+        json.dump(word_list.export_database(), outfile)
     use_list = False
     min_length = input("Enter minimum password length: ")
     max_length = input("Enter maximum password length: ")
@@ -126,7 +136,6 @@ def run_script(additional_list):
     if additional_list:
         if input("Combine 3rd party list? [y/n]").strip() == "y":
             use_list = True
-    cfg_file = "config.json"
     execution_string = "python3 manifest_core.py"
     execution_string += " -f " + cfg_file
     if min_length:

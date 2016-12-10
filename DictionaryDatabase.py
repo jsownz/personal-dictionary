@@ -2,7 +2,7 @@
     DictionaryDatabase.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-12-05
+    Last Modified: 2016-12-09
 
     Class methods:
         > add_category(self, category_name)
@@ -14,8 +14,8 @@
         > remove_term(self, category_name, term)
         > clear_all_categories(self)
         > reset_database(self)
+        > export_database(self)
 """
-
 
 class DictionaryDatabase(object):
     """
@@ -132,3 +132,9 @@ class DictionaryDatabase(object):
             Remove all categories and words
         """
         self._categories.clear()
+
+    def export_database(self):
+        """
+            Return object dictionary
+        """
+        return self._categories
