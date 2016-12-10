@@ -95,7 +95,8 @@ def show_category_words(active_category):
         :param active_category: category to display words from
     """
     if active_category:
-        print(word_list.get_words_in_category(active_category))
+        for item in word_list.get_words_in_category(active_category):
+            print(item)
     else:
         print("\033[1;31mError: no category has been selected.\033[0m")
 
@@ -187,7 +188,7 @@ def main():
                          "2) Select Category\n" \
                          "3) Add Word to Category\n" \
                          "4) Remove Word from Category\n" \
-                         "5) Show Words in Category\n" \
+                         "5) Show Terms in Category\n" \
                          "6) Import Existing List\n" \
                          "7) Remove All Words\n" \
                          "8) Create Personalized Word List\n" \
