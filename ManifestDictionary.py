@@ -24,8 +24,12 @@ def show_categories():
     """
         Display current categories in database.
     """
+    full_count = 0
     for item in word_list.get_category_names():
-        print(item.replace("_", " ").title())
+        temp_count = len(word_list.get_words_in_category(item))
+        full_count += temp_count
+        print(item.replace("_", " ").title() + " (" + str(temp_count) + ")")
+    print("\n" + str(full_count) + " total entries.")
 
 
 def show_words(active_category):
@@ -149,13 +153,13 @@ def run_script(additional_list):
 
 def clear_categories():
     """
-        Remove all words from all categories for the active session
+        Remove all words from all categories for the config file
     """
     if input("Are you sure you want to remove *all* words "
-             "from the session? [y/n]: ").strip().lower() == "y":
+             "from the config file? [y/n]: ").strip().lower() == "y":
         word_list.clear_all_categories()
         add_blank_lines()
-        print("All words have been removed from the session.")
+        print("All words have been removed from the configuration file.")
 
 
 def add_blank_lines():
@@ -192,15 +196,15 @@ def main():
                 main_menu += "\033[95m\n\nUse the options below to " \
                              "generate a personalized dictionary list." \
                              "\n \033[91m-> Interactive mode is " \
-                             "still in beta <-\033[95m\n\nTerms can be " \
-                             "loaded into categories using the " \
+                             "still in beta <-\033[95m\n\nTerms are " \
+                             "loaded into categories stored inside the " \
                              "\"config.json\"\nfile in the script directory."
             main_menu += "\033[92m\n\nSelected Category: "
             if active_category:
                 main_menu += "\033[94m" + active_category + "\033[92m"
             else:
                 main_menu += "\033[1;31mNot Selected\033[92m"
-            main_menu += "\n\n1) Show Categories\n" \
+            main_menu += "\n\n1) Show Categories & Word Count\n" \
                          "2) Select Category\n" \
                          "3) Add Word to Category\n" \
                          "4) Remove Word from Category\n" \
