@@ -1,8 +1,8 @@
 """
     mangler.py
-    Python 3
-    Last Modified: 2016-12-09
-
+    Author: MC_GitFlow
+    Python3
+    Last Modified: 2016-12-10
 
     Functions:
       > store_cli_args()
