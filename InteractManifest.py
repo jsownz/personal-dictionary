@@ -2,12 +2,14 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-05
+    Last Modified: 2016-12-09
     Python 3
 
     Interactive menu to expand upon functionality of Manifest Dictionary
     application; makes use of DictionaryDatabase module for book keeping.
 """
+
+import os
 
 import DictionaryDatabase
 import mangler
@@ -107,6 +109,34 @@ def add_list():
     return input("Enter path to word list: ").strip()
 
 
+def run_script(additional_list):
+    """
+        run the ManifestDictionary script with the interactive modifications
+        :param additional_list: third party list to combine if specified
+    """
+    # add code to update json config file
+
+    use_list = False
+    min_length = input("Enter minimum password length: ")
+    max_length = input("Enter maximum password length: ")
+    num_passwd = input("Enter max number of passwords: ")
+    if additional_list:
+        if input("Combine 3rd party list? [y/n]").strip() == "y":
+            use_list = True
+    cfg_file = "config.json"
+    execution_string = "python3 manifest_core.py"
+    execution_string += " -f " + cfg_file
+    if min_length:
+        execution_string += " --min " + min_length
+    if max_length:
+        execution_string += " --max " + max_length
+    if num_passwd:
+        execution_string += " --num " + num_passwd
+    if use_list:
+        execution_string += " --input " + additional_list
+    os.system(execution_string)
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -119,10 +149,9 @@ def main():
             word_list.add_word(category, term)
 
     active_category = False
-    # noinspection PyUnusedLocal
     additional_list = False
-    main_menu = "\n[+] Menu - *X* Manifest Dictionary *X* " \
-                "[Personalized Generator]\n\n" \
+    main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
+                "[Personalized Generator]\033[92m\n\n" \
                 "1) Show Categories\n" \
                 "2) Select Category\n" \
                 "3) Add Word to Category\n" \
@@ -131,14 +160,16 @@ def main():
                 "6) Import Existing List\n" \
                 "7) Create Personalized Word List\n" \
                 "99) Quit\n" \
-                "\nOption: "
+                "\nOption:\033[0m "
 
     while True:
         try:
             selection = int(input(main_menu).strip())
         except ValueError:
+            print("\n" * 100)
             print("Error: please enter a numeric value.")
         else:
+            print("\n" * 100)
             if selection == 1:
                 show_categories()
             elif selection == 2:
@@ -151,9 +182,8 @@ def main():
                 show_category_words(active_category)
             elif selection == 6:
                 additional_list = add_list()
-                print(additional_list)
             elif selection == 7:
-                print("Coming soon.")
+                run_script(additional_list)
             elif selection == 99:
                 break
             else:

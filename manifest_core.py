@@ -2,9 +2,8 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-07-26
+    Last Modified: 2016-12-09
     Python 3
-    r0.3.1-2016.07.26(b)
 
     Generate a dictionary list as a text file using permutations of terms
     imported from a JSON file. Specify maximum number of passwords, min and
