@@ -6,18 +6,18 @@
     Python 3
 
     Interactive menu to make use of manifest_core script
-    Depends on DictionaryDatabase module for book keeping of terms.
+    Uses BookKeeper class to manage content used for generating wordlist.
 """
 
 import json
 import os
-import DictionaryDatabase
+import BookKeeper
 import mangler
 
 criteria = mangler.parse_json("config.json")
 categories = [item for item in criteria if item[0] != "_"]
 categories.sort()
-word_list = DictionaryDatabase.DictionaryDatabase()
+word_list = BookKeeper.BookKeeper()
 
 
 def show_categories():

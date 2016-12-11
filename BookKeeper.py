@@ -1,5 +1,5 @@
 """
-    DictionaryDatabase.py
+    BookKeeper.py
     Author: MC_GitFlow
     Python3
     Last Modified: 2016-12-10
@@ -18,7 +18,7 @@
 """
 
 
-class DictionaryDatabase(object):
+class BookKeeper(object):
     """
         Manage dictionary of terms mapped by categories
     """
