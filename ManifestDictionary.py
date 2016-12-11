@@ -39,8 +39,8 @@ def show_words(active_category):
         :param active_category: Category to display words from
     """
     words = word_list.get_words_in_category(active_category)
-    print(str(len(words)) + " term(s) in category \""
-          + active_category.title() + "\"\n")
+    print(str(len(words)) + " term(s) in category \"" +
+          active_category.title() + "\"\n")
     for item in words:
         print(item)
     print("\n")
@@ -98,12 +98,12 @@ def remove_word(active_category):
             print("\033[94mRemoval Cancelled.\033[0m")
         else:
             if word_list.remove_term(active_category, new_word):
-                print("\033[94m" + new_word + " removed from category \""
-                      + active_category + "\"\033[0m")
+                print("\033[94m" + new_word + " removed from category \"" +
+                      active_category + "\"\033[0m")
             else:
                 print("\033[1;31mError: word \"" + new_word +
-                      "\" not found in category \""
-                      + format_category(active_category) +
+                      "\" not found in category \"" +
+                      format_category(active_category) +
                       "\"\033[0m")
     else:
         print("\033[1;31mError: please select a category.\033[0m")
