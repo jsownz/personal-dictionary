@@ -218,20 +218,26 @@ def add_blank_lines():
 def main():
     """
         Begin interactive menu for Manifest Dictionary
+        Menu selections use functions from above inside a loop
+        to customize data used in wordlist generation.
     """
+    # push other text in terminal window out of view
     add_blank_lines()
 
+    # import categories from config data
     for item in categories:
         word_list.add_category(item)
 
+    # import category terms from config data
     for category in categories:
         for term in criteria[category]:
             word_list.add_word(category, term)
 
-    active_category = False
-    additional_list = False
-    first_run = True
+    active_category = False  # category to be acted upon
+    additional_list = False  # list to combine if specified
+    first_run = True  # indicates to show directions on first run of loop
 
+    # begin interactive menu loop
     while True:
         try:
             main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
