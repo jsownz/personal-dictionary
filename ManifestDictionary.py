@@ -28,7 +28,7 @@ import os
 import BookKeeper
 import mangler
 
-# import words from the configuration file to a BookKeeper object
+# prep for import words from the configuration file to a BookKeeper object
 criteria = mangler.parse_json("config.json")
 categories = [item for item in criteria if item[0] != "_"]
 categories.sort()
