@@ -9,18 +9,18 @@
     Uses BookKeeper class to manage content used for generating wordlist.
 
     Functions:
-      > def show_categories()
-      > def show_words(active_category)
-      > def select_category()
-      > def add_word(active_category)
-      > def remove_word(active_category)
-      > def show_category_words(active_category)
-      > def add_list()
-      > def run_script(additional_list)
-      > def clear_categories()
-      > def format_category(active_category)
-      > def script_help_display()
-      > def add_blank_lines()
+      > show_categories()
+      > show_words(active_category)
+      > select_category()
+      > add_word(active_category)
+      > remove_word(active_category)
+      > show_category_words(active_category)
+      > add_list()
+      > run_script(additional_list)
+      > clear_categories()
+      > format_category(active_category)
+      > script_help_display()
+      > add_blank_lines()
 """
 
 import json
