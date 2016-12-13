@@ -2,11 +2,25 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-10
+    Last Modified: 2016-12-12
     Python 3
 
     Interactive menu to make use of manifest_core script
     Uses BookKeeper class to manage content used for generating wordlist.
+
+    Functions:
+      > def show_categories()
+      > def show_words(active_category)
+      > def select_category()
+      > def add_word(active_category)
+      > def remove_word(active_category)
+      > def show_category_words(active_category)
+      > def add_list()
+      > def run_script(additional_list)
+      > def clear_categories()
+      > def format_category(active_category)
+      > def script_help_display()
+      > def add_blank_lines()
 """
 
 import json
