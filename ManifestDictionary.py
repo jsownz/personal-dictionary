@@ -221,6 +221,7 @@ def main():
         Menu selections use functions from above inside a loop
         to customize data used in wordlist generation.
     """
+
     # push other text in terminal window out of view
     add_blank_lines()
 
