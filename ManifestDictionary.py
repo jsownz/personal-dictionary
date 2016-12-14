@@ -270,8 +270,8 @@ def main():
                          "    8) Display Help From Core Script\n" \
                          "    9) Generate Word List " \
                          "\033[91m(\033[93mOverwrites Config File" \
-                         "\033[91m)\033[92m\n" \
-                         "\n    99) Quit\n" \
+                         "\033[91m)\033[92m\n\n" \
+                         "    99) Quit\n" \
                          "\n  Option:\033[0;34m "
             selection = int(input(main_menu).strip())
         except ValueError:
