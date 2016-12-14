@@ -257,7 +257,7 @@ def main():
             if active_category:
                 main_menu += "\033[94m" + \
                              format_category(active_category) + \
-                             "\033[92m"
+                             "\033[92m\n\n"
             else:
                 main_menu += "\033[93mNot Selected\033[92m\n\n"
             main_menu += "    1) Show Categories & Word Count\n" \
