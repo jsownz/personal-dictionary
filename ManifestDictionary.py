@@ -276,7 +276,7 @@ def main():
             selection = int(input(main_menu).strip())
         except ValueError:
             add_blank_lines()
-            print("\033[1;31mError: please enter a numeric value.\033[0m")
+            print("\033[1;31mError: please enter a numeric value.\033[0;34m")
         else:
             first_run = False
             add_blank_lines()
@@ -302,7 +302,8 @@ def main():
             elif selection == 99:
                 break
             else:
-                print("\033[1;31mError: please enter a valid option.\033[0m")
+                print(
+                    "\033[1;31mError: please enter a valid option.\033[0;34m")
 
     print("Exiting...")
 
