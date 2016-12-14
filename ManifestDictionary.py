@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-13
+    Last Modified: 2016-12-14
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -259,8 +259,8 @@ def main():
                              format_category(active_category) + \
                              "\033[92m"
             else:
-                main_menu += "\033[93mNot Selected\033[92m"
-            main_menu += "\n\n    1) Show Categories & Word Count\n" \
+                main_menu += "\033[93mNot Selected\033[92m\n\n"
+            main_menu += "    1) Show Categories & Word Count\n" \
                          "    2) Select Category\n" \
                          "    3) Add Word to Category\n" \
                          "    4) Remove Word from Category\n" \
