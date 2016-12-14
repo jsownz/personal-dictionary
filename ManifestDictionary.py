@@ -95,7 +95,7 @@ def add_word(active_category):
         new_word = input("Add word to category \"" + format_category(
             active_category) + "\" (empty to cancel): ")
         if new_word.strip() == "":
-            print("\033[94mAdd Term Cancelled.\033[0m")
+            print("\033[94mAdd Term Cancelled.\033[0;34m")
         else:
             word_list.add_word(str(active_category), new_word)
     else:
@@ -115,14 +115,14 @@ def remove_word(active_category):
         else:
             if word_list.remove_term(active_category, new_word):
                 print("\033[94m" + new_word + " removed from category \"" +
-                      active_category + "\"\033[0m")
+                      active_category + "\"\033[0;34m")
             else:
                 print("\033[1;31mError: word \"" + new_word +
                       "\" not found in category \"" +
                       format_category(active_category) +
                       "\"\033[0m")
     else:
-        print("\033[1;31mError: please select a category.\033[0m")
+        print("\033[1;31mError: please select a category.\033[0;34m")
 
 
 def show_category_words(active_category):
@@ -134,19 +134,19 @@ def show_category_words(active_category):
         for item in word_list.get_words_in_category(active_category):
             print(item)
     else:
-        print("\033[1;31mError: no category has been selected.\033[0m")
+        print("\033[1;31mError: no category has been selected.\033[0;34m")
 
 
 def add_list():
     """
         Prompt for path to 3rd party word list for import
     """
-    file_name = input("\033[94mEnter path to word list: \033[0m").strip()
+    file_name = input("\033[94mEnter path to word list: \033[0;34m").strip()
     if os.path.isfile(file_name):
         print("The final word list can now be combined with: " + file_name)
         return file_name
     else:
-        print("\033[1;31mError: specified file not found.\033[0m")
+        print("\033[1;31mError: specified file not found.\033[0;34m")
         return False
 
 
@@ -259,7 +259,7 @@ def main():
                              format_category(active_category) + \
                              "\033[92m"
             else:
-                main_menu += "\033[0mNot Selected\033[92m"
+                main_menu += "\033[93mNot Selected\033[92m"
             main_menu += "\n\n    1) Show Categories & Word Count\n" \
                          "    2) Select Category\n" \
                          "    3) Add Word to Category\n" \
@@ -272,7 +272,7 @@ def main():
                          "\033[91m(\033[93mOverwrites Config File" \
                          "\033[91m)\033[92m\n" \
                          "\n    99) Quit\n" \
-                         "\n  Option:\033[0m "
+                         "\n  Option:\033[0;34m "
             selection = int(input(main_menu).strip())
         except ValueError:
             add_blank_lines()
