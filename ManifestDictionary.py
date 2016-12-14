@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-12
+    Last Modified: 2016-12-13
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -77,6 +77,7 @@ def select_category():
                 print("\033[1;31mError: category not in database.\033[0m")
                 return False
             else:
+                add_blank_lines()
                 cat_select = cat_select.replace("_", " ").title()
                 print("\033[94mSelected category: " + cat_select + "\033[0m")
                 return selection
@@ -252,26 +253,26 @@ def main():
                              "still in beta <-\033[95m\n\nTerms are " \
                              "loaded into categories stored inside the " \
                              "\"config.json\"\nfile in the script directory."
-            main_menu += "\033[92m\n\nSelected Category: "
+            main_menu += "\033[92m\n\n    Selected Category: "
             if active_category:
                 main_menu += "\033[94m" + \
                              format_category(active_category) + \
                              "\033[92m"
             else:
-                main_menu += "\033[1;31mNot Selected\033[92m"
-            main_menu += "\n\n1) Show Categories & Word Count\n" \
-                         "2) Select Category\n" \
-                         "3) Add Word to Category\n" \
-                         "4) Remove Word from Category\n" \
-                         "5) Show Terms in Category\n" \
-                         "6) Import Existing List\n" \
-                         "7) Remove All Words\n" \
-                         "8) Display Help From Core Script\n" \
-                         "9) Generate Word List " \
+                main_menu += "\033[0mNot Selected\033[92m"
+            main_menu += "\n\n    1) Show Categories & Word Count\n" \
+                         "    2) Select Category\n" \
+                         "    3) Add Word to Category\n" \
+                         "    4) Remove Word from Category\n" \
+                         "    5) Show Terms in Category\n" \
+                         "    6) Import Existing List\n" \
+                         "    7) Remove All Words\n" \
+                         "    8) Display Help From Core Script\n" \
+                         "    9) Generate Word List " \
                          "\033[91m(\033[93mOverwrites Config File" \
                          "\033[91m)\033[92m\n" \
-                         "99) Quit\n" \
-                         "\nOption:\033[0m "
+                         "\n    99) Quit\n" \
+                         "\n  Option:\033[0m "
             selection = int(input(main_menu).strip())
         except ValueError:
             add_blank_lines()
