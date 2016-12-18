@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-14
+    Last Modified: 2016-12-18 13:16:17 CDT
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -260,19 +260,20 @@ def main():
                              "\033[92m\n\n"
             else:
                 main_menu += "\033[93mNot Selected\033[92m\n\n"
-            main_menu += "    1) Show Categories & Word Count\n" \
-                         "    2) Select Category\n" \
-                         "    3) Add Word to Category\n" \
-                         "    4) Remove Word from Category\n" \
-                         "    5) Show Terms in Category\n" \
-                         "    6) Import Existing List\n" \
-                         "    7) Remove All Words\n" \
-                         "    8) Display Help From Core Script\n" \
-                         "    9) Generate Word List " \
+            main_menu += "    " \
+                         "1) Show Categories & Word Count\n    " \
+                         "2) Select Category\n    " \
+                         "3) Add Word to Category\n    " \
+                         "4) Remove Word from Category\n    " \
+                         "5) Show Terms in Category\n    " \
+                         "6) Import Existing List\n    " \
+                         "7) Remove All Words\n    " \
+                         "8) Display Help From Core Script\n    " \
+                         "9) Generate Word List " \
                          "\033[91m(\033[93mOverwrites Config File" \
-                         "\033[91m)\033[92m\n\n" \
-                         "    99) Quit\n" \
-                         "\n  Option:\033[0;34m "
+                         "\033[91m)\033[92m\n\n    " \
+                         "99) Quit\n\n  " \
+                         "Option:\033[0;34m "
             selection = int(input(main_menu).strip())
         except ValueError:
             add_blank_lines()
