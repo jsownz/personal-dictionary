@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-01-08
+    Last Modified: 2017-01-08
     Python 3
 
     Generate a dictionary list as a text file using permutations of terms
