@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-09
+    Last Modified: 2016-01-08
     Python 3
 
     Generate a dictionary list as a text file using permutations of terms
@@ -66,8 +66,7 @@ def main():
     except FileNotFoundError as fnf_e:
         exit(u"Could not open criteria file: {0:s}".format(fnf_e.strerror))
     else:
-        print("\nPlease wait while your dictionary is generated... This may " +
-              "take a while depending on the amount of data.\n")
+        print("\nPlease wait while your dictionary is generated...\n")
 
         # create permutations of individual categories
         collections, other, phone_numbers, phones, \
