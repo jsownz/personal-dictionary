@@ -12,7 +12,7 @@ Existing wordlists can be imported and combined during generation of personalize
 
 Included lists are from: https://github.com/MC-GitFlow/SecLists
 
-This is an open project and all developers are welcome to join.
+Development is ongoing and relative to the scope of desired functionality the current release is in alpha. Hopefully this project will be deprecated through education of password database programs, or altogether replacing the insecure concept of a password.
 
 ## Usage
 
