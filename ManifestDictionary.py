@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2016-12-18 13:16:17 CDT
+    Last Modified: 2017-01-13
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -70,7 +70,7 @@ def select_category():
     cat_select = input("Please enter a category name (empty to cancel): ")
     try:
         if cat_select.strip() == "":
-            print("\033[94mSelect category cancelled.\033[0m")
+            print("\033[94mSelect category canceled.\033[0m")
         else:
             selection = str(cat_select.strip().replace(" ", "_").lower())
             if selection not in word_list.get_category_names():
@@ -95,7 +95,7 @@ def add_word(active_category):
         new_word = input("Add word to category \"" + format_category(
             active_category) + "\" (empty to cancel): ")
         if new_word.strip() == "":
-            print("\033[94mAdd Term Cancelled.\033[0;34m")
+            print("\033[94mAdd Term Canceled.\033[0;34m")
         else:
             word_list.add_word(str(active_category), new_word)
     else:
@@ -111,7 +111,7 @@ def remove_word(active_category):
         show_words(active_category)
         new_word = input("Enter term to remove (empty to cancel): ")
         if new_word.strip() == "":
-            print("\033[94mRemoval Cancelled.\033[0m")
+            print("\033[94mRemoval Canceled.\033[0m")
         else:
             if word_list.remove_term(active_category, new_word):
                 print("\033[94m" + new_word + " removed from category \"" +
