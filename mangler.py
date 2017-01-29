@@ -2,7 +2,7 @@
     mangler.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-12-10
+    Last Modified: 2017-01-29
 
     Functions:
       > store_cli_args()
@@ -35,10 +35,10 @@
 """
 
 import argparse
-import itertools
 import json
 import re
 
+import itertools
 from itertools import product
 
 
@@ -51,8 +51,8 @@ def store_cli_args():
     """
     parser = argparse.ArgumentParser(
         description="Generate a dictionary list as a text file using " +
-                    "permutations of terms.\nData imported from populated " +
-                    "JSON template.\n\n")
+        "permutations of terms.\nData imported from populated " +
+        "JSON template.\n\n")
     parser.add_argument(
         '--min', type=int, required=False,
         help='Minimum password length')
@@ -557,7 +557,7 @@ def term_types(collection):
             numeric.append(item)
         elif item.isalpha():
             if item.islower() or (
-                        item[0].isupper() and item[1:].islower()):
+                    item[0].isupper() and item[1:].islower()):
                 alpha_lower.append(item)
             else:
                 alpha_mixed.append(item)
