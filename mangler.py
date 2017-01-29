@@ -300,7 +300,7 @@ def full_number_swap(term):
             [character, ] if alt_number == character else
             [
                 char for char in ",".join(character + alt_number).split(",")
-                ])
+            ])
     return [''.join(t) for t in itertools.product(*new_terms)]
 
 
@@ -637,7 +637,7 @@ def clean_list(max_length, min_length, results):
     collection = list(set(results))
     return [
         word for word in collection if max_length >= len(word) >= min_length
-        ]
+    ]
 
 
 def read_input_list(args, max_length, min_length):
