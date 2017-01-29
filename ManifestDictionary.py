@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2017-01-13
+    Last Modified: 2017-01-29
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -29,10 +29,10 @@ import BookKeeper
 import mangler
 
 # prep for import of words from the configuration file to a BookKeeper object
-criteria = mangler.parse_json("config.json")
-categories = [item for item in criteria if item[0] != "_"]
-categories.sort()
-word_list = BookKeeper.BookKeeper()
+CRITERA = mangler.parse_json("config.json")
+CATEGORIES = [item for item in CRITERA if item[0] != "_"]
+CATEGORIES.sort()
+WORD_LIST = BookKeeper.BookKeeper()
 
 
 def show_categories():
@@ -40,8 +40,8 @@ def show_categories():
         Display current categories in database.
     """
     full_count = 0
-    for item in word_list.get_category_names():
-        temp_count = len(word_list.get_words_in_category(item))
+    for item in WORD_LIST.get_category_names():
+        temp_count = len(WORD_LIST.get_words_in_category(item))
         full_count += temp_count
         print(item.replace("_", " ").title() + " (" + str(temp_count) +
               " items)")
@@ -53,7 +53,7 @@ def show_words(active_category):
         Show currently stored words in specified category
         :param active_category: Category to display words from
     """
-    words = word_list.get_words_in_category(active_category)
+    words = WORD_LIST.get_words_in_category(active_category)
     print(str(len(words)) + " term(s) in category \"" +
           active_category.title() + "\"\n")
     for item in words:
@@ -73,7 +73,7 @@ def select_category():
             print("\033[94mSelect category canceled.\033[0m")
         else:
             selection = str(cat_select.strip().replace(" ", "_").lower())
-            if selection not in word_list.get_category_names():
+            if selection not in WORD_LIST.get_category_names():
                 print("\033[1;31mError: category not in database.\033[0m")
                 return False
             else:
@@ -97,7 +97,7 @@ def add_word(active_category):
         if new_word.strip() == "":
             print("\033[94mAdd Term Canceled.\033[0;34m")
         else:
-            word_list.add_word(str(active_category), new_word)
+            WORD_LIST.add_word(str(active_category), new_word)
     else:
         print("\033[1;31mError: please select a category.\033[0m")
 
@@ -113,7 +113,7 @@ def remove_word(active_category):
         if new_word.strip() == "":
             print("\033[94mRemoval Canceled.\033[0m")
         else:
-            if word_list.remove_term(active_category, new_word):
+            if WORD_LIST.remove_term(active_category, new_word):
                 print("\033[94m" + new_word + " removed from category \"" +
                       active_category + "\"\033[0;34m")
             else:
@@ -131,7 +131,7 @@ def show_category_words(active_category):
         :param active_category: category to display words from
     """
     if active_category:
-        for item in word_list.get_words_in_category(active_category):
+        for item in WORD_LIST.get_words_in_category(active_category):
             print(item)
     else:
         print("\033[1;31mError: no category has been selected.\033[0;34m")
@@ -158,7 +158,7 @@ def run_script(additional_list):
     # todo: add type checking / validation
     cfg_file = "config.json"
     with open(cfg_file, 'w') as outfile:
-        json.dump(word_list.export_database(), outfile)
+        json.dump(WORD_LIST.export_database(), outfile)
     use_list = False
     print("Leave values blank for defaults.")
     min_length = input("Enter minimum password length: ")
@@ -189,7 +189,7 @@ def clear_categories():
     """
     if input("Are you sure you want to remove *all* words "
              "from the config file? [y/n]: ").strip().lower() == "y":
-        word_list.clear_all_categories()
+        WORD_LIST.clear_all_categories()
         add_blank_lines()
         print("All words have been removed from the configuration file.")
 
@@ -227,13 +227,13 @@ def main():
     add_blank_lines()
 
     # import categories from config data
-    for item in categories:
-        word_list.add_category(item)
+    for item in CATEGORIES:
+        WORD_LIST.add_category(item)
 
     # import category terms from config data
-    for category in categories:
-        for term in criteria[category]:
-            word_list.add_word(category, term)
+    for category in CATEGORIES:
+        for term in CRITERA[category]:
+            WORD_LIST.add_word(category, term)
 
     active_category = False  # category to be acted upon
     additional_list = False  # list to combine if specified
