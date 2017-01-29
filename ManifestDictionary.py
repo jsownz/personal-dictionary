@@ -30,8 +30,8 @@ import BookKeeper
 import mangler
 
 # prep for import of words from the configuration file to a BookKeeper object
-CRITERA = mangler.parse_json("config.json")
-CATEGORIES = [item for item in CRITERA if item[0] != "_"]
+CRITERIA = mangler.parse_json("config.json")
+CATEGORIES = [item for item in CRITERIA if item[0] != "_"]
 CATEGORIES.sort()
 WORD_LIST = BookKeeper.BookKeeper()
 
@@ -233,7 +233,7 @@ def main():
 
     # import category terms from config data
     for category in CATEGORIES:
-        for term in CRITERA[category]:
+        for term in CRITERIA[category]:
             WORD_LIST.add_word(category, term)
 
     active_category = False  # category to be acted upon
