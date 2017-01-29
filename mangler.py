@@ -35,11 +35,9 @@
 """
 
 import argparse
+import itertools
 import json
 import re
-
-import itertools
-from itertools import product
 
 
 def store_cli_args():
@@ -178,7 +176,7 @@ def full_letter_swap(term):
         new_terms.append([character, ] if alt_letter == character else
                          [char for char in ",".join(
                              character + alt_letter).split(",")])
-    return [''.join(t) for t in product(*new_terms)]
+    return [''.join(t) for t in itertools.product(*new_terms)]
 
 
 def permute_casing(term):
@@ -303,7 +301,7 @@ def full_number_swap(term):
             [
                 char for char in ",".join(character + alt_number).split(",")
                 ])
-    return [''.join(t) for t in product(*new_terms)]
+    return [''.join(t) for t in itertools.product(*new_terms)]
 
 
 def permute_phone(phone):
