@@ -2,7 +2,7 @@
     mangler.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2017-01-29
+    Last Modified: 2017-01-31
 
     Functions:
       > store_cli_args()
@@ -221,7 +221,7 @@ def mangle(target_list):
 
         :param target_list: generic list of strings, typically only letters
         :type target_list: list
-        :return: 5 common permutations of all terms in 'target_list'
+        :return: common permutations
         :rtype: list
     """
     target_list = re.sub(r"\s+", " ", ",".join(target_list)).replace(" ", ",")
