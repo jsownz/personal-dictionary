@@ -2,7 +2,7 @@
     BookKeeper.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2016-12-10
+    Last Modified: 2017-01-31
 
     Class methods:
         > add_category(self, category_name)
@@ -38,8 +38,7 @@ class BookKeeper(object):
         if category_name not in self._categories:
             self._categories[category_name] = []
             return True
-        else:
-            return False
+        return False
 
     def add_word(self, category_name, term):
         """
@@ -54,8 +53,7 @@ class BookKeeper(object):
         elif term not in self._categories[category_name]:
             self._categories[category_name].append(term)
             return True
-        else:
-            return False
+        return False
 
     def get_words_in_category(self, category_name):
         """
@@ -65,8 +63,7 @@ class BookKeeper(object):
         """
         if category_name in self._categories:
             return self._categories[category_name]
-        else:
-            return False
+        return False
 
     def get_all_words(self):
         """
@@ -79,8 +76,7 @@ class BookKeeper(object):
                 word_list.append(item)
         if word_list:
             return word_list
-        else:
-            return False
+        return False
 
     def get_category_names(self):
         """
@@ -89,8 +85,7 @@ class BookKeeper(object):
         """
         if self._categories:
             return [item for item in self._categories]
-        else:
-            return False
+        return False
 
     def clear_category(self, category_name):
         """
@@ -125,8 +120,7 @@ class BookKeeper(object):
             for item in self._categories:
                 self._categories[item] = []
             return True
-        else:
-            return False
+        return False
 
     def reset_database(self):
         """
