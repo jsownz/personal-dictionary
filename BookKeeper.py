@@ -106,7 +106,7 @@ class BookKeeper(object):
             :return: True on success; False if category not found
         """
         if self._categories[category_name] and \
-            term in self._categories[category_name]:
+                term in self._categories[category_name]:
             self._categories[category_name].remove(term)
             return True
         return False
