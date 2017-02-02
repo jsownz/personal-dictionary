@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2017-01-29
+    Last Modified: 2017-02-01
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -76,12 +76,12 @@ def select_category():
             selection = str(cat_select.strip().replace(" ", "_").lower())
             if selection not in WORD_LIST.get_category_names():
                 print("\033[1;31mError: category not in database.\033[0m")
-                return False
             else:
                 add_blank_lines()
                 cat_select = cat_select.replace("_", " ").title()
                 print("\033[94mSelected category: " + cat_select + "\033[0m")
                 return selection
+        return False
     except ValueError:
         print("\033[1;31mError: please enter the name of a category.\033[0m")
 
@@ -285,7 +285,9 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                active_category = select_category()
+                swap_cat = select_category()
+                if swap_cat:
+                    active_category = swap_cat
             elif selection == 3:
                 add_word(active_category)
             elif selection == 4:
