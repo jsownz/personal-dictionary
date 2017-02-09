@@ -217,6 +217,49 @@ def add_blank_lines():
     print("\n" * 100)
 
 
+def build_menu(active_category, first_run):
+    """
+        Create user menu display based on application stage
+
+        :param active_category: currently selected category
+        :param first_run: bool to display directions on first run
+        :return: string formatted for menu
+    """
+    main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
+                "[Personalized Generator]\n\n" \
+                "\033[94mFormats - Years: #### Zip Codes: " \
+                "##### Phone: ##########\033[95m"
+    if first_run:
+        main_menu += "\033[95m\n\nUse the options below to " \
+                     "generate a personalized dictionary list." \
+                     "\n \033[91m-> Interactive mode is " \
+                     "still in beta <-\033[95m\n\nTerms are " \
+                     "loaded into categories stored inside the " \
+                     "\"config.json\"\nfile in the script directory."
+    main_menu += "\033[92m\n\n    Selected Category: "
+    if active_category:
+        main_menu += "\033[94m" + \
+                     format_category(active_category) + \
+                     "\033[92m\n\n"
+    else:
+        main_menu += "\033[93mNot Selected\033[92m\n\n"
+    main_menu += "    " \
+                 "1) Show Categories & Word Count\n    " \
+                 "2) Select Category\n    " \
+                 "3) Add Word to Category\n    " \
+                 "4) Remove Word from Category\n    " \
+                 "5) Show Terms in Category\n    " \
+                 "6) Import Existing List\n    " \
+                 "7) Remove All Words\n    " \
+                 "8) Display Help From Core Script\n    " \
+                 "9) Generate Word List " \
+                 "\033[91m(\033[93mOverwrites Config File" \
+                 "\033[91m)\033[92m\n\n    " \
+                 "99) Quit\n\n  " \
+                 "Option:\033[0;34m "
+    return main_menu
+
+
 def main():
     """
         Begin interactive menu for Manifest Dictionary
@@ -243,38 +286,7 @@ def main():
     # begin interactive menu loop
     while True:
         try:
-            main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
-                        "[Personalized Generator]\n\n" \
-                        "\033[94mFormats - Years: #### Zip Codes: " \
-                        "##### Phone: ##########\033[95m"
-            if first_run:
-                main_menu += "\033[95m\n\nUse the options below to " \
-                             "generate a personalized dictionary list." \
-                             "\n \033[91m-> Interactive mode is " \
-                             "still in beta <-\033[95m\n\nTerms are " \
-                             "loaded into categories stored inside the " \
-                             "\"config.json\"\nfile in the script directory."
-            main_menu += "\033[92m\n\n    Selected Category: "
-            if active_category:
-                main_menu += "\033[94m" + \
-                             format_category(active_category) + \
-                             "\033[92m\n\n"
-            else:
-                main_menu += "\033[93mNot Selected\033[92m\n\n"
-            main_menu += "    " \
-                         "1) Show Categories & Word Count\n    " \
-                         "2) Select Category\n    " \
-                         "3) Add Word to Category\n    " \
-                         "4) Remove Word from Category\n    " \
-                         "5) Show Terms in Category\n    " \
-                         "6) Import Existing List\n    " \
-                         "7) Remove All Words\n    " \
-                         "8) Display Help From Core Script\n    " \
-                         "9) Generate Word List " \
-                         "\033[91m(\033[93mOverwrites Config File" \
-                         "\033[91m)\033[92m\n\n    " \
-                         "99) Quit\n\n  " \
-                         "Option:\033[0;34m "
+            main_menu = build_menu(active_category, first_run)
             selection = int(input(main_menu).strip())
         except ValueError:
             add_blank_lines()
