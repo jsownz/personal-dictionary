@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2017-02-01
+    Last Modified: 2017-02-09
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -285,9 +285,7 @@ def main():
             if selection == 1:
                 show_categories()
             elif selection == 2:
-                swap_cat = select_category()
-                if swap_cat:
-                    active_category = swap_cat
+                active_category = select_category() or active_category
             elif selection == 3:
                 add_word(active_category)
             elif selection == 4:
