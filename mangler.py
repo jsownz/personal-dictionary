@@ -38,6 +38,7 @@ import argparse
 import itertools
 import json
 import re
+import os
 
 
 def store_cli_args():
@@ -689,6 +690,8 @@ def generate_dictionary(input_terms, output, pw_count, results):
     """
     count = 0
     pws = iter(input_terms) if input_terms else input_terms
+    if not os.path.exists("generated"):
+        os.makedirs("generated")
     with open("generated/"+output, "w+") as my_file:
         for word in results:
             if count == pw_count:
