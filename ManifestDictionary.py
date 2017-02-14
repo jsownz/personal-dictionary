@@ -25,6 +25,7 @@
 
 import json
 import os
+from shutil import copyfile
 
 import BookKeeper
 import mangler
@@ -33,7 +34,8 @@ import mangler
 if os.path.isfile("config.json"):
     CRITERIA = mangler.parse_json("config.json")
 else:
-    CRITERIA = mangler.parse_json("config_template.json")
+    copyfile("config_template.json", "config.json")
+    CRITERIA = mangler.parse_json("config.json")
 CATEGORIES = [item for item in CRITERIA if item[0] != "_"]
 CATEGORIES.sort()
 WORD_LIST = BookKeeper.BookKeeper()
