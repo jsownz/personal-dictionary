@@ -398,7 +398,8 @@ def permute_criteria(criteria):
         "sports": criteria["sports"] if criteria["sports"] else [],
         "states": criteria["states"] if criteria["states"] else [],
         "streets": criteria["street_numbers"] if criteria["streets"] else [],
-        "zip_codes": criteria["zip_codes"] if criteria["zip_codes"] else []
+        "zip_codes": criteria["zip_codes"] if criteria["zip_codes"] else [],
+        "birthdays": criteria["birthdays"] if criteria["birthdays"] else []
     }
 
     # permute lists for base passwords using function mangle
@@ -434,8 +435,10 @@ def permute_criteria(criteria):
     for street_number in criteria["street_numbers"]:
         street_nums.extend(perm_st_num(street_number))
 
+    # not using permutation on birthdays
+
     return mangled, collections["other"], collections["phone_numbers"], \
-        phones, street_nums, years, zips
+        phones, street_nums, years, zips, collections["birthdays"]
 
 
 def permute_collections(collections):
@@ -479,7 +482,7 @@ def permute_other(base, other):
         marker += 1
 
 
-def add_suffixes(base, phone_numbers, street_nums, years, zips):
+def add_suffixes(base, phone_numbers, street_nums, years, zips, birthdays):
     """
         Add suffix of additional common variations to existing base
 
@@ -493,15 +496,29 @@ def add_suffixes(base, phone_numbers, street_nums, years, zips):
     """
     with_suffix = []
     for word in base:
-        # add generic numeric and special chars
-        with_suffix.extend([
-            str(word) + "!",
-            str(word) + "1",
-            str(word) + "123"
-        ])
+
+        generic_addons = [
+            "!",
+            "1",
+            "123",
+            "123!",
+            "1234",
+            "1234!",
+            "123456",
+            "123456!",
+            "18",
+            "18!",
+            "21",
+            "21!"
+        ]
+        for generic in generic_addons:
+            with_suffix.append(word + generic)
 
         for year in years:
             with_suffix.append(word + year)
+        
+        for birthday in birthdays:
+            with_suffix.append(word + birthday)
 
         for zip_code in zips:
             with_suffix.append(word + zip_code)
@@ -672,7 +689,7 @@ def generate_dictionary(input_terms, output, pw_count, results):
     """
     count = 0
     pws = iter(input_terms) if input_terms else input_terms
-    with open(output, "w+") as my_file:
+    with open("generated/"+output, "w+") as my_file:
         for word in results:
             if count == pw_count:
                 break

@@ -30,7 +30,10 @@ import BookKeeper
 import mangler
 
 # prep for import of words from the configuration file to a BookKeeper object
-CRITERIA = mangler.parse_json("config.json")
+if os.path.isfile("config.json"):
+    CRITERIA = mangler.parse_json("config.json")
+else:
+    CRITERIA = mangler.parse_json("config_template.json")
 CATEGORIES = [item for item in CRITERIA if item[0] != "_"]
 CATEGORIES.sort()
 WORD_LIST = BookKeeper.BookKeeper()
@@ -157,7 +160,10 @@ def run_script(additional_list):
         :param additional_list: third party list to combine if specified
     """
     # todo: add type checking / validation
-    cfg_file = "config.json"
+    if os.path.isfile("config.json"):
+        cfg_file = "config.json"
+    else:
+        cfg_file = "config_template.json"
     with open(cfg_file, 'w') as outfile:
         json.dump(WORD_LIST.export_database(), outfile)
     use_list = False
@@ -227,15 +233,16 @@ def build_menu(active_category, first_run):
     """
     main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
                 "[Personalized Generator]\n\n" \
-                "\033[94mFormats - Years: #### Zip Codes: " \
-                "##### Phone: ##########\033[95m"
+                "\033[94mFormats: \nYears: #### \nZip Codes: " \
+                "##### \nPhone: ########## \nBirthdays: MMDDYYYY / MMDDYY " \
+                "\033[95m"
     if first_run:
         main_menu += "\033[95m\n\nUse the options below to " \
                      "generate a personalized dictionary list." \
                      "\n \033[91m-> Interactive mode is " \
                      "still in beta <-\033[95m\n\nTerms are " \
                      "loaded into categories stored inside the " \
-                     "\"config.json\"\nfile in the script directory."
+                     "\"config.json\"\nfile in the root directory."
     main_menu += "\033[92m\n\n    Selected Category: "
     if active_category:
         main_menu += "\033[94m" + \
