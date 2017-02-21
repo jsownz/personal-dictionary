@@ -260,8 +260,7 @@ def build_menu(active_category, first_run):
                  "7) Remove All Words\n    " \
                  "8) Display Help From Core Script\n    " \
                  "9) Generate Word List " \
-                 "\033[91m(\033[93mOverwrites Config File" \
-                 "\033[91m)\033[92m\n\n    " \
+                 "[91m\n\n    " \
                  "99) Quit\n\n  " \
                  "Option:\033[0;34m "
     return main_menu
