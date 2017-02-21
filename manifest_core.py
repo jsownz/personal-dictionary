@@ -70,7 +70,7 @@ def main():
 
         # create permutations of individual categories
         collections, other, phone_numbers, phones, \
-            street_nums, years, zips = mangler.permute_criteria(criteria)
+            street_nums, years, zips, birthdays = mangler.permute_criteria(criteria)
 
         # combine permutations of multiple categories
         combinations = mangler.permute_collections(collections)
@@ -80,7 +80,7 @@ def main():
 
         # combine current lists and add common suffixes
         results = phones + combinations + mangler.add_suffixes(
-            combinations, phone_numbers, street_nums, years, zips)
+            combinations, phone_numbers, street_nums, years, zips, birthdays)
 
         # enforce lengths, sort to push probable passwords to top, remove dupes
         results = finalize_collection(
@@ -89,7 +89,7 @@ def main():
         # generate txt file of wordlist, combine with any third party lists
         save_dictionary(user_params, results)
 
-        print("Dictionary list generated: " + user_params["output_file"])
+        print("Dictionary list generated: generated/" + user_params["output_file"])
 
 
 if __name__ == "__main__":

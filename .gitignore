@@ -54,3 +54,9 @@ deployment-config.json
 
 # Compiled
 *.pyc
+
+# Generated PW Lists
+generated/*
+
+# Generated config json
+config.json
