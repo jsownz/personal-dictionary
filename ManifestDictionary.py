@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2017-02-09
+    Last Modified: 2017-02-21
     Python 3
 
     Interactive menu to make use of manifest_core script
@@ -30,12 +30,10 @@ from shutil import copyfile
 import BookKeeper
 import mangler
 
-# prep for import of words from the configuration file to a BookKeeper object
-if os.path.isfile("config.json"):
-    CRITERIA = mangler.parse_json("config.json")
-else:
+
+if not os.path.isfile("config.json"):
     copyfile("config_template.json", "config.json")
-    CRITERIA = mangler.parse_json("config.json")
+CRITERIA = mangler.parse_json("config.json")
 CATEGORIES = [item for item in CRITERIA if item[0] != "_"]
 CATEGORIES.sort()
 WORD_LIST = BookKeeper.BookKeeper()
@@ -235,16 +233,16 @@ def build_menu(active_category, first_run):
     """
     main_menu = "\n\033[93m[+] *X* Manifest Dictionary *X* " \
                 "[Personalized Generator]\n\n" \
-                "\033[94mFormats: \nYears: #### \nZip Codes: " \
-                "##### \nPhone: ########## \nBirthdays: MMDDYYYY / MMDDYY " \
+                "\033[94mFormats: Years: #### Zip Codes: " \
+                "##### Phone: ########## Birthdays: MMDDYYYY or MMDDYY " \
                 "\033[95m"
     if first_run:
         main_menu += "\033[95m\n\nUse the options below to " \
                      "generate a personalized dictionary list." \
                      "\n \033[91m-> Interactive mode is " \
-                     "still in beta <-\033[95m\n\nTerms are " \
-                     "loaded into categories stored inside the " \
-                     "\"config.json\"\nfile in the root directory."
+                     "still in beta <-\033[95m\n\nWords may be " \
+                     "loaded into categories using the included file: " \
+                     "\"config.json\"\n"
     main_menu += "\033[92m\n\n    Selected Category: "
     if active_category:
         main_menu += "\033[94m" + \

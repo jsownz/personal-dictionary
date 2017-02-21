@@ -2,7 +2,7 @@
 
 """
     Author: MC_GitFlow
-    Last Modified: 2017-01-08
+    Last Modified: 2017-02-21
     Python 3
 
     Generate a dictionary list as a text file using permutations of terms
@@ -69,8 +69,8 @@ def main():
         print("\nPlease wait while your dictionary is generated...\n")
 
         # create permutations of individual categories
-        collections, other, phone_numbers, phones, \
-            street_nums, years, zips, birthdays = mangler.permute_criteria(criteria)
+        collections, other, phone_numbers, phones, street_nums, \
+            years, zips, birthdays = mangler.permute_criteria(criteria)
 
         # combine permutations of multiple categories
         combinations = mangler.permute_collections(collections)

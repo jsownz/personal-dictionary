@@ -1,1 +1,83 @@
-{"sports": ["poker", "lakers"], "pets": ["spike", "tiger", "penny", "kash", "flo"], "zip_codes": ["23434", "34567"], "phone": ["8885557676", "8885550909", "1231231231"], "birthdays": ["09291986", "092986"], "other": ["python", "dictionary"], "employment": ["evilcorp"], "cities": ["denver", "austin"], "street_numbers": ["1233", "900"], "music": ["doors", "prodigy"], "colors": ["crimson", "black", "red", "blue"], "family": ["mother", "father", "smith"], "states": ["colorado", "texas"], "streets": ["avenue", "pacific"], "years": ["1984", "2016"], "schools": ["yale", "harvard"]}
+{
+    "_comment_about_file": [
+        "Fields beginning with '_comment' are for informational purposes.",
+        "Prepopulated data in this template file is for demonstration.",
+        "Replace test data with your own to generate a dictionary.",
+        "Not all fields are required; leave unknowns blank."
+    ],
+    "pets": [
+        "spike",
+        "tiger"
+    ],
+    "_comment_years": [
+        "Years should be a string of 4 numbers: 1234"
+    ],
+    "years": [
+        "1984",
+        "2016"
+    ],
+    "_comment_birthdays": [
+        "Date format is MMDDYY or MMDDYYY"
+    ],
+    "birthdays": [
+        "09291986",
+        "092986"
+    ],
+    "_comment_phone": [
+        "Phone numbers should be strings of 10 numbers: 1234567890"
+    ],
+    "phone": [
+        "8885557676",
+        "8885550909"
+    ],
+    "sports": [
+        "poker",
+        "lakers"
+    ],
+    "family": [
+        "mother",
+        "father",
+        "smith"
+    ],
+    "employment": [
+        "evilcorp"
+    ],
+    "states": [
+        "colorado",
+        "texas"
+    ],
+    "cities": [
+        "denver",
+        "austin"
+    ],
+    "_comment_zip_codes": [
+        "Zip codes should be strings of 5 numbers: 12345"
+    ],
+    "zip_codes": [
+        "23434",
+        "34567"
+    ],
+    "streets": [
+        "avenue",
+        "pacific"
+    ],
+    "street_numbers": [
+        "1233",
+        "900"
+    ],
+    "schools": [
+        "yale",
+        "harvard"
+    ],
+    "music": [
+        "doors",
+        "prodigy"
+    ],
+    "colors": [
+        "crimson"
+    ],
+    "other": [
+        "python",
+        "dictionary"
+    ]
+}

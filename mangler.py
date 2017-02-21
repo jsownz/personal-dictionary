@@ -2,7 +2,7 @@
     mangler.py
     Author: MC_GitFlow
     Python3
-    Last Modified: 2017-01-31
+    Last Modified: 2017-02-21
 
     Functions:
       > store_cli_args()
@@ -504,20 +504,17 @@ def add_suffixes(base, phone_numbers, street_nums, years, zips, birthdays):
             "123",
             "123!",
             "1234",
-            "1234!",
             "123456",
-            "123456!",
             "18",
-            "18!",
-            "21",
-            "21!"
+            "21"
         ]
+
         for generic in generic_addons:
             with_suffix.append(word + generic)
 
         for year in years:
             with_suffix.append(word + year)
-        
+
         for birthday in birthdays:
             with_suffix.append(word + birthday)
 
@@ -690,17 +687,18 @@ def generate_dictionary(input_terms, output, pw_count, results):
     """
     count = 0
     pws = iter(input_terms) if input_terms else input_terms
-    if not os.path.exists("generated"):
-        os.makedirs("generated")
-    with open("generated/"+output, "w+") as my_file:
+    if not os.path.exists("./generated"):
+        os.makedirs("./generated")
+
+    with open("./generated/" + output, "w+") as resulting_lsit:
         for word in results:
             if count == pw_count:
                 break
-            my_file.write(word + "\n")
+            resulting_lsit.write(word + "\n")
             count += 1
             if input_terms:
                 try:
-                    my_file.write(next(pws))
+                    resulting_lsit.write(next(pws))
                     count += 1
                 except StopIteration:
                     input_terms = False
